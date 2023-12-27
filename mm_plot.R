@@ -6,9 +6,10 @@ loadEnvironments()
 
 long |> pull(loc) |> unique() |> walk(function(x){
 	print(ggplot(long |> filter(loc==x))
-		+ aes(x=offset, y=cases, color=phase)
+		+ aes(x=offset, y=cases)
 		+ geom_line()
+		+ geom_line(aes(color=phase))
 		+ ggtitle(x)
-		+ geom_point(dat=selected |> filter(loc==x))
+		+ geom_point(dat=selected |> filter(loc==x),aes(color=phase))
 	)
 })
