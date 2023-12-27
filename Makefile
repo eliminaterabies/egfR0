@@ -122,6 +122,7 @@ slowtarget/check.Rout: dogs.csv check.R
 ######################################################################
 ## 2023 Dec 25 (Mon)
 
+Sources += series.tsv varnames.tsv
 Sources += monthly.md ## A statistical practice journal
 
 ## Read two data sets into a long frame
