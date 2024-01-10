@@ -1,9 +1,7 @@
 
 ## JD
 
-Modularize windowning parameters…
-
-Think about a min climb ratio as well as a minimum time ratio to define an outbreak
+Modularize windowing parameters…
 
 Make a list of things we excluded 
 
@@ -14,7 +12,9 @@ Current Serengeti seems like one phase to Katie – how does that inform our dec
 Write down all criteria explicitly
 
 Should a single 0 observation be a break point?
+* Harder to implement
 
 Discussion: the fitting machine itself should consider uncertainty in window selection!
+* Will not implement for this project
 
 Look at conflicted package (assign to Roswell)
