@@ -33,6 +33,7 @@ long <- (long
 	%>% group_by(loc)
 	%>% mutate(offset = 1:length(cases))
 	%>% ungroup
+	%>% arrange(loc)
 )
 
 summary(long %>% mutate_if(is.character, as.factor))

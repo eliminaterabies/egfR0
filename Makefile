@@ -129,18 +129,27 @@ Sources += monthly.md ## A statistical practice journal
 monthly.Rout: monthly.R datadir/R0rabiesdataMonthly.csv datadir/monthlyTSdogs.csv varnames.tsv
 	$(pipeR)
 
+######################################################################
+
+windowPars.Rout: windowPars.R
+	$(pipeR)
+
 ## Break series into phases
-## This is based on parameters: minPeak and ratThresh
-monthly_phase.Rout: monthly_phase.R monthly.rds
+## Uses parameters minPeak and declineRatio
+monthly_phase.Rout: monthly_phase.R monthly.rds windowPars.rda
 	$(pipeR)
 
 ## Multiple monthly windows per data set sometimes
-## Depends on yet another parameter, 
-mm_windows.Rout: mm_windows.R monthly_phase.rda
+## Uses parameters minPeak (again),  minLength, and climbRatio
+mm_windows.Rout: mm_windows.R monthly_phase.rda windowPars.rda
 	$(pipeR)
 
 mm_plot.Rout: mm_plot.R mm_windows.rda
 	$(pipeR)
+
+######################################################################
+
+## Epigrowthfit
 
 egf.Rout: egf.R mm_windows.rda
 	$(pipeR)

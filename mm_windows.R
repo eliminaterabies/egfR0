@@ -4,7 +4,6 @@ library(shellpipes)
 
 ## Get both minPeak and long 
 loadEnvironments()
-minLength <- 5
 
 findWin <- function(t, c, mp, ml){
 	if(max(c) < mp) return(data.frame(offset=NULL, cases=NULL))
