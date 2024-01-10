@@ -1,4 +1,6 @@
 
+Need to fill in from recent notes about choosing windows
+
 2024 Jan 03 (Wed)
 =================
 
