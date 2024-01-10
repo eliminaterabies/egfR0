@@ -39,6 +39,8 @@ pipeline:
 
 ##################################################################
 
+Sources += $(wildcard *.R)
+
 ## Moved a whole bunch of generations stuff
 
 Sources += generations.mk
