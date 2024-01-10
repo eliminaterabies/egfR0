@@ -1,13 +1,9 @@
 
 ## JD
 
-Modularize windowning parameters
+Modularize windowning parameters…
 
 Think about a min climb ratio as well as a minimum time ratio to define an outbreak
-
-Don't break phases while we're still falling
-
-Alphabetize the goddam time series!
 
 Make a list of things we excluded 
 

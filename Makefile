@@ -140,7 +140,7 @@ monthly_phase.Rout: monthly_phase.R monthly.rds windowPars.rda
 	$(pipeR)
 
 ## Multiple monthly windows per data set sometimes
-## Uses parameters minPeak (again),  minLength, and climbRatio
+## Uses parameters minPeak (again),  minLength, and minClimb
 mm_windows.Rout: mm_windows.R monthly_phase.rda windowPars.rda
 	$(pipeR)
 
