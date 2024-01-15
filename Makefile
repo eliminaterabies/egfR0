@@ -74,17 +74,37 @@ monthly.Rout: monthly.R datadir/R0rabiesdataMonthly.csv datadir/monthlyTSdogs.cs
 windowPars.Rout: windowPars.R
 	$(pipeR)
 
+softPars.Rout: softPars.R
+	$(pipeR)
+
+hardPars.Rout: hardPars.R
+	$(pipeR)
+
 ## Break series into phases
 ## Uses parameters minPeak and declineRatio
-monthly_phase.Rout: monthly_phase.R monthly.rds windowPars.rda
+pipeRimplicit += monthly_phase
+
+## hardPars.monthly_phase.Rout: monthly_phase.R
+## softPars.monthly_phase.Rout: monthly_phase.R
+%.monthly_phase.Rout: monthly_phase.R monthly.rds %.rda
 	$(pipeR)
+
 
 ## Multiple monthly windows per data set sometimes
 ## Uses parameters minPeak (again),  minLength, and minClimb
-mm_windows.Rout: mm_windows.R monthly_phase.rda windowPars.rda
+pipeRimplicit += mm_windows
+
+## hardPars.mm_windows.Rout: mm_windows.R
+## softPars.mm_windows.Rout: mm_windows.R
+%.mm_windows.Rout: mm_windows.R monthly_phase.rda %.rda
 	$(pipeR)
 
-mm_plot.Rout: mm_plot.R mm_windows.rda
+
+pipeRimplicit += mm_plot
+
+## hardPars.mm_plot.Rout: mm_plot.R
+## softPars.mm_plot.Rout: mm_plot.R
+%.mm_plot.Rout: mm_plot.R %.mm_windows.rda
 	$(pipeR)
 
 ######################################################################
