@@ -86,6 +86,10 @@ mm_plot.Rout: mm_plot.R mm_windows.rda
 
 ######################################################################
 
+## Explore different windowing parameter choices
+
+######################################################################
+
 ## Epigrowthfit
 
 egf.Rout: egf.R mm_windows.rda
