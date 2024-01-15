@@ -42,6 +42,7 @@ pipeline:
 Sources += $(wildcard *.R)
 
 ## Moved a whole bunch of generations stuff
+## See also content.mk
 
 Sources += generations.mk
 
@@ -57,6 +58,8 @@ conflicts.Rout: conflicts.R
 	$(pipeR)
 
 ######################################################################
+
+Ignore += dogs.csv
 
 Sources += series.tsv varnames.tsv
 Sources += monthly.md ## A statistical practice journal
@@ -99,6 +102,7 @@ egf_indep.Rout: egf_indep.R mm_windows.rda
 	$(pipeR)
 
 ## for stuff that may need to be rebuilt
+## See also generations.mk
 Sources += content.mk
 
 ##################################################################
