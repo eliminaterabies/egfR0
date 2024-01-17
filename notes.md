@@ -5,6 +5,8 @@
 Making a document specifically about the plots, but also contains our current thoughts
 * mm_plot.md
 
+Based on data quality, we are thinking of changing the default value of minPeak to 15 (or possibly 16 specifically to exclude Perak‽)
+
 2024 Jan 03 (Wed)
 =================
 
