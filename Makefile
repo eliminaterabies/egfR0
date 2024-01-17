@@ -13,6 +13,8 @@ vim_session:
 
 Sources += README.md notes.md TODO.md ##
 
+Ignore += .gitignore
+
 ######################################################################
 
 ## Use Dropboxes to pass and cache data so that we can keep the code open
