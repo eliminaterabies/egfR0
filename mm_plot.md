@@ -10,6 +10,8 @@ Since our last meeting, WZ and I have:
 Questions:
 
 * The first window in Kanagawa has a double peak; JD feels like we should not fiddle
+* The second phase in Kanagawa is sensitive to minPeak choice (out now)
+* Memphis looks like a good peak, but we currently think the time series is too short
 * We kind of want to exclude Perak; we could do that by raising the minimum to 16, or just by making a judgment that we hate it
 * Tokyo1 has two double peaks!
 * What do we think about the first peak in Tokyo2?

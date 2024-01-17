@@ -1,4 +1,3 @@
-
 library(tidyverse)
 
 library(shellpipes)
@@ -6,6 +5,8 @@ library(shellpipes)
 loadEnvironments()
 
 ## Split time series into phases by finding peaks and then looking for a fall
+## We split before we look at climb ratios or series lengths
+## Don't start a new phase until we see a rise
 calcPhase <- function(v, mp, dt){
 	T <- length(v)
 	phase <- numeric(T)
