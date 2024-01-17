@@ -15,7 +15,7 @@ vim_session:
 
 Sources += README.md notes.md TODO.md ##
 
-Ignore += .gitignore $(wildcard *.Rproj)
+Ignore += .gitignore $(wildcard *.Rproj .Rproj.*)
 
 ######################################################################
 
