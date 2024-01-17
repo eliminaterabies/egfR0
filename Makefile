@@ -1,6 +1,4 @@
 
-## START HERE: we are currently repiping pars to avoid repetition
-
 ## This is egfR0, a fresh new repo. Jan 2024
 ## The old rabies_R0 and historical_R0 repos are now somewhat deprecated
 
@@ -75,21 +73,22 @@ monthly.Rout: monthly.R datadir/R0rabiesdataMonthly.csv datadir/monthlyTSdogs.cs
 
 autopipeR=defined
 
+## Parameter sets
+## softClimb.pars.Rout: softClimb.R
+## softDecline.pars.Rout: softDecline.R
 base.pars.Rout: pars.R base.R
 	$(pipeR)
 
-## Parameter sets
-basePars.Rout: basePars.R
-softClimb.Rout: softClimb.R
-softDecline.Rout: softDecline.R
+## Not sure if this is needed 2024 Jan 17 (Wed)
+pipeRimplicit += pars
+%.pars.Rout: pars.R base.R %.R
+	$(pipeR)
 
 ## Break series into phases
 ## Uses parameters minPeak and declineRatio
 pipeRimplicit += monthly_phase
 
 ## Split time series into phases 
-## basePars.monthly_phase.Rout: monthly_phase.R
-## softClimb.monthly_phase.Rout: monthly_phase.R
 %.monthly_phase.Rout: monthly_phase.R monthly.rds %.pars.rda
 	$(pipeR)
 
@@ -97,18 +96,13 @@ pipeRimplicit += monthly_phase
 ## Uses parameters minPeak (again),  minLength, and minClimb
 pipeRimplicit += mm_windows
 
-## basePars.mm_windows.Rout: mm_windows.R
-## softClimb.mm_windows.Rout: mm_windows.R
-
 ## Read pars again why?
 %.mm_windows.Rout: mm_windows.R monthly_phase.rda %.pars.rda
 	$(pipeR)
 
 pipeRimplicit += mm_plot
 
-## basePars.mm_plot.Rout: mm_plot.R
 ## softClimb.mm_plot.Rout: mm_plot.R
-## softDecline.mm_plot.Rout: mm_plot.R
 %.mm_plot.Rout: mm_plot.R %.mm_windows.rda %.pars.rda
 	$(pipeR)
 
