@@ -6,7 +6,8 @@ current: target
 -include target.mk
 
 vim_session:
-	bash -cl "vmt TODO.md README.md notes.md monthly.md"
+	bash -cl "vmt TODO.md README.md notes.md"
+
 
 ##################################################################
 
@@ -62,7 +63,6 @@ conflicts.Rout: conflicts.R
 Ignore += dogs.csv
 
 Sources += series.tsv varnames.tsv
-Sources += monthly.md ## A statistical practice journal
 
 ## Read two data sets into a long frame
 ## Trim out Excel padding; add time offsets
@@ -76,6 +76,7 @@ autopipeR=defined
 ## Parameter sets
 basePars.Rout: basePars.R
 softClimb.Rout: softClimb.R
+softDecline.Rout: softDecline.R
 
 ## Break series into phases
 ## Uses parameters minPeak and declineRatio
@@ -100,6 +101,7 @@ pipeRimplicit += mm_plot
 
 ## basePars.mm_plot.Rout: mm_plot.R
 ## softClimb.mm_plot.Rout: mm_plot.R
+## softDecline.mm_plot.Rout: mm_plot.R
 %.mm_plot.Rout: mm_plot.R %.mm_windows.rda %.rda
 	$(pipeR)
 
