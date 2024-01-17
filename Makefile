@@ -34,7 +34,7 @@ datadir: dir=$(Drop)/Rabies_TZ/
 datadir:
 	$(linkdirname)
 
-## Pipeline outputs
+## Pipeline outputs (different pointer inside the same Dropbox)
 Ignore += pipeline
 pipeline/%:
 	$(MAKE) pipeline
