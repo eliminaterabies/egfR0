@@ -101,7 +101,7 @@ pipeRimplicit += monthly_phase
 pipeRimplicit += mm_windows
 
 ## Read pars again why?
-%.mm_windows.Rout: mm_windows.R monthly_phase.rda %.pars.rda
+%.mm_windows.Rout: mm_windows.R %.monthly_phase.rda %.pars.rda
 	$(pipeR)
 
 pipeRimplicit += mm_plot
