@@ -1,6 +1,6 @@
 
 ## START HERE: we are currently repiping pars to avoid repetition
-## WHY do we read .pars.rda at three different points??
+
 ## This is egfR0, a fresh new repo. Jan 2024
 ## The old rabies_R0 and historical_R0 repos are now somewhat deprecated
 
@@ -87,19 +87,20 @@ softDecline.Rout: softDecline.R
 ## Uses parameters minPeak and declineRatio
 pipeRimplicit += monthly_phase
 
+## Split time series into phases 
 ## basePars.monthly_phase.Rout: monthly_phase.R
 ## softClimb.monthly_phase.Rout: monthly_phase.R
 %.monthly_phase.Rout: monthly_phase.R monthly.rds %.pars.rda
 	$(pipeR)
 
-## Multiple monthly windows per data set sometimes
+## Identify windows inside the phases
 ## Uses parameters minPeak (again),  minLength, and minClimb
 pipeRimplicit += mm_windows
 
 ## basePars.mm_windows.Rout: mm_windows.R
 ## softClimb.mm_windows.Rout: mm_windows.R
 
-## Read pars again 
+## Read pars again why?
 %.mm_windows.Rout: mm_windows.R monthly_phase.rda %.pars.rda
 	$(pipeR)
 
