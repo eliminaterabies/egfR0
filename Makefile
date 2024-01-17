@@ -2,7 +2,9 @@
 ## This is egfR0, a fresh new repo. Jan 2024
 ## The old rabies_R0 and historical_R0 repos are now somewhat deprecated
 
-### Hooks 
+## Orli was here
+
+### Hooks
 current: target
 -include target.mk
 
@@ -90,7 +92,7 @@ pipeRimplicit += pars
 ## Uses parameters minPeak and declineRatio
 pipeRimplicit += monthly_phase
 
-## Split time series into phases 
+## Split time series into phases
 %.monthly_phase.Rout: monthly_phase.R monthly.rds %.pars.rda
 	$(pipeR)
 
