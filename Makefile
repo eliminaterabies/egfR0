@@ -1,3 +1,6 @@
+
+## START HERE: we are currently repiping pars to avoid repetition
+
 ## This is egfR0, a fresh new repo. Jan 2024
 ## The old rabies_R0 and historical_R0 repos are now somewhat deprecated
 
@@ -6,7 +9,7 @@ current: target
 -include target.mk
 
 vim_session:
-	bash -cl "vmt TODO.md README.md notes.md monthly.md"
+	bash -cl "vmt TODO.md README.md notes.md"
 
 ##################################################################
 
@@ -62,7 +65,6 @@ conflicts.Rout: conflicts.R
 Ignore += dogs.csv
 
 Sources += series.tsv varnames.tsv
-Sources += monthly.md ## A statistical practice journal
 
 ## Read two data sets into a long frame
 ## Trim out Excel padding; add time offsets
@@ -73,34 +75,41 @@ monthly.Rout: monthly.R datadir/R0rabiesdataMonthly.csv datadir/monthlyTSdogs.cs
 
 autopipeR=defined
 
+base.pars.Rout: pars.R base.R
+	$(pipeR)
+
 ## Parameter sets
 basePars.Rout: basePars.R
 softClimb.Rout: softClimb.R
+softDecline.Rout: softDecline.R
 
 ## Break series into phases
 ## Uses parameters minPeak and declineRatio
 pipeRimplicit += monthly_phase
 
+## Split time series into phases 
 ## basePars.monthly_phase.Rout: monthly_phase.R
 ## softClimb.monthly_phase.Rout: monthly_phase.R
-%.monthly_phase.Rout: monthly_phase.R monthly.rds %.rda
+%.monthly_phase.Rout: monthly_phase.R monthly.rds %.pars.rda
 	$(pipeR)
 
-
-## Multiple monthly windows per data set sometimes
+## Identify windows inside the phases
 ## Uses parameters minPeak (again),  minLength, and minClimb
 pipeRimplicit += mm_windows
 
 ## basePars.mm_windows.Rout: mm_windows.R
 ## softClimb.mm_windows.Rout: mm_windows.R
-%.mm_windows.Rout: mm_windows.R monthly_phase.rda %.rda
+
+## Read pars again why?
+%.mm_windows.Rout: mm_windows.R monthly_phase.rda %.pars.rda
 	$(pipeR)
 
 pipeRimplicit += mm_plot
 
 ## basePars.mm_plot.Rout: mm_plot.R
 ## softClimb.mm_plot.Rout: mm_plot.R
-%.mm_plot.Rout: mm_plot.R %.mm_windows.rda %.rda
+## softDecline.mm_plot.Rout: mm_plot.R
+%.mm_plot.Rout: mm_plot.R %.mm_windows.rda %.pars.rda
 	$(pipeR)
 
 Sources += mm_plot.md
