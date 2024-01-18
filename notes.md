@@ -12,18 +12,26 @@ Based on data quality, we are thinking of changing the default value of minPeak 
 
 What do we want to do about random effects, etc?
 
-Doing REs at the country level feels like a nightmare: possibly to fit, but also to interpret. During REs only at the phase level seems impossible (not enough info, and the additivity assumption is confusing).
+Doing REs at the country level feels like a nightmare: possibly to fit, but also
+to interpret. During REs only at the phase level seems impossible (not enough
+info, and the additivity assumption is confusing).
 
 So we are thinking for now of estimating r0 separately for each time series.
 
-Another question is whether we want to estimate r0 at t=-∞, or at a time when the cumulative cases are estimated at 1. How much difference does it make? JD thinks it probably matters for some formulations but not others. Logistic seems stable-ish, so maybe stick with that. Meaning also: stick with egf, which does t=-∞.
+Another question is whether we want to estimate r0 at t=-∞, or at a time when
+the cumulative cases are estimated at 1. How much difference does it make? JD
+thinks it probably matters for some formulations but not others. Logistic seems
+stable-ish, so maybe stick with that. Meaning also: stick with egf, which does
+t=-∞.
 
 2023 Dec 25 (Mon)
 =================
 
-Our new pipeline has three parameters that are used in window selection. The first set we looked at was minPeak=12; ratThresh=0.25 and minLength=6.
+Our new pipeline has three parameters that are used in window selection. The
+first set we looked at was minPeak=12; ratThresh=0.25 and minLength=6.
 
-We decided quickly that minLength=6 was too big a departure from past work, and switched to minLength=5.
+We decided quickly that minLength=6 was too big a departure from past work, and
+switched to minLength=5.
 
 First set of observations:
 * We don't like the second phase of Kanagawa (it goes down almost as much as up); we could consider tweaking ratThresh (or adding something else) to trim the beginning. We could also consider increasing minPeak a little bit to drop it
@@ -32,6 +40,7 @@ First set of observations:
 * Perak also points to a potential flaw in the algorithm; what should we do when the point-after-peak (which we want for egf) is classified as a separate phase. For now, we are dropping it, which doesn't seem stupid, but we should definitely not that we are doing that if we are.
 * Serengeti phase 2 is keeping a double wave as one outbreak (because ratThresh is low; is that what we want?)
 * Tokyo1 looks like a big mess to JD (both outbreaks are long and complicated)
+
 2023 Dec 25 (Mon)
 =================
 
@@ -43,11 +52,15 @@ Maybe we should put this on hold. What will it take to finish it?
 
 3) re-assess
 
-JD rebuilt a data-processing pipeline, there are some sharp questions in monthly.md. We need to talk to Katie about this.
+JD rebuilt a data-processing pipeline, there are some sharp questions in
+monthly.md. We need to talk to Katie about this.
 
-ML tried some egf experiments, but JD is pretty unhappy about the window interface and the window logic; we should talk to Mikael.
+ML tried some egf experiments, but JD is pretty unhappy about the window
+interface and the window logic; we should talk to Mikael.
 
-… We have hacked around the window stuff, but there is too much we don't understand about egf; should try to meet with Mikael instead of making ourselves crazy.
+… We have hacked around the window stuff, but there is too much we don't
+understand about egf; should try to meet with Mikael instead of making ourselves
+crazy.
 
 2023 Oct 27 (Fri)
 =================
