@@ -34,7 +34,7 @@ datadir: dir=$(Drop)/Rabies_TZ/
 datadir:
 	$(linkdirname)
 
-## Pipeline outputs
+## Pipeline outputs (different pointer inside the same Dropbox)
 Ignore += pipeline
 pipeline/%:
 	$(MAKE) pipeline
@@ -64,8 +64,12 @@ conflicts.Rout: conflicts.R
 
 ######################################################################
 
-Ignore += dogs.csv
+## Why did I put this back here from one of the resting files??
+## Ignore += dogs.csv
 
+######################################################################
+
+## Old manual window-selection; new name-only list
 Sources += series.tsv varnames.tsv
 
 ## Read two data sets into a long frame
@@ -80,6 +84,7 @@ autopipeR=defined
 ## Parameter sets
 ## softClimb.pars.Rout: softClimb.R
 ## softDecline.pars.Rout: softDecline.R
+## lowPeaks.pars.Rout: lowPeaks.R
 base.pars.Rout: pars.R base.R
 	$(pipeR)
 
@@ -93,6 +98,7 @@ pipeRimplicit += pars
 pipeRimplicit += monthly_phase
 
 ## Split time series into phases
+## softClimb.monthly_phase.Rout: monthly_phase.R
 %.monthly_phase.Rout: monthly_phase.R monthly.rds %.pars.rda
 	$(pipeR)
 
@@ -101,7 +107,7 @@ pipeRimplicit += monthly_phase
 pipeRimplicit += mm_windows
 
 ## Read pars again why?
-%.mm_windows.Rout: mm_windows.R monthly_phase.rda %.pars.rda
+%.mm_windows.Rout: mm_windows.R %.monthly_phase.rda %.pars.rda
 	$(pipeR)
 
 pipeRimplicit += mm_plot
