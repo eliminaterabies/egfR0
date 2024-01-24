@@ -1,6 +1,4 @@
 
-## 2024 Jan 17 (Wed)
-
 Since our last meeting, WZ and I have:
 
 * tried to make the pictures easier to read
@@ -10,13 +8,13 @@ Since our last meeting, WZ and I have:
 Questions:
 
 * The first window in Kanagawa has a double peak; JD feels like we should not fiddle
-* The second phase in Kanagawa is sensitive to minPeak choice (out now)
-* Memphis looks like a good peak, but we currently think the time series is too short
+* The second phase in Kanagawa is sensitive to minPeak choice
+* Memphis looks like a good peak, but is not selected because the time series is too short
 * We kind of want to exclude Perak; we could do that by raising the minimum to 16, or just by making a judgment that we hate it
 * Tokyo1 has two double peaks!
 * What do we think about the first peak in Tokyo2?
 
-## 2024 Jan 24 (Wed)
+You can view some pictures here; the pipeline makes it easy now to change parameters and make comparisons.
 
-We have current pictures for different parameter sets; the parameters are reported in the pictures below, and can be viewed in corresponding R files. It looks like softClimb might really 
+It would be great it you could share any quick thoughts, and really great if we could make decisions on Monday.
 
