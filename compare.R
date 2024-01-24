@@ -1,5 +1,5 @@
 library(tidyverse);theme_set(theme_bw())
-library(shellpipes)
+library(shellpipes); startGraphics(width=10)
 
 loadEnvironments()
 
@@ -33,6 +33,7 @@ combodat |> pull(loc) |> unique() |> walk(function(x){
 		+ geom_point(dat=comboSelected |> filter(loc==x), aes(color=phase), size=4)
  		+ scale_colour_manual(values=palette)
 		+ xlab("offset (months)")
+		+ theme(strip.text = element_text(size = 8))
 	)
 })
 
