@@ -16,7 +16,8 @@ Questions:
 * Tokyo1 has two double peaks!
 * What do we think about the first peak in Tokyo2?
 
-Current pictures: 
+## 2024 Jan 24 (Wed)
 
+Got interrupted and did not share this with Katie
 
-
+We have current pictures for different parameter sets; m

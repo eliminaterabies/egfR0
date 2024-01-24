@@ -114,8 +114,6 @@ pipeRimplicit += mm_plot
 %.mm_plot.Rout: mm_plot.R %.mm_windows.rda %.pars.rda
 	$(pipeR)
 
-
-
 Sources += mm_plot.md
 
 ######################################################################
