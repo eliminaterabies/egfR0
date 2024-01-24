@@ -54,6 +54,7 @@ windows <- (selected
 
 summary(selected)
 
-print(long)
+ll <- list(long = long, selected = selected)
 
+rdsSave(ll)
 saveVars(long, selected, windows)

@@ -25,11 +25,4 @@ long |> pull(loc) |> unique() |> walk(function(x){
 	)
 })
 
-ll <- list(palette = palette
-	, parset = parset
-	, parlist = parlist
-	, long = long
-)
-
-rdsSave(ll)
 
