@@ -110,8 +110,11 @@ pipeRimplicit += mm_windows
 pipeRimplicit += mm_plot
 
 ## softClimb.mm_plot.Rout: mm_plot.R
+## lowPeaks.mm_plot.Rout: mm_plot.R
 %.mm_plot.Rout: mm_plot.R %.mm_windows.rda %.pars.rda
 	$(pipeR)
+
+
 
 Sources += mm_plot.md
 
