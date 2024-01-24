@@ -3,8 +3,8 @@ library(shellpipes)
 
 loadEnvironments()
 
-softClimb <- rdsRead("softClimb")$long |> mutate(type = "softClimb")
-lowPeaks <- rdsRead("lowPeaks")$long |> mutate(type = "lowPeaks")
+softClimb <- rdsRead("softClimb")$long
+lowPeaks <- rdsRead("lowPeaks")$long
 
 softClimb_points <- rdsRead("softClimb")$selected |> mutate(type = "softClimb")
 lowPeaks_points <- rdsRead("softClimb")$selected |> mutate(type = "softClimb")
@@ -22,8 +22,8 @@ combodat |> pull(loc) |> unique() |> walk(function(x){
 		+ aes(x=offset, y=cases)
 		+ geom_line()
 		+ geom_line(aes(color=phase))
-		+ facet_wrap(~type,ncol=2)
-#		+ ggtitle(paste(x, parset), subtitle=parlist)
+		+ facet_wrap(~parlist,nrow=2)
+		+ ggtitle(x)
 		+ geom_point(dat=comboSelected |> filter(loc==x), aes(color=phase), size=4)
  		+ scale_colour_manual(values=palette)
 		+ xlab("offset (months)")
