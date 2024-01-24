@@ -25,4 +25,13 @@ long |> pull(loc) |> unique() |> walk(function(x){
 	)
 })
 
+long <- long |> mutate(parlist = parlist, parset = parset)
+
+print(long)
+
+ll <- list(long = long, selected = selected)
+
+rdsSave(ll)
+
+
 
