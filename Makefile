@@ -1,8 +1,5 @@
-
 ## This is egfR0, a fresh new repo. Jan 2024
 ## The old rabies_R0 and historical_R0 repos are now somewhat deprecated
-
-## Orli was here
 
 ### Hooks
 current: target
