@@ -5,13 +5,19 @@ loadEnvironments()
 
 softClimb <- rdsRead("softClimb")$long
 lowPeaks <- rdsRead("lowPeaks")$long
+softDecline <- rdsRead("softDecline")$long
+base <- rdsRead("base")$long
 
 softClimb_points <- rdsRead("softClimb")$selected |> mutate(type = "softClimb")
-lowPeaks_points <- rdsRead("softClimb")$selected |> mutate(type = "softClimb")
+lowPeaks_points <- rdsRead("softClimb")$selected |> mutate(type = "lowPeaks")
+base_points <- rdsRead("base")$selected |> mutate(type = "base")
+softDecline_points <- rdsRead("softDecline")$selected |> mutate(type = "softDecline")
 
-combodat <- (bind_rows(softClimb,lowPeaks))
+## softDecline.pars.Rout: softDecline.R
 
-comboSelected <- bind_rows(softClimb_points, lowPeaks_points)
+combodat <- (bind_rows(softClimb,lowPeaks,softDecline,base))
+
+comboSelected <- bind_rows(softClimb_points, lowPeaks_points,softDecline_points,base_points)
 
 print(combodat)
 

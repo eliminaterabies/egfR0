@@ -116,7 +116,7 @@ pipeRimplicit += mm_plot
 %.mm_plot.Rout: mm_plot.R %.mm_windows.rda %.pars.rda
 	$(pipeR)
 
-compare.Rout: compare.R softClimb.mm_plot.rds lowPeaks.mm_plot.rds
+compare.Rout: compare.R softClimb.mm_plot.rds lowPeaks.mm_plot.rds base.mm_plot.rds softDecline.mm_plot.rds
 	$(pipeR)
 
 Sources += mm_plot.md
