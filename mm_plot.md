@@ -20,6 +20,12 @@ Questions:
 
 Got interrupted and did not share this with Katie
 
-We have current pictures for different parameter sets; 
+We have current pictures for different parameter sets; the parameters are reported in the pictures below, and can be viewed in corresponding R files
 
+base
 
+softClimb
+
+softDecline
+
+lowPeaks
