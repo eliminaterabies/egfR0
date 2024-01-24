@@ -54,4 +54,6 @@ windows <- (selected
 
 summary(selected)
 
+print(long)
+
 saveVars(long, selected, windows)

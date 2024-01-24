@@ -104,6 +104,7 @@ pipeRimplicit += monthly_phase
 pipeRimplicit += mm_windows
 
 ## Read pars again why?
+## softClimb.mm_windows.Rout: mm_windows.R
 %.mm_windows.Rout: mm_windows.R %.monthly_phase.rda %.pars.rda
 	$(pipeR)
 
@@ -112,6 +113,10 @@ pipeRimplicit += mm_plot
 ## softClimb.mm_plot.Rout: mm_plot.R
 ## lowPeaks.mm_plot.Rout: mm_plot.R
 %.mm_plot.Rout: mm_plot.R %.mm_windows.rda %.pars.rda
+	$(pipeR)
+
+Sources += compare.md
+compare.Rout: compare.R softClimb.mm_plot.rds lowPeaks.mm_plot.rds
 	$(pipeR)
 
 Sources += mm_plot.md
