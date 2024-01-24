@@ -15,7 +15,9 @@ softDecline_points <- rdsRead("softDecline")$selected |> mutate(type = "softDecl
 
 ## softDecline.pars.Rout: softDecline.R
 
-combodat <- (bind_rows(softClimb,lowPeaks,softDecline,base))
+combodat <- (bind_rows(softClimb,lowPeaks,softDecline,base)
+	|> mutate(parlist = paste0(parset," ",parlist))
+)
 
 comboSelected <- bind_rows(softClimb_points, lowPeaks_points,softDecline_points,base_points)
 
