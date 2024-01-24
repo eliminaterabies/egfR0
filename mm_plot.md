@@ -20,4 +20,6 @@ Questions:
 
 Got interrupted and did not share this with Katie
 
-We have current pictures for different parameter sets; m
+We have current pictures for different parameter sets; 
+
+

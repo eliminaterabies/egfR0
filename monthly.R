@@ -1,6 +1,11 @@
 library(tidyverse)
 
 library(shellpipes)
+## rpcall is how you make a particular .Rout file in rstudio 
+## You can have a different rpcall living here for each relevant target file
+#### Find them in <targetname.Rout.args>
+## Put the active one last
+rpcall("monthly.Rout .pipestar monthly.R datadir/R0rabiesdataMonthly.csv datadir/monthlyTSdogs.csv varnames.tsv")
 
 ######################################################################
 ## Read two data sets into a long frame
