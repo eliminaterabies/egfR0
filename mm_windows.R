@@ -54,7 +54,9 @@ windows <- (selected
 
 summary(selected)
 
+## Try to not need this
 ll <- list(long = long, selected = selected)
-
 rdsSave(ll)
+
+## Maybe save everything for future combinations?
 saveVars(long, selected, windows)

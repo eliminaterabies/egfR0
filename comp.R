@@ -1,23 +1,10 @@
 library(tidyverse);theme_set(theme_bw())
 library(shellpipes); startGraphics(width=10)
 
-loadEnvironments()
-
-rdsReadList()
-
+el <- loadEnvironmentList(trim="\\..*$")
+el
+objects(el[[1]])
 quit()
-
-softClimb <- rdsRead("softClimb")$long
-lowPeaks <- rdsRead("lowPeaks")$long
-softDecline <- rdsRead("softDecline")$long
-base <- rdsRead("base")$long
-
-softClimb_points <- rdsRead("softClimb")$selected |> mutate(type = "softClimb")
-lowPeaks_points <- rdsRead("softClimb")$selected |> mutate(type = "lowPeaks")
-base_points <- rdsRead("base")$selected |> mutate(type = "base")
-softDecline_points <- rdsRead("softDecline")$selected |> mutate(type = "softDecline")
-
-## softDecline.pars.Rout: softDecline.R
 
 combodat <- (bind_rows(softClimb,lowPeaks,softDecline,base)
 	|> mutate(parlist = paste0(parset," ",parlist))
