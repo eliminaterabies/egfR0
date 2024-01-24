@@ -9,7 +9,7 @@ softDecline <- rdsRead("softDecline")$long
 base <- rdsRead("base")$long
 
 softClimb_points <- rdsRead("softClimb")$selected |> mutate(type = "softClimb")
-lowPeaks_points <- rdsRead("softClimb")$selected |> mutate(type = "lowPeaks")
+lowPeaks_points <- rdsRead("lowPeaks")$selected |> mutate(type = "lowPeaks")
 base_points <- rdsRead("base")$selected |> mutate(type = "base")
 softDecline_points <- rdsRead("softDecline")$selected |> mutate(type = "softDecline")
 
@@ -19,7 +19,9 @@ combodat <- (bind_rows(softClimb,lowPeaks,softDecline,base)
 	|> mutate(parlist = paste0(parset," ",parlist))
 )
 
-comboSelected <- bind_rows(softClimb_points, lowPeaks_points,softDecline_points,base_points)
+comboSelected <- (bind_rows(softClimb_points, lowPeaks_points,softDecline_points,base_points)
+	|> mutate(parlist = paste0(parset," ",parlist))
+)
 
 print(combodat)
 

@@ -26,6 +26,7 @@ long |> pull(loc) |> unique() |> walk(function(x){
 })
 
 long <- long |> mutate(parlist = parlist, parset = parset)
+selected <- long |> mutate(parlist = parlist, parset = parset)
 
 print(long)
 
