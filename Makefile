@@ -116,6 +116,7 @@ pipeRimplicit += mm_plot
 %.mm_plot.Rout: mm_plot.R %.mm_windows.rda %.pars.rda
 	$(pipeR)
 
+## This code is terrible; pull ugly stuff out of mm_plot and make it nice 2024 Jan 24 (Wed)
 compare.Rout: compare.R softClimb.mm_plot.rds lowPeaks.mm_plot.rds base.mm_plot.rds softDecline.mm_plot.rds
 	$(pipeR)
 

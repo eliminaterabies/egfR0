@@ -14,7 +14,7 @@ Questions:
 * Tokyo1 has two double peaks!
 * What do we think about the first peak in Tokyo2?
 
-You can view some pictures here; the pipeline makes it easy now to change parameters and make comparisons.
+You can view some pictures [here](outputs/compare.Rout.pdf); the pipeline makes it easy now to change parameters and make comparisons.
 
-It would be great it you could share any quick thoughts, and really great if we could make decisions on Monday.
+It would be great it you could share any quick thoughts, and really great if we could make decisions when we meet on Monday.
 

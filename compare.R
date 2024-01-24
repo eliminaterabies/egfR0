@@ -13,8 +13,6 @@ lowPeaks_points <- rdsRead("lowPeaks")$selected |> mutate(type = "lowPeaks")
 base_points <- rdsRead("base")$selected |> mutate(type = "base")
 softDecline_points <- rdsRead("softDecline")$selected |> mutate(type = "softDecline")
 
-## softDecline.pars.Rout: softDecline.R
-
 combodat <- (bind_rows(softClimb,lowPeaks,softDecline,base)
 	|> mutate(parlist = paste0(parset," ",parlist))
 )
@@ -24,6 +22,7 @@ comboSelected <- (bind_rows(softClimb_points, lowPeaks_points,softDecline_points
 )
 
 print(combodat)
+print(comboSelected)
 
 palette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
