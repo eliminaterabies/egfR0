@@ -24,3 +24,12 @@ long |> pull(loc) |> unique() |> walk(function(x){
 		+ xlab("offset (months)")
 	)
 })
+
+ll <- list(palette = palette
+	, parset = parset
+	, parlist = parlist
+	, long = long
+)
+
+rdsSave(ll)
+
