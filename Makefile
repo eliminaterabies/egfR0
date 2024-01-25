@@ -136,8 +136,8 @@ Sources += mm_plot.md
 egf.Rout: egf.R base.mm_windows.rda
 	$(pipeR)
 
-## egf_indep.Rout: egf_indep.R mm_windows.R
-egf_indep.Rout: egf_indep.R base.mm_windows.rda
+## egf_single.Rout: egf_single.R mm_windows.R
+egf_single.Rout: egf_single.R base.mm_windows.rda
 	$(pipeR)
 
 
