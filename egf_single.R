@@ -49,4 +49,25 @@ rsamples <- sapply(keep,function(x)rsamps(egfing(x)))
 ## Note, the units here is 1/month
 print(rsamples)
 
+
+rsamplong <- (rsamples
+	|> as.data.frame()
+	|> gather(value="rsamp",key="loc")
+#	|> pivot_longer(values_to="rsamp",names_to="loc")
+	|> group_by(loc)
+	|> summarise(NULL
+		, mid = quantile(rsamp,probs=0.5)
+		, lwr = quantile(rsamp,probs=0.025)
+		, upr = quantile(rsamp,probs=0.975)
+	)
+)
+gg <- (ggplot(rsamplong, aes(x=loc))
+	+ geom_pointrange(aes(ymin=lwr,ymax=upr,y=mid))
+	+ coord_flip()
+	+ ylab("r (1/month)")
+)
+
+print(gg)
+
+
 print(summary(rsamples))
