@@ -60,6 +60,7 @@ rsamplong <- (rsamples
 		, lwr = quantile(rsamp,probs=0.025)
 		, upr = quantile(rsamp,probs=0.975)
 	)
+	|> arrange(loc,desc=FALSE)
 )
 gg <- (ggplot(rsamplong, aes(x=loc))
 	+ geom_pointrange(aes(ymin=lwr,ymax=upr,y=mid))
