@@ -48,3 +48,5 @@ rsamples <- sapply(keep,function(x)rsamps(egfing(x)))
 
 ## Note, the units here is 1/month
 print(rsamples)
+
+print(summary(rsamples))

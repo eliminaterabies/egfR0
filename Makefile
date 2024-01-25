@@ -136,8 +136,10 @@ Sources += mm_plot.md
 egf.Rout: egf.R base.mm_windows.rda
 	$(pipeR)
 
-## egf_single.Rout: egf_single.R mm_windows.R
-egf_single.Rout: egf_single.R base.mm_windows.rda
+pipeRimplicit += egf_single
+
+## base.egf_single.Rout: egf_single.R mm_windows.R
+%.egf_single.Rout: egf_single.R %.mm_windows.rda
 	$(pipeR)
 
 
