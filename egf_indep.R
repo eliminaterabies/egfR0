@@ -4,7 +4,15 @@ library(shellpipes)
 
 loadEnvironments()
 
-keep <- c("Israel", "Java", "Mexico", "Ngorongoro")
+single_phase <- (selected
+	|> select(loc,phase)
+	|> distinct()
+	|> group_by(loc)
+	|> summarise(count = n())
+	|> filter(count == 1)
+)
+
+keep <- single_phase[["loc"]]
 
 df <- (filter(selected, loc %in% keep) 
 	%>% mutate(loc = factor(loc))
@@ -35,6 +43,8 @@ rsamps <- function(x,n=100){
 	exp(rnorm(n=n,mean=mm,sd=sqrt(vv)))
 }
 
+
 rsamples <- sapply(keep,function(x)rsamps(egfing(x)))
 
+## Note, the units here is 1/month
 print(rsamples)

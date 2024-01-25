@@ -133,11 +133,14 @@ Sources += mm_plot.md
 
 ## Epigrowthfit
 
-egf.Rout: egf.R mm_windows.rda
+egf.Rout: egf.R base.mm_windows.rda
 	$(pipeR)
 
-egf_indep.Rout: egf_indep.R mm_windows.rda
+## egf_indep.Rout: egf_indep.R mm_windows.R
+egf_indep.Rout: egf_indep.R base.mm_windows.rda
 	$(pipeR)
+
+
 
 ## for stuff that may need to be rebuilt
 ## See also generations.mk
