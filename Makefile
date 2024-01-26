@@ -148,6 +148,11 @@ pipeRimplicit += egf_single
 %.egf_single.Rout: egf_single.R %.mm_windows.rda
 	$(pipeR)
 
+pipeRimplicit += egf_single_r
+## delphi.egf_single_r.Rout: egf_single_r.R
+%.egf_single_r.Rout: egf_single_r.R %.egf_single.rds
+	$(pipeR)
+
 ######################################################################
 
 ## for stuff that may need to be rebuilt
