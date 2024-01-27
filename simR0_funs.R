@@ -33,15 +33,14 @@ sim_timedens <- function(x,n){
 }
 
 ## Simulate n replicates of interval bootstrap samples 
-sim_timeprob <- function(x, w, n, bootsample){
-  sample_mat <- replicate(n, sample(x, size=bootsample, replace=TRUE, prob=w)) 
+sim_timeprob <- function(x, n, bootsample){
+  sample_mat <- replicate(n, sample(x, size=bootsample, replace=TRUE)) 
 #  densdf <- lapply(1:n,function(x){table(sample_mat[,x])/bootsample})
   return(sample_mat)
 }
 
 ## simulate R0 via bootstrapping r and emperical intervals
-simR0_data <- function(growth_obj,time,n,bootsample){
-  rsims <- sim_growthrate(growth_obj,n)
+simR0_data <- function(rsims,time,n,bootsample){
   rsimsdays <- rsims/30
   timemat <- sim_timeprob(time,n,bootsample)
   R0sims <- sapply(1:n,function(x){R0est_data(rsimsdays[x],timemat[,x])})

@@ -46,6 +46,7 @@ Sources += $(wildcard *.R)
 ## Moved a whole bunch of generations stuff
 ## See also content.mk
 
+-include generations.mk
 Sources += generations.mk
 
 ######################################################################
@@ -149,10 +150,15 @@ egf_single.Rout: egf_single.R delphi.mm_windows.rda
 rplot.Rout: rplot.R egf_single.rds
 	$(pipeR)
 
-egf_sample.Rout: efg_sample.R egf_single.rds
+egf_sample.Rout: egf_sample.R egf_single.rds
 	$(pipeR)
 
-egf_R0.Rout: egf_R0.R egf_sample.rds
+simR0_funs.Rout: simR0_funs.R
+
+R0est_funs.Rout: R0est_funs.R
+
+## egf_R0.Rout: egf_R0.R simR0_funs.R
+egf_R0.Rout: egf_R0.R egf_sample.rds simR0_funs.rda R0est_funs.rda intervals.rda
 	$(pipeR)
 
 ######################################################################
