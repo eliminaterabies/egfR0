@@ -154,11 +154,13 @@ egf_sample.Rout: egf_sample.R egf_single.rds
 	$(pipeR)
 
 simR0_funs.Rout: simR0_funs.R
-
 R0est_funs.Rout: R0est_funs.R
 
-## egf_R0.Rout: egf_R0.R simR0_funs.R
+## egf_R0.Rout: egf_R0.R R0est_funs.R
 egf_R0.Rout: egf_R0.R egf_sample.rds simR0_funs.rda R0est_funs.rda intervals.rda
+	$(pipeR)
+
+R0plot.Rout: R0plot.R egf_R0.rds
 	$(pipeR)
 
 ######################################################################
