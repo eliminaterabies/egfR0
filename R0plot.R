@@ -11,12 +11,15 @@ dat <- (rdsRead()
 	## |> mutate(loc = factor(loc, levels=rev(levels(loc))))
 )
 
-print(ggplot(dat)
+gg <- (ggplot(dat)
 	+ aes(x=loc, y=est, color=phase)
 	+ geom_pointrange(aes(ymin=lwr,ymax=upr)
 		, position = position_dodge(width=-0.4)
 	)
-	+ coord_flip()
 	+ ylab("R0")
 )
+
+print(gg + coord_flip())
+
+print(gg + coord_cartesian(ylim=c(0,3)) + coord_flip(ylim=c(0,3)))
 
