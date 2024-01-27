@@ -20,21 +20,6 @@ egffun <- function(x){
 	return(mod)
 }     
 
-## Needs to be simplified (three functions to one)
-rlwr <- function(x){
-	cf <- confint(x[[1]],probs=c(0.025,0.975))
-	return(exp(cf[["lower"]][1]))
-}
-
-rupr <- function(x){
-	cf <- confint(x[[1]],probs=c(0.025,0.975))
-	return(exp(cf[["upper"]][1]))
-}
-
-r_est <- function(x){
-	return(exp(coef(x[[1]])[[1]]))
-}
-
 r_ests <- function(x){
 	cf <- confint(x[[1]],probs=c(0.025,0.975))
 	df <- data.frame(lwr=exp(cf[["lower"]][[1]])

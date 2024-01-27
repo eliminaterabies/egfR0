@@ -10,7 +10,7 @@ dat <- (rdsRead()
 )
 
 print(ggplot(dat)
-	+ aes(x=loc, y=r_est, color=phase)
+	+ aes(x=loc, y=est, color=phase)
 	+ geom_pointrange(aes(ymin=lwr,ymax=upr)
 		, position = position_dodge(width=-0.4)
 	)
