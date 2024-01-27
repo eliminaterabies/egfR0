@@ -149,8 +149,10 @@ egf_single.Rout: egf_single.R delphi.mm_windows.rda
 rplot.Rout: rplot.R egf_single.rds
 	$(pipeR)
 
-## WTF?? There is no efg_sample.R (from the rule) nor egf_sample.R 
 egf_sample.Rout: efg_sample.R egf_single.rds
+	$(pipeR)
+
+egf_R0.Rout: egf_R0.R egf_sample.rds
 	$(pipeR)
 
 ######################################################################
