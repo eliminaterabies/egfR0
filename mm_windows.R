@@ -40,10 +40,15 @@ findWin <- function(l, p, t, c, mp, ml, mc, w){
 
 warn = TRUE
 ## Pull out windows for egf
+
+print(head(long))
+
 selected <- (long
 	%>% group_by(loc, phase)
 	%>% reframe(findWin(loc, phase, offset, cases, minPeak, minLength, minClimb, warn))
 )
+
+print(head(selected))
 
 ## Make zero-information windows file (we've already selected everything)
 windows <- (selected

@@ -35,6 +35,15 @@ r_est <- function(x){
 	return(exp(coef(x[[1]])[[1]]))
 }
 
+r_ests <- function(x){
+	cf <- confint(x[[1]],probs=c(0.025,0.975))
+	df <- data.frame(lwr=exp(cf[["lower"]][[1]])
+		, est = exp(cf[["estimate"]][[1]])
+		, upr = exp(cf[["upper"]][[1]])
+	)
+	return(df)
+}
+
 
 ## Do we need map here? Why??
 ff <- (selected
@@ -48,10 +57,11 @@ print(ff)
 print(ff$egf_fit)
 
 fulldat <-(ff
-	%>% mutate(r_est = r_est(egf_fit)
-		, lwr = rlwr(egf_fit)
-		, upr = rupr(egf_fit)
-	)
+#	%>% mutate(r_est = r_est(egf_fit)
+#		, lwr = rlwr(egf_fit)
+#		, upr = rupr(egf_fit)
+#	)
+	%>% reframe(r_ests(egf_fit))
 )
 
 print(fulldat)

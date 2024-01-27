@@ -150,6 +150,10 @@ egf_single.Rout: egf_single.R delphi.mm_windows.rda
 rplot.Rout: rplot.R egf_single.rds
 	$(pipeR)
 
+egf_sample.Rout: efg_sample.R egf_single.rds
+	$(pipeR)
+
+
 ######################################################################
 
 ## for stuff that may need to be rebuilt
