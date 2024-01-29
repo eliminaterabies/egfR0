@@ -12,17 +12,11 @@ Based on data quality, we are thinking of changing the default value of minPeak 
 
 What do we want to do about random effects, etc?
 
-Doing REs at the country level feels like a nightmare: possibly to fit, but also
-to interpret. During REs only at the phase level seems impossible (not enough
-info, and the additivity assumption is confusing).
+Doing REs at the country level feels like a nightmare: possibly to fit, but also to interpret. During REs only at the phase level seems impossible (not enough info, and the additivity assumption is confusing).
 
 So we are thinking for now of estimating r0 separately for each time series.
 
-Another question is whether we want to estimate r0 at t=-∞, or at a time when
-the cumulative cases are estimated at 1. How much difference does it make? JD
-thinks it probably matters for some formulations but not others. Logistic seems
-stable-ish, so maybe stick with that. Meaning also: stick with egf, which does
-t=-∞.
+Another question is whether we want to estimate r0 at t=-∞, or at a time when the cumulative cases are estimated at 1. How much difference does it make? JD thinks it probably matters for some formulations but not others. Logistic seems stable-ish, so maybe stick with that. Meaning also: stick with egf, which does t=-∞.
 
 2023 Dec 25 (Mon)
 =================
