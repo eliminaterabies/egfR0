@@ -1,4 +1,15 @@
 
+2024 Jan 29 (Mon)
+=================
+
+Consider a window length of 4
+
+Consider what to do with overlapping fits: e.g., Mexico has a point that could the past-the-peak of phase I or the first of phase II or both (see also Perak). Any approach has possible pitfalls.
+
+Perak remains the hardest.
+
+----------------------------------------------------------------------
+
 Since our last meeting, WZ and I have:
 
 * tried to make the pictures easier to read

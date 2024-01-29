@@ -79,6 +79,7 @@ monthly.Rout: monthly.R datadir/R0rabiesdataMonthly.csv datadir/monthlyTSdogs.cs
 autopipeR=defined
 
 ## Parameter sets
+## delphi.pars.Rout: delphi.R
 ## softClimb.pars.Rout: softClimb.R
 ## softDecline.pars.Rout: softDecline.R
 ## lowPeaks.pars.Rout: lowPeaks.R
@@ -111,7 +112,7 @@ pipeRimplicit += mm_windows
 pipeRimplicit += mm_plot
 
 ## base.mm_plot.Rout: mm_plot.R
-## softClimb.mm_plot.Rout: mm_plot.R
+## delphi.mm_plot.Rout: mm_plot.R
 ## lowPeaks.mm_plot.Rout: mm_plot.R
 %.mm_plot.Rout: mm_plot.R %.mm_windows.rda %.pars.rda
 	$(pipeR)
