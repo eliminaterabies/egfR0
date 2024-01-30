@@ -21,4 +21,4 @@ recall -MER 20240130
 - `README.md` (this document) is where MR is writing user notes as he gets to know the project...
 - `Makefile` describes workflows. 
 - Not in this repo, but to understand the **make** workflows, it may help to see the **shellpipes** package documentation: https://dushoff.github.io/shellpipes/. for more, https://github.com/mac-theobio/useMakestuff
-
+- `makestuff/README.md` has lots of **make** documentation
