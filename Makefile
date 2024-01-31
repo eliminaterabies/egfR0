@@ -134,16 +134,21 @@ Sources += mm_plot.md
 
 ## Epigrowthfit
 
+## delphi.egf_fit.Rout: egf_fit.R
+%.egf_fit.Rout: egf_fit.R %.mm_windows.rda
+	$(pipeR)
+
+## Just experimenting below
 egf.Rout: egf.R base.mm_windows.rda
 	$(pipeR)
 
 pipeRimplicit += egf_single
 
-## base.egf_single.Rout: egf_single.R mm_windows.R
+## delphi.egf_single.Rout: egf_single.R
 %.egf_single.Rout: egf_single.R %.mm_windows.rda
 	$(pipeR)
 
-
+######################################################################
 
 ## for stuff that may need to be rebuilt
 ## See also generations.mk
