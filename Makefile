@@ -138,19 +138,16 @@ Sources += mm_plot.md
 %.egf_fit.Rout: egf_fit.R %.mm_windows.rda
 	$(pipeR)
 
-## Just experimenting below
-egf.Rout: egf.R base.mm_windows.rda
-	$(pipeR)
+######################################################################
 
+## We've now selected Delphi and are sticking with it
 pipeRimplicit += egf_single
 
-## delphi.egf_single.Rout: egf_single.R
-%.egf_single.Rout: egf_single.R %.mm_windows.rda
+## Do an egf fit 
+egf_single.Rout: egf_single.R delphi.mm_windows.rda
 	$(pipeR)
 
-pipeRimplicit += egf_single_r
-## delphi.egf_single_r.Rout: egf_single_r.R
-%.egf_single_r.Rout: egf_single_r.R %.egf_single.rds
+rplot.Rout: rplot.R egf_single.rds
 	$(pipeR)
 
 ######################################################################
