@@ -4,6 +4,7 @@ library(ggplot2); theme_set(theme_bw())
 library(shellpipes)
 startGraphics()
 
+## FIXME; what is a good way to order these factors?
 dat <- (rdsRead()
 	## |> mutate(loc = factor(loc, levels=rev(levels(loc))))
 )
