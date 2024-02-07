@@ -83,8 +83,7 @@ autopipeR=defined
 ## softClimb.pars.Rout: softClimb.R
 ## softDecline.pars.Rout: softDecline.R
 ## lowPeaks.pars.Rout: lowPeaks.R
-base.pars.Rout: pars.R base.R
-	$(pipeR)
+
 
 ## Not sure if this is needed 2024 Jan 17 (Wed)
 pipeRimplicit += pars
