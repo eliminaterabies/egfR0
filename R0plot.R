@@ -17,6 +17,7 @@ gg <- (ggplot(dat)
 	+ geom_pointrange(aes(ymin=lwr,ymax=upr,y=est,color=phase)
 		, position = position_dodge(width=-0.4)
 	)
+	+ scale_color_manual(values=c("black","red"))
 	+ ylab("R0")
 )
 
