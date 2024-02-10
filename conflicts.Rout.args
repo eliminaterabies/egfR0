@@ -1,3 +1,2 @@
-## Use this call to make conflicts.Rout independently
 rpcall("conflicts.Rout .pipestar conflicts.R")
 

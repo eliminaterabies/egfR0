@@ -166,6 +166,9 @@ R0plot.Rout: R0plot.R egf_R0.rds
 KH_R0.Rout: KH_R0.R
 	$(pipeR)
 
+version.Rout: version.R
+	$(pipeR)
+
 ######################################################################
 
 ## for stuff that may need to be rebuilt
@@ -181,7 +184,7 @@ Sources += Makefile
 Ignore += makestuff
 msrepo = https://github.com/dushoff
 
-Makefile: makestuff/02.stamp
+Makefile: makestuff/03.stamp
 makestuff/%.stamp:
 	- $(RM) makestuff/*.stamp
 	(cd makestuff && $(MAKE) pull) || git clone --depth 1 $(msrepo)/makestuff
