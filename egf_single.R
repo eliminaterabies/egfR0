@@ -3,12 +3,16 @@ library(epigrowthfit)
 library(shellpipes)
 
 loadEnvironments()
-## print(selected, n=Inf)
 
 fakewin <- data.frame(start = -Inf, end=Inf)
-## print(windows)
+
+print(windows)
+
 
 egffun <- function(x){
+	x <- bind_rows(data.frame(offset = x[["offset"]][1]-1
+		, cases = NA)
+		, x)
 	mod <- egf(model = egf_model(curve = "logistic", family = "nbinom")
 		, data_ts = x
 		, formula_ts = cbind(offset, cases) ~ 1
@@ -30,7 +34,7 @@ r_ests <- function(x){
 }
 
 
-## Not quite clear why we need map, but we do
+## Do we need map here? Why??
 ff <- (selected
 	%>% group_by(loc,phase)
 	%>% nest()
