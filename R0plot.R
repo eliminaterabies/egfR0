@@ -9,11 +9,12 @@ startGraphics()
 ## We should figure out how to make them appear forward alphabetically, but also how to order them by the mean value of r.
 dat <- (rdsRead()
 	## |> mutate(loc = factor(loc, levels=rev(levels(loc))))
+	%>% filter(phase != 3) ## removing toyko phase 3s
 )
 
 gg <- (ggplot(dat)
-	+ aes(x=loc, y=est, color=phase)
-	+ geom_pointrange(aes(ymin=lwr,ymax=upr)
+	+ aes(x=loc)
+	+ geom_pointrange(aes(ymin=lwr,ymax=upr,y=est,color=phase)
 		, position = position_dodge(width=-0.4)
 	)
 	+ ylab("R0")
@@ -23,3 +24,5 @@ print(gg + coord_flip())
 
 print(gg + coord_cartesian(ylim=c(0,3)) + coord_flip(ylim=c(0,3)))
 
+
+rdsSave(gg)

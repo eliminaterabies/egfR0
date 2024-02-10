@@ -1,6 +1,9 @@
 ## R0 estimates from Hampson et al 2009
+library(tidyverse)
 library(shellpipes)
 
+
+loc <- tsvRead() %>% pull(loc)
 
 Cities = c("NYstate"
 , "CentralNY, US \n (1944)"
@@ -20,11 +23,11 @@ Cities = c("NYstate"
 )
 
 
-kh_lower <- c(NA,1.25,1.07,1.04,1.02,1.14,1.03,1.52,1.48,1.34,1.23,1.33,1.02,1.12,0.94)
-kh_upper <- c(NA,1.40,1.19,1.06,1.17,1.37,1.38,1.91,1.82,2.18,1.80,2.17,1.60,1.41,1.32)
-kh_est <- c(NA,1.32,1.12,1.05,1.09,1.25,1.19,1.68,1.62,1.72,1.49,1.69,1.27,1.19,1.14)
+kh_lower <- c(NA,1.25,1.07,1.04,1.02,1.14,1.03,1.52,1.48,0.99,1.34,1.23,1.33,1.02,1.12,0.94)
+kh_upper <- c(NA,1.40,1.19,1.06,1.17,1.37,1.38,1.91,1.82,1.27,2.18,1.80,2.17,1.60,1.41,1.32)
+kh_est <- c(NA,1.32,1.12,1.05,1.09,1.25,1.19,1.68,1.62,1.12,1.72,1.49,1.69,1.27,1.19,1.14)
 
-hampsondf <- data.frame(Location=Cities
+hampsondf <- data.frame(loc=loc
 	, lower = kh_lower
 	, med = kh_est
 	, upper = kh_upper
@@ -32,5 +35,6 @@ hampsondf <- data.frame(Location=Cities
 	, samptype = "Construction"
 )
 
-saveEnvironment()
+print(hampsondf)
 
+rdsSave(hampsondf)

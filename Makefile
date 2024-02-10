@@ -147,6 +147,9 @@ pipeRimplicit += egf_single
 egf_single.Rout: egf_single.R delphi.mm_windows.rda
 	$(pipeR)
 
+egf_plot.Rout: egf_plot.R egf_single.rds
+	$(pipeR)
+
 rplot.Rout: rplot.R egf_single.rds
 	$(pipeR)
 
@@ -163,7 +166,10 @@ egf_R0.Rout: egf_R0.R egf_sample.rds simR0_funs.rda R0est_funs.rda intervals.rda
 R0plot.Rout: R0plot.R egf_R0.rds
 	$(pipeR)
 
-KH_R0.Rout: KH_R0.R
+KH_R0.Rout: KH_R0.R varnames.tsv
+	$(pipeR)
+
+R0combo.Rout: R0combo.R KH_R0.rds R0plot.rds
 	$(pipeR)
 
 version.Rout: version.R
