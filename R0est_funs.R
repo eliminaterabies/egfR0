@@ -28,9 +28,9 @@ R0est_gamma <-function(r, timedat){
 
 R0tiles <- function(x){
    cf <- quantile(x[[1]],probs=c(0.025,0.975),na.rm=TRUE)
-	df <- data.frame(lwr=exp(cf[["2.5%"]][[1]])
-      , est = exp(mean(x[[1]],na.rm=TRUE))
-      , upr = exp(cf[["97.5%"]][[1]])
+	df <- data.frame(lwr=cf[["2.5%"]][[1]]
+      , est = mean(x[[1]],na.rm=TRUE)
+      , upr = cf[["97.5%"]][[1]]
    )
    return(df)
 }
