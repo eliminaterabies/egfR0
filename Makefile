@@ -163,6 +163,9 @@ egf_R0.Rout: egf_R0.R egf_sample.rds simR0_funs.rda R0est_funs.rda intervals.rda
 R0plot.Rout: R0plot.R egf_R0.rds
 	$(pipeR)
 
+KH_R0.Rout: KH_R0.R
+	$(pipeR)
+
 ######################################################################
 
 ## for stuff that may need to be rebuilt
