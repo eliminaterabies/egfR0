@@ -13,11 +13,21 @@ rsamps <- function(x,n=100){
 }
 
 
-egf_df <- (rdsRead()
+df <- rdsRead()
+
+
+egf_df <- (df
 #	%>% group_by(loc,phase,egf_fit)
 	%>% mutate(rsamp = map(egf_fit,~rsamps(.,n=nsamp))) 
 )
- 
+
+print(egf_df)
+
+
+df[["egf_fit"]][[14]] %>% coef
+df[["egf_fit"]][[14]] %>% vcov
+
+
 rdsSave(egf_df)
 
 
