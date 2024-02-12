@@ -141,7 +141,7 @@ Sources += mm_plot.md
 ######################################################################
 
 ## We've now selected Delphi and are sticking with it
-pipeRimplicit += egf_single
+## pipeRimplicit += egf_single
 
 ## Do an egf fit 
 egf_single.Rout: egf_single.R delphi.mm_windows.rda
