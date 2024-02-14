@@ -22,6 +22,7 @@ print(
 		, position = position_dodge(width=-0.4)
 	)
 	+ coord_flip()
-	+ ylab("r (1/month)")
+	# note that x and y are switched!
+	+ labs(y = "r (1/month)", x = NULL)
 )
 
