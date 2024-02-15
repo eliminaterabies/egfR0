@@ -97,7 +97,7 @@ pipeRimplicit += monthly_phase
 
 ## Split time series into phases
 ## softClimb.monthly_phase.Rout: monthly_phase.R
-%.monthly_phase.Rout: monthly_phase.R monthly.rds %.pars.rda
+%.monthly_phase.Rout: monthly_phase.R monthly.rds %.pars.rda 
 	$(pipeR)
 
 ## Identify windows inside the phases

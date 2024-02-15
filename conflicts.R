@@ -1,6 +1,6 @@
 # this creates a bunch of not very helpful warnings and notes about which
 # packages are being attached and conflicts that we expect and are fine with.
-library(tidyverse)
+# NOT RUN: library(tidyverse)
 
 # tidyverse suggests using the package **conflicted** to resolve these
 # which is fine but it both requires yet another dependency, and also might be
@@ -9,31 +9,6 @@ library(tidyverse)
 # another option is to use `options()` in base R to get desired behavior.
 # for reference, https://developer.r-project.org/Blog/public/2019/03/19/managing-search-path-conflicts/
 
-
-# First, can I unload everything in this R session?
-
-detachAllPackages <- function() {
-  basic.packages.blank <- c(
-    "stats",
-    "graphics",
-    "grDevices",
-    "utils",
-    "datasets",
-    "methods",
-    "base"
-  )
-  basic.packages <- paste("package:", basic.packages.blank, sep = "")
-  package.list <- search()[ifelse(unlist(gregexpr("package:", search())) == 1, TRUE, FALSE)]
-  package.list <- setdiff(package.list, basic.packages)
-  if (length(package.list) > 0) {
-    for (package in package.list) {
-      detach(package, character.only = TRUE)
-    }
-  }
-}
-
-detachAllPackages()
-message("I detached tidyverse")
 
 # a slightly more liberal version of the recommended recipe might be what we
 # want. I think this will silence the annoyingest warnings (e.g., where
@@ -56,14 +31,10 @@ options(conflicts.policy =
                depends.ok = TRUE)
         , tidyverse.quiet = TRUE)
 
-library(tidyverse) # silent, by default
-message("I loaded tidyverse silently")
-# NOT RUN
+#  NOT RUN: library(tidyverse) # silent, by default
 # library(MASS) # throws an error, arguably desirable
-# END DONT RUN
-library(MASS, exclude = "select")
-message("I loaded MASS without error")
-# NOT RUN
-# detachAllPackages()
+# library(MASS, exclude = "select")
+# message("I loaded MASS without error")
 # library(dplyr)
 # library(data.table) # again, with error that would need to be resolved
+# END DONT RUN
