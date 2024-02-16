@@ -165,14 +165,15 @@ R0est_funs.Rout: R0est_funs.R
 egf_R0.Rout: egf_R0.R egf_sample.rds simR0_funs.rda R0est_funs.rda intervals.rda
 	$(pipeR)
 
-R0plot.Rout: R0plot.R egf_R0.rds
+R0plot.Rout: R0plot.R egf_R0.rds series.tsv
 	$(pipeR)
 
-KH_R0.Rout: KH_R0.R varnames.tsv
+KH_R0.Rout: KH_R0.R varnames.tsv egf_R0.rds
 	$(pipeR)
 
 R0combo.Rout: R0combo.R KH_R0.rds R0plot.rds
 	$(pipeR)
+
 
 ## Epigrowthfit version
 version.Rout: version.R

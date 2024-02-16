@@ -4,22 +4,20 @@ library(ggplot2); theme_set(theme_bw())
 library(shellpipes)
 startGraphics()
 
-
+## Doing vaccination correction here
 dat <- (rdsRead()
-	## |> mutate(loc = factor(loc, levels=rev(levels(loc))))
-	## %>% filter(phase != 3) ## removing toyko phase 3s
+	|> left_join(tsvRead(),by=c("loc"="varname"))
+	|> mutate(NULL
+	, est = est/(1-vac)
+	, lwr = lwr/(1-vac)
+	, upr = upr/(1-vac)
+	, loc = forcats::fct_reorder(loc,est,.fun = mean, .na_rm=FALSE))
 )
 
 print(dat)
 
-gg <- (ggplot(dat
-	, aes( x = forcats::fct_reorder(loc, est, .fun = mean, .na_rm = FALSE)
-	        )
-)
-	+ geom_pointrange(aes(ymin=lwr
-	                      , y = est
-	                      , ymax=upr
-	                      , color=phase)
+gg <- (ggplot(dat, aes(x=loc))
+	+ geom_pointrange(aes(ymin=lwr, y = est, ymax=upr, color=phase)
 		, position = position_dodge(width=-0.4)
 	)
 	+ scale_color_manual(values=c("black","red", "orange"))

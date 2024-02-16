@@ -2,6 +2,9 @@
 library(tidyverse)
 library(shellpipes)
 
+egf <- rdsRead()
+
+egf_locs <- egf %>% pull(loc) %>% unique()
 
 loc <- tsvRead() %>% pull(loc)
 
@@ -34,6 +37,8 @@ hampsondf <- data.frame(loc=loc
 	, type = "Hampson et al (2009)"
 	, samptype = "Construction"
 )
+
+hampsondf <- hampsondf %>% filter(loc %in% egf_locs)
 
 print(hampsondf)
 
