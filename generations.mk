@@ -77,6 +77,6 @@ intervalPlots.Rout: intervalPlots.R intervals.rda
 ######################################################################
 
 ## Check Code for KH and reference code
-check.Rout: dogs.csv check.R
+check.Rout: check.R dogs.csv
 	$(pipeR)
 

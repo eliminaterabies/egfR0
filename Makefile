@@ -39,6 +39,33 @@ pipeline: dir=$(Drop)/Rabies_TZ/pipeline/SD_dogs/
 pipeline:
 	$(linkdirname)
 
+#################################################################
+## make rule for the paper
+
+## Refactored MS: edit doc.Rnw
+## draft.pdf.final:
+## draft.pdf: draft.tex doc.Rnw
+draft.pdf: texknit/doc.makedeps
+
+## supp.tex.pdf: supp.tex
+## supp.pdf: supp.tex
+
+texknit/doc.tex: check.rda
+
+Sources += doc.Rnw knitr.tex draft.tex
+Ignore += *.loc
+
+## TODO: fancify and export both of these recipe lines ☺
+texknit/%.tex: %.Rnw | texknit
+	Rscript -e "library(\"knitr\"); knit(\"$<\")"
+	$(MVF) $*.tex texknit
+
+Ignore += texknit
+texknit:
+	$(mkdir)
+
+
+
 ##################################################################
 
 Sources += $(wildcard *.R)
