@@ -262,25 +262,33 @@ logistic.Rout: logistic.R
 
 pipeRimplicit += egf_single
 
-## exp.egf_single.Rout:
-## logistic.egf_single.Rout:
+## exp.egf_single.Rout: egf_single.R
+## logistic.egf_single.Rout: egf_single.R
 
 %.egf_single.Rout: egf_single.R delphi.mm_windows.rda %.rda
-	$(pipeR)
+	$(pipeRcall)
 
+pipeRimplicit += egf_plot
 ## exp.egf_plot.Rout: egf_plot.R
 %.egf_plot.Rout: egf_plot.R %.egf_single.rds
-	$(pipeR)
+	$(pipeRcall)
 
-pipeRimplicit += egf_single
+pipeRimplicit += egf_rplot
 
 ## exp.rplot.Rout:
 ## logistic.rplot.Rout:
 %.rplot.Rout: rplot.R %.egf_single.rds
 	$(pipeR)
 
-egf_sample.Rout: egf_sample.R egf_single.rds
+rplot_combo.Rout: rplot_combo.R exp.egf_single.rds logistic.egf_single.rds
 	$(pipeR)
+
+pipeRimplicit += egf_sample
+
+## exp.egf_sample.Rout: egf_sample.R
+## logistic.egf_sample.Rout:
+%.egf_sample.Rout: egf_sample.R %.egf_single.rds
+	$(pipeRcall)
 
 simR0_funs.Rout: simR0_funs.R
 R0est_funs.Rout: R0est_funs.R
