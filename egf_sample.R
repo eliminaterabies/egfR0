@@ -24,8 +24,6 @@ egf_df <- (df
 print(egf_df)
 
 
-df[["egf_fit"]][[14]] %>% coef
-df[["egf_fit"]][[14]] %>% vcov
 
 
 rdsSave(egf_df)

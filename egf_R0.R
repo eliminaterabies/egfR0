@@ -13,10 +13,10 @@ nboot <- 100
 nsamp <- 300
 
 
-egf_df <- (rdsRead()
+egf_df <- (bind_rows(rdsReadList())
 #	%>% group_by(loc,phase,egf_fit)
 	%>% mutate(R0sims = map(rsamp,~simR0_data(.,time=gi,n=nsamp,bootsample=nboot)))
-	%>% group_by(loc,phase)
+	%>% group_by(loc,phase,method)
 	%>% reframe(R0tiles(R0sims))
 )
 

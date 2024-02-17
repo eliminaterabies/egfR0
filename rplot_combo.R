@@ -5,13 +5,8 @@ library(shellpipes)
 
 startGraphics()
 
-#print(rdsRead())
-
-#print(rdsReadList())
-
-dat <- (
-#	bind_rows(rdsReadList())
-	rbind(readRDS("exp.egf_single.rds"),readRDS("logistic.egf_single.rds"))
+dat <- (bind_rows(rdsReadList())
+#	rbind(readRDS("exp.egf_single.rds"),readRDS("logistic.egf_single.rds"))
 	## |> mutate(loc = factor(loc, levels=rev(levels(loc))))
 )
 
