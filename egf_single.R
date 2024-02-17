@@ -53,6 +53,7 @@ print(ff$egf_fit)
 fulldat <-(ff
 	%>% group_by(loc,phase,egf_fit)
 	%>% reframe(r_ests(egf_fit))
+	%>% mutate(method=method)
 )
 
 print(fulldat)
