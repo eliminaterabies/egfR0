@@ -5,10 +5,18 @@ library(shellpipes)
 
 startGraphics()
 
+#print(rdsRead())
 
-dat <- (bind_rows(rdsRead("exp"),rdsRead("logistic"))
+#print(rdsReadList())
+
+dat <- (
+#	bind_rows(rdsReadList())
+	rbind(readRDS("exp.egf_single.rds"),readRDS("logistic.egf_single.rds"))
 	## |> mutate(loc = factor(loc, levels=rev(levels(loc))))
 )
+
+
+print(dat)
 
 print(
        ggplot(dat)
@@ -23,6 +31,7 @@ print(
 	+ geom_pointrange(aes(ymin=lwr,ymax=upr,lty=method)
 		, position = position_dodge(width=-0.4)
 	)
+	+ scale_linetype_manual(values=c("dotted","solid"))
 	+ coord_flip()
 	# note that x and y are switched!
 	+ labs(y = "r (1/month)", x = NULL)
