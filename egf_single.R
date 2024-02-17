@@ -13,7 +13,7 @@ egffun <- function(x){
 	x <- bind_rows(data.frame(offset = x[["offset"]][1]-1
 		, cases = NA)
 		, x)
-	mod <- egf(model = egf_model(curve = "logistic", family = "nbinom")
+	mod <- egf(model = egf_model(curve = method, family = "nbinom")
 		, data_ts = x
 		, formula_ts = cbind(offset, cases) ~ 1
 		, formula_parameters = ~ 1

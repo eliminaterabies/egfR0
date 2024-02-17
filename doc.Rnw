@@ -83,7 +83,7 @@ For diseases like rabies, where transmissions links (and generation intervals) a
 
 \begin{center}
 \begin{figure}[ht!]
-\includegraphics[scale = 0.5]{./figures/interval.png}
+\includegraphics[scale = 0.5]{./interval.png}
 \caption{\textbf{Decomposing generation intervals.}
 Generation intervals start when a focal animal acquires infection (open red circle) and end after a period of viral replication (dashed line) when an animal shows clinical signs (blue star), becomes infectious (solid black circle) and infects another animal --- in rabies the onset of clinical signs and of becoming infectious are closely synchronized.
 Once the infectious period (grey block) starts, there is a wait time (solid black line) until a susceptible host (solid red circles) is bitten. The infectious period ends with the death of the focal host (black X).
