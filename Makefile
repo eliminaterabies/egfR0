@@ -118,9 +118,11 @@ pipeRimplicit += mm_plot
 	$(pipeR)
 
 ## This code is terrible; pull ugly stuff out of mm_plot and make it nice 2024 Jan 24 (Wed)
+## This is apparently the last, pre-Delphi comparison plot.
 compare.Rout: compare.R softClimb.mm_plot.rds lowPeaks.mm_plot.rds base.mm_plot.rds softDecline.mm_plot.rds
 	$(pipeR)
 
+## This is apparently a dead end and I want to kill it 2024 Feb 21 (Wed)
 comp.Rout: comp.R softClimb.mm_windows.rda lowPeaks.mm_windows.rda
 	$(pipeR)
 
@@ -172,6 +174,7 @@ KH_R0.Rout: KH_R0.R varnames.tsv
 R0combo.Rout: R0combo.R KH_R0.rds R0plot.rds
 	$(pipeR)
 
+## Epigrowthfit version
 version.Rout: version.R
 	$(pipeR)
 
