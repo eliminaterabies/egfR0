@@ -40,10 +40,11 @@ pipeline:
 	$(linkdirname)
 
 #################################################################
-## make rule for the paper
 
-## Refactored MS: edit doc.Rnw
-## draft.pdf.final:
+## Compile MS
+Sources += doc.Rnw knitr.tex draft.tex
+
+## draft.tex.pdf: draft.tex doc.Rnw
 ## draft.pdf: draft.tex doc.Rnw
 draft.pdf: texknit/doc.makedeps
 
@@ -52,7 +53,6 @@ draft.pdf: texknit/doc.makedeps
 
 texknit/doc.tex: check.rda
 
-Sources += doc.Rnw knitr.tex draft.tex
 Ignore += *.loc
 
 ## TODO: fancify and export both of these recipe lines ☺
@@ -63,8 +63,6 @@ texknit/%.tex: %.Rnw | texknit
 Ignore += texknit
 texknit:
 	$(mkdir)
-
-
 
 ##################################################################
 
@@ -228,7 +226,6 @@ makestuff/%.stamp:
 	touch $@
 
 -include makestuff/os.mk
--include makestuff/slowtarget.mk
 
 -include makestuff/texi.mk
 -include makestuff/pandoc.mk
