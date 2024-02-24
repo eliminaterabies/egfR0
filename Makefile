@@ -155,8 +155,6 @@ intervalPlots.Rout: intervalPlots.R intervals.rda
 check.Rout: check.R dogs.csv
 	$(pipeR)
 
-
-
 ######################################################################
 
 ## Temporary section for managing conflicts
@@ -192,7 +190,6 @@ autopipeR=defined
 ## softClimb.pars.Rout: softClimb.R
 ## softDecline.pars.Rout: softDecline.R
 ## lowPeaks.pars.Rout: lowPeaks.R
-
 
 ## Not sure if this is needed 2024 Jan 17 (Wed)
 pipeRimplicit += pars
@@ -263,7 +260,6 @@ exp.Rout: exp.R
 logistic.Rout: logistic.R
 	$(pipeR)
 
-
 pipeRimplicit += egf_single
 
 ## exp.egf_single.Rout:
@@ -272,9 +268,9 @@ pipeRimplicit += egf_single
 %.egf_single.Rout: egf_single.R delphi.mm_windows.rda %.rda
 	$(pipeR)
 
-%.egf_plot.Rout: egf_plot.R egf_single.rds
+## exp.egf_plot.Rout: egf_plot.R
+%.egf_plot.Rout: egf_plot.R %.egf_single.rds
 	$(pipeR)
-
 
 pipeRimplicit += egf_single
 
@@ -301,7 +297,6 @@ KH_R0.Rout: KH_R0.R varnames.tsv egf_R0.rds
 
 R0combo.Rout: R0combo.R KH_R0.rds R0plot.rds
 	$(pipeR)
-
 
 ## Epigrowthfit version
 version.Rout: version.R

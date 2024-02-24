@@ -8,11 +8,16 @@ fakewin <- data.frame(start = -Inf, end=Inf)
 
 print(windows)
 
-
 egffun <- function(x){
-	x <- bind_rows(data.frame(offset = x[["offset"]][1]-1
+	## Drop the past-the-peak point for exponential
+	if(method=="exponential"){
+		x <- (x
+			|> filter(offset < max(offset) | cases == max(cases))
+		)
+	}
+	x <- bind_rows(data.frame(offset = x$offset[[1]]-1
 		, cases = NA)
-		, x)
+	, x)
 	mod <- egf(model = egf_model(curve = method, family = "nbinom")
 		, data_ts = x
 		, formula_ts = cbind(offset, cases) ~ 1
