@@ -1,3 +1,6 @@
+2024 Feb 25 (Sun)
+
+Went over ms, need to fill the new windows stuff. Removed all the Bayesian little r using Stan. Need to use program to print sample/estimates directly instead of writting it out. Need to switch out serial interval from mexico plot with constructed GI from Hampson2009 (proxy serial). 
 
 2024 Jan 17 (Wed)
 =================
