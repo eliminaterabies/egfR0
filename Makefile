@@ -297,13 +297,16 @@ R0est_funs.Rout: R0est_funs.R
 egf_R0.Rout: egf_R0.R exp.egf_sample.rds logistic.egf_sample.rds simR0_funs.rda R0est_funs.rda intervals.rda
 	$(pipeR)
 
-R0plot.Rout: R0plot.R egf_R0.rds series.tsv
+R0plot.Rout: R0plot.R egf_R0.rda series.tsv
 	$(pipeR)
 
-KH_R0.Rout: KH_R0.R varnames.tsv egf_R0.rds
+KH_R0.Rout: KH_R0.R varnames.tsv egf_R0.rda
 	$(pipeR)
 
 R0combo.Rout: R0combo.R KH_R0.rds R0plot.rds
+	$(pipeR)
+
+mexico.Rout: mexico.R egf_R0.rda KH_R0.rds
 	$(pipeR)
 
 ## Epigrowthfit version

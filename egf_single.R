@@ -1,6 +1,7 @@
 library(tidyverse)
 library(epigrowthfit)
 library(shellpipes)
+library(stringr)
 
 loadEnvironments()
 
@@ -10,7 +11,7 @@ print(windows)
 
 egffun <- function(x){
 	## Drop the past-the-peak point for exponential
-	if(method=="exponential"){
+	if(method=="Exponential"){
 		x <- (x
 			|> filter(offset < max(offset) | cases == max(cases))
 		)
@@ -53,7 +54,7 @@ print(ff$egf_fit)
 fulldat <-(ff
 	%>% group_by(loc,phase,egf_fit)
 	%>% reframe(r_ests(egf_fit))
-	%>% mutate(method=method)
+	%>% mutate(method=str_to_title(method))
 )
 
 print(fulldat)

@@ -163,7 +163,7 @@ The weighted incubation period distribution resembles much closer to the generat
 
 \begin{center}
 \begin{figure}[h]
-\includegraphics[page=1,scale = 0.7]{plot_growthrate.Rout.pdf}
+\includegraphics[page=1,scale = 0.7]{rplot_combo.Rout.pdf}
 \caption{\textbf{Growth rate estimates for global historical outbreaks of rabies.} Estimates and confidence intervals (95\% quantiles from the posterior distribution) of \littler in global historical outbreaks estimated from exponential (red) and logistic (blue) model fits.
 \bmb{it would be nice to have the lines in the legend horizontal; I think you can do this by flipping x/y (using x, xmin, xmax for r/lower/upper) and \emph{not} using coord\_flip? Use different point types as well? Outbreak labels could be tweaked; dates for Perak, NYstate, and add spaces appropriately in CentralNY etc. May not need the ``Location'' y-axis label?}}
 \flabel{littler}
@@ -178,7 +178,7 @@ Overall, \littler estimates from the logistical model are larger with wider conf
 
 \begin{center}
 \begin{figure}[h]
-\includegraphics[page=1,scale = 0.7]{simR0_comboPlot.Rout.pdf}
+\includegraphics[page=1,scale = 0.7]{R0combo.Rout.pdf}
 \caption{\textbf{Reproductive number estimates for global historical outbreaks of rabies}
 Previous estimates of \rzero are shown in gray; \re estimates and confidence interval (95\% quantiles from the estimated \re sample) from our hybrid approach are shown in blue. \bmb{gray is maybe a little too subtle darker gray? see comments on previous fig about legends and labels. Legend to right of plot? For consistency, could make format closer to figure 3 (there are only 14 locations there and 15 here, but otherwise could be almost identical).  Dashed vertical line at \rzero=1?}}
 \flabel{Re}
@@ -195,7 +195,7 @@ The hybrid approach provides larger values of \re and wider confidence intervals
 
 \begin{center}
 \begin{figure}[h]
-\includegraphics[page=1,scale = 0.7]{simR0Plot_adj.Rout.pdf}
+\includegraphics[page=1,scale = 0.7]{R0combo.Rout.pdf}
 \caption{\textbf{\rzero estimates for global historical outbreaks, accounting for vaccination coverage.}
   \bmb{Add some kind of indication to the graph (e.g. color the axis labels?) to denote the places with vaccination? Maybe even add a notation of vax coverage (to make the figure more self-contained)?  Does it make any sense to try to combine this with the previous figure, i.e. add a third bar for the four outbreaks (TZ x 2, Sultan Hamid, Mexico) that actually have any vax?}
 }

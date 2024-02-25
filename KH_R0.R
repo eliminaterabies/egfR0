@@ -2,7 +2,9 @@
 library(tidyverse)
 library(shellpipes)
 
-egf <- rdsRead()
+loadEnvironments()
+
+egf <- egf_gi
 
 egf_locs <- egf %>% pull(loc) %>% unique()
 

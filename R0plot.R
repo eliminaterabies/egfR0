@@ -4,8 +4,10 @@ library(ggplot2); theme_set(theme_bw())
 library(shellpipes)
 startGraphics()
 
+loadEnvironments()
+
 ## Doing vaccination correction here
-dat <- (rdsRead()
+dat <- (egf_gi
 	|> left_join(tsvRead(),by=c("loc"="varname"))
 	|> mutate(NULL
 	, est = est/(1-vac)
