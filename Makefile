@@ -46,7 +46,7 @@ Sources += doc.Rnw knitr.tex draft.tex
 
 ## draft.tex.pdf: draft.tex doc.Rnw
 ## draft.pdf: draft.tex doc.Rnw
-draft.pdf: texknit/doc.makedeps
+draft.pdf: texknit/doc.makedeps doc.Rnw
 
 ## supp.tex.pdf: supp.tex
 ## supp.pdf: supp.tex

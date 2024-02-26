@@ -3,7 +3,7 @@
 
 \section*{Abstract}
 
-\mr{I am great!!}
+\mr{I am so great!!}
 Rabies spread by domestic dogs continues to cause tens of thousands of human deaths every year in low- and middle-income countries. Despite this heavy mortality burden, rabies is often neglected, perhaps because it has been eliminated from high-income countries through mass dog vaccination.
 Estimates of the intrinsic reproductive number (\rzero) of canine rabies from a wide range of times and locations are low (values \textless 2), with narrow confidence intervals. The persistence of rabies in environments that vary enormously in ecological conditions is thus surprising.
 We combined incidence data from historical outbreaks of canine rabies from around the world (1917-2003) with high-quality contact-tracing data from Tanzania (2002-present) to investigate initial growth rates (\littler), generation intervals distributions (\G) and reproductive numbers (\rzero).
