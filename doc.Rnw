@@ -147,7 +147,7 @@ The weighted incubation period distribution resembles much closer to the generat
 \begin{center}
 \begin{figure}[h]
 \includegraphics[page=1,scale = 0.7]{rplot_combo.Rout.pdf}
-\caption{\textbf{Growth rate estimates for global historical outbreaks of rabies.} Estimates and 95\% confidence intervals of \littler in global historical outbreaks estimated from exponential (dotted) and logistic (solid) model fits.
+\caption{\textbf{Growth rate estimates for global historical outbreaks of rabies.} Estimates and 95\% confidence intervals of \littler in global historical outbreaks estimated from exponential (dotted) and logistic (solid) model fits.}
 Different colors represents different phases from the times series data. 
 \flabel{littler}
 \end{figure}
@@ -162,7 +162,7 @@ Overall, \littler estimates from the logistical model are larger with wider conf
 \begin{center}
 \begin{figure}[h]
 \includegraphics[page=1,scale = 0.7]{R0combo.Rout.pdf}
-\caption{\textbf{Reproductive number estimates for global historical outbreaks of rabies}
+\caption{\textbf{Reproductive number estimates for global historical outbreaks of rabies}}
 Previous estimates of \rzero are shown in blue highlights; \rzero estimates and confidence interval (95\% quantiles from the estimated \rzero sample) from our hybrid approach using exponential (dotted lines) and logistic (solid lines). \rzero are corrected for vaccination coverage.\mli{todo: add vaccination coverage like KH's paper in the location name.}
 \flabel{Rzero}
 \end{figure}
