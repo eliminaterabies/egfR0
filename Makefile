@@ -42,7 +42,8 @@ pipeline:
 #################################################################
 
 ## Compile MS
-Sources += doc.Rnw knitr.tex draft.tex
+Sources += doc.Rnw knitr.tex draft.tex 
+Sources += $(wildcard *.bib)
 
 ## draft.tex.pdf: draft.tex doc.Rnw
 ## draft.pdf: draft.tex doc.Rnw
