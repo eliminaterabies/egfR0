@@ -104,8 +104,8 @@ sim_clustertimeWeights <- function(time,num,bootsample){
   return(replicate(num, sample_clustergenWeights(time, bootsample)))
 }
 
-clustersimR0_data <- function(growth_obj,time,n,bootsample){
-  rsims <- sim_growthrate(growth_obj,n)
+clustersimR0_data <- function(rsims,time,n,bootsample){
+#  rsims <- sim_growthrate(growth_obj,n)
   rsimsdays <- rsims/30
   timemat <- sim_clustertime(time,n,bootsample)
   R0sims <- sapply(1:n,function(x){R0est_data(rsimsdays[x],timemat[[x]])})

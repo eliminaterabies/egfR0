@@ -8,7 +8,7 @@ minDays <- 0
 maxDays <- 100
 
 nboot <- 100
-nsamp <- 300
+nsamp <- 100
 print(interval_df)
 
 ## from once.rda
@@ -21,7 +21,7 @@ once <- (rdsRead("once")
 	%>% arrange(Biter.ID)
 )
 
-# simgencluster <- sim_clustertime(once,num=nboot,bootsample=nsamp)
+simgencluster <- sim_clustertime(once,num=nboot,bootsample=nsamp)
 
 print(simgencluster)
 
@@ -45,12 +45,14 @@ egf_gi <- (egf_fit_dfs
 	%>% mutate(interval = "Generation")
 )
 
-#egf_gi <- (egf_fit_dfs
-#	%>% mutate(R0sims = map(rsamp,~clustersimR0_data(.,time=rdsRead("once"),n=nsamp,bootsample=nboot)))
-#	%>% group_by(loc,phase,method)
-#	%>% reframe(R0tiles(R0sims))
-#	%>% mutate(interval = "Cluster-Generation")
-#)
+egf_gi2 <- (egf_fit_dfs
+	%>% mutate(R0sims = map(rsamp,~clustersimR0_data(.,time=once,n=nsamp,bootsample=nboot)))
+	%>% group_by(loc,phase,method)
+	%>% reframe(R0tiles(R0sims))
+	%>% mutate(interval = "Cluster-Generation")
+)
+
+print(egf_gi2)
 
 egf_si <- (bind_rows(rdsReadList())
 #	%>% group_by(loc,phase,egf_fit)
@@ -61,5 +63,5 @@ egf_si <- (bind_rows(rdsReadList())
 )
 
 
-saveVars(egf_gi,egf_si)
+saveVars(egf_gi,egf_gi2,egf_si)
 
