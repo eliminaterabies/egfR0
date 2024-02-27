@@ -4,7 +4,28 @@ library(shellpipes)
 
 loadEnvironments()
 
+minDays <- 0
+maxDays <- 100
+
+nboot <- 10
+nsamp <- 30
 print(interval_df)
+
+## from once.rda
+
+once <- (rdsRead("once")
+	%>% select(Biter.ID,dateGen)
+	%>% filter(between(dateGen,minDays,maxDays))
+	%>% group_by(Biter.ID)
+	%>% mutate(count=n())
+	%>% arrange(Biter.ID)
+)
+
+simgencluster <- sim_clustertime(once,num=nboot,bootsample=nsamp)
+
+print(simgencluster)
+
+quit()
 
 si <- (interval_df
 	%>% filter(Type == "Serial")
@@ -16,11 +37,9 @@ gi <- (interval_df
 	%>% pull(Days)
 )
 
-nboot <- 100
-nsamp <- 300
+egf_fit_dfs <- bind_rows(rdsRead("exp"),rdsRead("logistic"))
 
-
-egf_gi <- (bind_rows(rdsReadList())
+egf_gi <- (egf_fit_dfs
 #	%>% group_by(loc,phase,egf_fit)
 	%>% mutate(R0sims = map(rsamp,~simR0_data(.,time=gi,n=nsamp,bootsample=nboot)))
 	%>% group_by(loc,phase,method)
@@ -28,6 +47,14 @@ egf_gi <- (bind_rows(rdsReadList())
 	%>% mutate(interval = "Generation")
 )
 
+egf_gi <- (egf_fit_dfs
+	%>% mutate(R0sims = map(rsamp,~clustersimR0_data(.,time=rdsRead("once"),n=nsamp,bootsample=nboot)))
+	%>% group_by(loc,phase,method)
+	%>% reframe(R0tiles(R0sims))
+	%>% mutate(interval = "Cluster-Generation")
+)
+
+quit()
 
 egf_si <- (bind_rows(rdsReadList())
 #	%>% group_by(loc,phase,egf_fit)
