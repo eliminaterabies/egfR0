@@ -35,7 +35,7 @@ gi <- (interval_df
 	%>% pull(Days)
 )
 
-# egf_fit_dfs <- bind_rows(rdsRead("exp"),rdsRead("logistic"))
+egf_fit_dfs <- bind_rows(rdsRead("exp"),rdsRead("logistic"))
 
 egf_gi <- (egf_fit_dfs
 #	%>% group_by(loc,phase,egf_fit)
