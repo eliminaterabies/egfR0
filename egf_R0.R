@@ -25,8 +25,6 @@ simgencluster <- sim_clustertime(once,num=nboot,bootsample=nsamp)
 
 print(simgencluster)
 
-quit()
-
 si <- (interval_df
 	%>% filter(Type == "Serial")
 	%>% pull(Days)
@@ -37,7 +35,7 @@ gi <- (interval_df
 	%>% pull(Days)
 )
 
-egf_fit_dfs <- bind_rows(rdsRead("exp"),rdsRead("logistic"))
+# egf_fit_dfs <- bind_rows(rdsRead("exp"),rdsRead("logistic"))
 
 egf_gi <- (egf_fit_dfs
 #	%>% group_by(loc,phase,egf_fit)
@@ -47,14 +45,12 @@ egf_gi <- (egf_fit_dfs
 	%>% mutate(interval = "Generation")
 )
 
-egf_gi <- (egf_fit_dfs
-	%>% mutate(R0sims = map(rsamp,~clustersimR0_data(.,time=rdsRead("once"),n=nsamp,bootsample=nboot)))
-	%>% group_by(loc,phase,method)
-	%>% reframe(R0tiles(R0sims))
-	%>% mutate(interval = "Cluster-Generation")
-)
-
-quit()
+#egf_gi <- (egf_fit_dfs
+#	%>% mutate(R0sims = map(rsamp,~clustersimR0_data(.,time=rdsRead("once"),n=nsamp,bootsample=nboot)))
+#	%>% group_by(loc,phase,method)
+#	%>% reframe(R0tiles(R0sims))
+#	%>% mutate(interval = "Cluster-Generation")
+#)
 
 egf_si <- (bind_rows(rdsReadList())
 #	%>% group_by(loc,phase,egf_fit)
