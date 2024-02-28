@@ -196,6 +196,8 @@ We combined our estimates of \littler from the logistic model with the empirical
 Of the listed historical outbreaks, four occurred in locations with prior rabies vaccination coverage: Memphis, US (1947, 10\% vaccine coverage); Serengeti, Tanzania (2003, 20\% coverage); Ngorongoro, Tanzania (2003, 20\% coverage); and Sultan Hamad, Kenya (1992, 24\% coverage).
 Our estimates of \rzero ranged from 1.08 to 2.66 \mli{check and use program}, with upper confidence intervals greater than 2 for most locations.
 The hybrid approach provides larger values of \rzero and wider confidence intervals than previous \rzero estimates after propagating uncertainty from both \littler and generation interval distributions (see \fref{Re}).
+    
+\mr{you set up the idea that R0 should vary across populations, but I don't think very clearly yet (density seems like a good one, since the idea behind R0 is that it includes both the contact rate and the transmission rate). But you use a single region to estimate generation intervals... can you state a bit about why this seems like a fine assumption (i.e., something like you expect similar variation in dogs within and across populations -- even though the other paper is all about how important the dog-to-dog variation in latent period is for understanding dynamics?) Is this line of thinking citeable?}
 
 
 \FloatBarrier
@@ -205,6 +207,7 @@ The hybrid approach provides larger values of \rzero and wider confidence interv
 \includegraphics[page=1,scale = 0.7]{mexico.Rout.pdf}
 \caption{\textbf{Effects of \littler, corrected \G on the estimates of \rzero in Mexico outbreak.}
 \bmb{more complete caption? Make this horizontal to match the other figs? Extend R0-axis to have a lower limit at \rzero=1?}
+\mr{what ben said :-)}
 }
 \flabel{mexico}
 \end{figure}
@@ -220,10 +223,12 @@ The overall effect of \rzero increases even more when included both corrections 
 
 \section*{Discussion}
 
-The basic reproductive number \rzero is commonly used to summarize the risk of infectious disease and to inform control measures. Here, we used a relatively simple approach to estimate \rzero by combining initial growth rate (\littler) estimates from incidence data and generation intervals from contact tracing data.
-We improved on earlier work by correcting for slowdown in growth in estimating \littler and by developing a hybrid approach to propagate uncertainty from both \littler and \G, resulting in higher \rzero estimates with wider confidence intervals.
+\mr{I like it when the first sentence of the discussion states the most important result. Here, I think you could lead with a condensed and refined version of "We resolved the mystery of rabies persistence despite the fact that R0 estimates in historical outbreaks have been consistently low, showing that substantially higher basic reproduction numbers are compatible with historical outbreak data. Here, we reanalyzed historical rabies epidemics with improved model assumptions and uncertainty propagation, showing that historical estimates of R0 were downward biased and overconfident". I think the place to funnel back out the broader implications is a bit later, so you don't need to start with "R0 is commonly used..."'}
 
-Re-analysis of these data also allowed us to identify an overlooked fact about rabies generation intervals: observed generation intervals are longer on average than constructed ones \bmb{than intervals constructed by naively adding ...?}, because of within-individual correlations in time distributions and biting behaviour. The unexpected importance of these correlations could have implications for \G-based studies of other infectious diseases. Further investigation of how these correlations affect the overall dynamics of rabies is warranted.
+The basic reproductive number \rzero is commonly used to summarize the risk of infectious disease and to inform control measures. Here, we used a relatively simple approach to estimate \rzero by combining initial growth rate (\littler) estimates from incidence data and generation intervals from contact tracing data.
+We improved on earlier work by correcting for slowdown in growth when estimating \littler, and by developing an approach to propagate uncertainty from both \littler and \G, resulting in higher \rzero estimates with wider confidence intervals.
+
+Re-analysis of these data also allowed us to identify an overlooked fact about rabies generation intervals: observed generation intervals are longer on average than constructed ones \bmb{than intervals constructed by naively adding ...?}, because of within-individual correlations in time distributions and biting behaviour. The unexpected importance of these correlations could have implications for \G-based studies of other infectious diseases. \mr{sharpen this sentence} Further investigation of how these correlations affect the overall dynamics of rabies is warranted.\mr{this paragraph seems out of place; the next paragraph follows the previous one in discussing logistic vs. exponential growth. I kind of think more of this belongs in the intro; otherwise it's not as clear why you make the choice to use the logistic/trust those estimates more'}
 
 Estimates of \rzero are strongly affected by estimates of the growth rate during the initial phase of the epidemic.
 The logistic model gives a better approximation of the initial phase of the epidemic resulting in a larger estimate of \littler compared to the exponential model \citep{ma2014estimating}.
