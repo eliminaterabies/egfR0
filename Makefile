@@ -46,11 +46,11 @@ Sources += doc.Rnw knitr.tex draft.tex
 Sources += $(wildcard *.bib)
 
 ## This is the main rule
-## draft.pdf: draft.tex doc.Rnw
+draft.pdf: draft.tex doc.Rnw
 
 ## This rule will try harder to make a pdf, and less hard to make sure all of the dependencies are in order. 
 ## draft.tex.pdf: draft.tex doc.Rnw
-draft.pdf: texknit/doc.makedeps doc.Rnw
+## draft.pdf: texknit/doc.makedeps doc.Rnw
 
 ## supp.tex.pdf: supp.tex
 ## supp.pdf: supp.tex

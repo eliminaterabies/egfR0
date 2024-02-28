@@ -7,7 +7,7 @@ Rabies spread by domestic dogs continues to cause tens of thousands of human dea
 \mr{meaning of "neglected" unclear... perhaps "the work of eliminating rabies is often neglected"
 I also don't understand the logic of neglect... if this speeculation belongs here it may need more detail.}
 Estimates of the intrinsic reproductive number (\rzero) of canine rabies from a wide range of times and locations are low (values \textless 2), with narrow confidence intervals. The persistence of rabies across environments that vary enormously in ecological conditions is thus surprising.
-\mr{as written, this assumes readers understand or at least know that R_0 has to be high to enable persistence... also doesn't flu typically have a low R_0? Maybe another sentence or half needed to explain basis for surprise.}
+\mr{as written, this assumes readers understand or at least know that R_0 has to be high to enable persistence. also doesn't flu typically have a low R_0? Maybe another sentence or half needed to explain basis for surprise.}
 We combined incidence data from historical outbreaks of canine rabies from around the world (1917-2003) with high-quality contact-tracing data from Tanzania (2002-present) to investigate initial growth rates (\littler), generation intervals distributions (\G) and reproductive numbers (\rzero).
 We used  a novel combination of bootstrap and Bayesian methods to estimate uncertainties for \rzero, combining the uncertainties associated with \littler and \G. 
 \mr{is epigrowthfit still a Bayesian method? Isn't a key reason your estimates are larger that you fit a different model than KH did? Should that be an abstract-level methods note?}
@@ -173,6 +173,7 @@ Different colors represents different phases from the times series data.
 \flabel{littler}
 \end{figure}
 \end{center}
+\mr{match phase window colors with fig 4, dots look a little light, might be good to do open circles in addition to dots for the exponential fits}
 
 \FloatBarrier
 
