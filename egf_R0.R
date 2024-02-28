@@ -7,8 +7,8 @@ loadEnvironments()
 minDays <- 0
 maxDays <- 100
 
-nboot <- 10
-nsamp <- 30
+nboot <- 100
+nsamp <- 300
 print(interval_df)
 
 ## from once.rda
@@ -21,7 +21,7 @@ once <- (rdsRead("once")
 	%>% arrange(Biter.ID)
 )
 
-simgencluster <- sim_clustertime(once,num=nboot,bootsample=nsamp)
+# simgencluster <- sim_clustertime(once,num=nboot,bootsample=nsamp)
 
 print(simgencluster)
 
