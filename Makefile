@@ -298,20 +298,20 @@ pipeRimplicit += egf_sample
 simR0_funs.Rout: simR0_funs.R
 R0est_funs.Rout: R0est_funs.R
 
-## egf_R0.Rout: egf_R0.R R0est_funs.R
-egf_R0.Rout: egf_R0.R exp.egf_sample.rds logistic.egf_sample.rds simR0_funs.rda R0est_funs.rda intervals.rda once.rds
+## slow/egf_R0.Rout: egf_R0.R R0est_funs.R
+slowtarget/egf_R0.Rout: egf_R0.R exp.egf_sample.rds logistic.egf_sample.rds simR0_funs.rda R0est_funs.rda intervals.rda once.rds
 	$(pipeR)
 
-R0plot.Rout: R0plot.R egf_R0.rda series.tsv
+R0plot.Rout: R0plot.R slow/egf_R0.rda series.tsv
 	$(pipeR)
 
-KH_R0.Rout: KH_R0.R varnames.tsv egf_R0.rda
+KH_R0.Rout: KH_R0.R varnames.tsv slow/egf_R0.rda
 	$(pipeR)
 
 R0combo.Rout: R0combo.R KH_R0.rds R0plot.rds
 	$(pipeR)
 
-mexico.Rout: mexico.R egf_R0.rda KH_R0.rds
+mexico.Rout: mexico.R slow/egf_R0.rda KH_R0.rds
 	$(pipeR)
 
 ## Epigrowthfit version
@@ -344,6 +344,7 @@ makestuff/%.stamp:
 -include makestuff/texi.mk
 -include makestuff/pandoc.mk
 -include makestuff/pipeR.mk
+-include makestuff/slowtarget.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
