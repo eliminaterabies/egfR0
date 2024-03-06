@@ -7,8 +7,8 @@ loadEnvironments()
 minDays <- 0
 maxDays <- 100
 
-nboot <- 5
-nsamp <- 5
+nboot <- 100
+nsamp <- 100
 print(interval_df)
 
 ## from once.rda
