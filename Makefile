@@ -111,7 +111,7 @@ Sources += $(wildcard *.R)
 convert.Rout: convert.R
 	$(pipeR)
 
-bitten.Rout: bitten.R makestuff/wrapR/conflicts.R dogs.csv
+bitten.Rout: bitten.R dogs.csv
 	$(pipeR)
 
 ## check.Rout: check.R

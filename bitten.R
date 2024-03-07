@@ -1,5 +1,4 @@
 library(shellpipes)
-sourceFiles()
 
 library(tidyverse)
 ## manageConflicts()
