@@ -63,7 +63,7 @@ Ignore += *.loc
 ## TODO: fancify and export both of these recipe lines ☺
 .PRECIOUS: texknit/%.tex
 texknit/%.tex: %.Rnw | texknit
-	Rscript -e "library(\"knitr\"); knit(\"$<\")"
+	Rscript -e 'library("knitr"); knit("$<")'
 	$(MVF) $*.tex texknit
 
 Ignore += texknit
