@@ -53,6 +53,8 @@ Sources += $(wildcard *.bib)
 ## draft.tex.pdf: draft.tex doc.Rnw
 draft.pdf: texknit/doc.makedeps doc.Rnw
 
+## fake.pdf: fake.tex fakedoc.Rnw
+
 ## supp.tex.pdf: supp.tex
 ## supp.pdf: supp.tex
 
