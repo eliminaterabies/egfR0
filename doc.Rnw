@@ -33,14 +33,10 @@ More recently, the World Health Organization (WHO) and partners (OIE, FAO, GARC)
 An understanding of rabies epidemiology --- in particular, reliable estimates of the basic reproductive number (\rzero), a quantitative measure of disease spread that is often used to guide vaccination strategies --- could inform rabies control efforts.
 
 \rzero is defined as the expected number of secondary cases generated from each primary case in a fully susceptible population \citep{macdonald1952analysis}.
-Estimates of \rzero using various methods (i.e., direct estimates from infection histories, epidemic tree reconstruction, and epidemic curve methods) based on historical outbreaks of rabies have generally been surprisingly low, typically between 1 and 2 with narrow confidence intervals \citep{hampson2009transmission, kurosawa2017rise, kitala2002comparison}. 
-It is surprising that a wide variety of regions and time periods with different densities and population structures of domestic dogs would have such similar values of \rzero.
-\mr{I think the idea that different densities and population structures imply different $R_0$ might need to be articulated more explicitly here. Limit to single use of "surprise" in the sentence that does a better job setting up the expectation. }
-In contrast to diseases with large \rzero (e.g. measles with \rzero $\textgreater 10$ \citep{guerra2017basic}), \rzero estimates for rabies imply that control through vaccination should be relatively easy (compared to e.g., rinderpest with \rzero $\approx 4$ \citep{mariner2005model}).
-\mr{@JD suggested use only rinderpest (omit e.g. measles)}
-With such a low \rzero one might expect rabies to fade out from behavioural control measures combined with stochastic fluctuations, 
-even in the absence of vaccination.
-\mr{move to before statements of surprise, as it sets the expectation}
+Estimates of \rzero using various methods (i.e., direct estimates from infection histories, epidemic tree reconstruction, and epidemic curve methods) based on historical outbreaks of rabies have generally been surprisingly low, typically between 1 and 2 with narrow confidence intervals for variety of regions and time periods with different densityies and population structures of domestic dogs \citep{hampson2009transmission, kurosawa2017rise, kitala2002comparison}. 
+With such a low \rzero one might expect rabies to fade out from behavioural control measures combined with stochastic fluctuations, even in the absence of vaccination.
+In contrast to diseases with \rzero (e.g., rinderpest with \rzero $\approx 4$ \citep{mariner2005model}), \rzero estimates for rabies imply that control through vaccination should be relatively easy.
+With such a low \rzero one might expect rabies to fade out from behavioural control measures combined with stochastic fluctuations, even in the absence of vaccination.
 
 % \rzero estimates for rabies using various methods (i.e., direct estimates from infection histories, epidemic tree reconstruction and have been consistently low, with narrow confidence intervals \citep{hampson2009transmission}.
 Here we revisit and explore why rabies, with apparently low \rzero, nonetheless persists in many countries around the world. 
