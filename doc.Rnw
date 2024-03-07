@@ -3,10 +3,12 @@
 
 \section*{Abstract}
 
-Rabies spread by domestic dogs continues to cause tens of thousands of human deaths every year in low- and middle-income countries. Despite this heavy mortality burden, rabies is often neglected, perhaps because it has been eliminated from high-income countries through mass dog vaccination.
+Rabies spread by domestic dogs continues to cause tens of thousands of human deaths every year in low- and middle-income countries. Despite this heavy mortality burden, rabies is often neglected, perhaps because it has been effectively controlled from high-income countries through mass dog vaccination.
 \mr{Maybe discuss neglect elsewhere; there are issues.}
-Estimates of the intrinsic reproductive number (\rzero) of canine rabies from a wide range of times and locations are low (values \textless 2), with narrow confidence intervals. This narrow range of estimates across a wide range of dog densities and environments is surprising.
+\mli{Repharsed a bit, not seeing a big issue in general.}
+Estimates of the intrinsic reproductive number (\rzero) (a metric disease spread risk) of canine rabies from a wide range of times and locations are low (values \textless 2), with narrow confidence intervals compared to many infectious diseases. This narrow range of estimates across a wide range of dog densities and environments is surprising.
 \mr{Can we assume readers of this journal know about \rzero?}
+\mli{I tried to add a few words to help this; I think it is ok.}
 We combined incidence data from historical outbreaks of canine rabies from around the world (1917-2003) with high-quality contact-tracing data from Tanzania (2002-present) to investigate initial growth rates (\littler), generation intervals distributions (\G) and reproductive numbers (\rzero).
 We updated earlier work by: choosing outbreak windows algorithmically; fitting \littler using a statistical method that accounts for decreases through time; and propagating uncertainty from both \littler and \G when estimating \rzero. 
 Our \rzero estimates are larger than previous estimates, with wider confidence intervals.
@@ -26,6 +28,7 @@ Canine rabies has been effectively eliminated from high-income countries by mass
 Despite the effectiveness of vaccinating dogs, rabies continues to cause many human deaths and large economic losses in LMICs due to the limited implementation of rabies control strategies \citep{hampson2015estimating}. 
 The past two decades have seen an increase in rabies control efforts --- including dog vaccination campaigns and improvements in surveillance \citep{kwoba2019dog, mtema2016mobile, gibson2018one, mazeri2018barriers, wallace2015establishment}.
 \mr{Discuss COVID effects briefly?}
+\mli{What do you mean by COVID effects? Disease control efforts or the lack of control efforts due to covid?}
 More recently, the World Health Organization (WHO) and partners (OIE, FAO, GARC) joined forces to support LMICs in eliminating human deaths from dog-mediated rabies by 2030 \citep{minghui2018new, abela20162016}. Mass dog vaccination campaigns have begun in some LMICs and are being scaled up \citep{castillo2019socio, evans2019implementation}.
 An understanding of rabies epidemiology --- in particular, reliable estimates of the basic reproductive number (\rzero), a quantitative measure of disease spread that is often used to guide vaccination strategies --- could inform rabies control efforts.
 
