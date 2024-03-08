@@ -44,8 +44,7 @@ In this paper, we will combine information derived from epidemic curves with a h
 
 \section*{Materials and Methods}
 
-\rzero is often estimated by combining two other epidemiological quantities: the initial growth rate of an epidemic (\littler) and the generation interval (\G) distribution, where a \G is defined as the time between successive infections along a transmission chain.
-\jd{Cite Park?}
+\rzero is often estimated by combining two other epidemiological quantities: the initial growth rate of an epidemic (\littler) and the generation interval (\G) distribution, where a \G is defined as the time between successive infections along a transmission chain \citep{park2018exploring}.
 The growth rate \littler is often estimated by fitting a growth rate to time series data from the early stages of epidemics.
 \G is an individual-level quantity that measures the time between an individual getting infected to infecting another individual.
 The generation interval distribution is the natural way to link \littler and \rzero \citep{wallinga2006generation, champredon2015intrinsic}.
@@ -56,7 +55,7 @@ by the Euler-Lotka equation \citep{wallinga2006generation}
 \label{eq:EL}
 \end{equation}
 where $t$ is time, and $G(t)$ is the generation interval distribution.
-This formula is convenient to calculate point estimates of \rzero; however, propagating uncertainty from the estimates of \littler and the \G distribution can be difficult. \mr{Replace "can be difficult" with something like "hasn't been done often" or "isn't part of the standard epi protocol" or something more empirical?}
+This formula is convenient to calculate point estimates of \rzero; however, propagating uncertainty from the estimates of \littler and the \G distribution spontaneously has not been done often in practice.
 
 \subsection*{Initial growth rate}
 
@@ -121,9 +120,15 @@ For simplicity, we omitted these four dogs and their generation intervals from o
 
 \subsection*{Fitting and Propagating Parameter Uncertainties}
 
+<<echo=FALSE, warning=FALSE, comment=FALSE>>=
+
+## load("slow/egf_R0.rda")
+
+@
+
 To propagate uncertainties for both \littler and \G, we used a hybrid approach.
-We first fitted logistic models, with negative binomial observation error, to incidence data to estimate \littler implemented in the R package ``epigrowthfit''. \mli{cite} 
-We then compute a sample of 300 $\hat{\rzero}$ values using equation (\ref{eq:RE}); for each value of $\hat{\rzero}$, we first draw a value of $\hat{\littler}$ from a normal distribution from the estimates of the logistic fit and 100 \G from the empirical contact tracing data. \mli{fix me, use R to fill in the sample numbers.}
+We first fitted logistic models, with negative binomial observation error, to incidence data to estimate \littler implemented in the R package ``epigrowthfit''. \mli{cite, waiting for MJ} 
+We then compute a sample of 300\mli{nsamp from slow}$\hat{\rzero}$ values using equation (\ref{eq:RE}); for each value of $\hat{\rzero}$, we first draw a value of $\hat{\littler}$ from a normal distribution from the estimates of the logistic fit and 100 \G from the empirical contact tracing data. \mli{fix me, use R to fill in the sample numbers.}
 We then matched bootstrap samples of \G to the \littler samples to produce a range of estimates for \rzero.
 This hybrid bootstrap approach incorporates both sources of uncertainties from \littler and \G (frequentist empirical bootstrap)
 \mr{this parenthetical seems strange - (why isnt there one for  little r as well?)}

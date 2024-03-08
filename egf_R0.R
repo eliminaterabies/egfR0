@@ -63,5 +63,5 @@ egf_si <- (bind_rows(rdsReadList())
 )
 
 
-saveVars(egf_gi,egf_gi2,egf_si)
+saveVars(egf_gi,egf_gi2,egf_si,nboot,nsamp)
 
