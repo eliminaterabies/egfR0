@@ -1,8 +1,15 @@
-# Converting reported periods to days
-library(tidyverse)
 library(shellpipes)
+sourceFiles()
 
-animal <- csvRead(comment="#")
+library(tidyverse)
+
+## Consider checking column types if there is a big upstream change
+animal <- csvRead(comment="#", show_col_types=FALSE)
+problems()
+
+animal[65]
+
+quit()
 
 ## number of cases (Serengeti dog cases)
 print(dim(animal))

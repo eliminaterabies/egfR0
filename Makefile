@@ -107,10 +107,11 @@ Sources += $(wildcard *.R)
 ## Make a table of events, and count how many times each animal was bitten
 ## makes table bitten
 
+## Conversion functions were used in the past by bitten, but may be unused now 2024 Mar 12 (Tue)
 convert.Rout: convert.R
 	$(pipeR)
 
-bitten.Rout: bitten.R dogs.csv convert.rda
+bitten.Rout: bitten.R conflicts.R dogs.csv
 	$(pipeR)
 
 ## check.Rout: check.R

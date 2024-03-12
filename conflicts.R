@@ -21,20 +21,22 @@
 
 # Now, my options
 
-options(conflicts.policy =
-          list(error = TRUE
-               , warn = FALSE
-               , generics.ok = TRUE,
-               can.mask = c("base", "methods", "utils",
-                            "grDevices", "graphics",
-                            "stats"), # not doing this quietly!
-               depends.ok = TRUE)
-        , tidyverse.quiet = TRUE)
+## Over-ride base stuff silently (see “mask”). Make user resolve other conflicts
+options(
+	conflicts.policy = list(
+		error = TRUE, warn = FALSE, generics.ok = TRUE
+		, can.mask = c("base", "methods", "utils"
+			, "grDevices", "graphics", "stats"
+		)
+		, depends.ok = TRUE
+	)
+	, tidyverse.quiet = TRUE
+)
 
-#  NOT RUN: library(tidyverse) # silent, by default
+library(tidyverse) # silent, by default
 # library(MASS) # throws an error, arguably desirable
-# library(MASS, exclude = "select")
-# message("I loaded MASS without error")
+library(MASS, exclude = "select")
+message("I loaded MASS without error")
 # library(dplyr)
 # library(data.table) # again, with error that would need to be resolved
 # END DONT RUN
