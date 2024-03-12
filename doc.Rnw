@@ -1,15 +1,11 @@
 
-%% check_growthrate.Rout.pdf ⇒ supp
-
 \section*{Abstract}
 
 Rabies spread by domestic dogs continues to cause tens of thousands of human deaths every year in low- and middle-income countries. Despite this heavy mortality burden, rabies is often neglected, perhaps because it has been effectively controlled from high-income countries through mass dog vaccination.
-\mr{Maybe discuss neglect elsewhere; there are issues.}
-\mli{Repharsed a bit, not seeing a big issue in general.}
+%% \mr{Maybe discuss neglect elsewhere; there are issues.} \mli{Repharsed a bit, not seeing a big issue in general.}
 Estimates of the intrinsic reproductive number (\rzero) (a metric disease spread risk) of canine rabies from a wide range of times and locations are low (values \textless 2), with narrow confidence intervals compared to many infectious diseases. This narrow range of estimates across a wide range of dog densities and environments is surprising.
-\mr{Can we assume readers of this journal know about \rzero?}
-\mli{I tried to add a few words to help this; I think it is ok.}
-We combined incidence data from historical outbreaks of canine rabies from around the world (1917-2003) with high-quality contact-tracing data from Tanzania (2002-present) to investigate initial growth rates (\littler), generation intervals distributions (\G) and reproductive numbers (\rzero).
+%% \mr{Can we assume readers of this journal know about \rzero?} \mli{I tried to add a few words to help this; I think it is ok.}
+We combined incidence data from historical outbreaks of canine rabies from around the world (1917-2003) with high-quality contact-tracing data from Tanzania (2002-present) to investigate initial growth rates (\littler), generation-interval distributions (\G) and reproductive numbers (\rzero).
 We updated earlier work by: choosing outbreak windows algorithmically; fitting \littler using a more appropriate statistical method that accounts for decreases through time; and propagating uncertainty from both \littler and \G when estimating \rzero. 
 Our \rzero estimates are larger than previous estimates, with wider confidence intervals.
 Our novel hybrid approach for estimating \rzero and its uncertainty is applicable to other disease systems where researchers estimate \rzero by combining estimates of \littler and \G.
@@ -27,8 +23,7 @@ Canine rabies, primarily spread by domestic dogs, is a vaccine-preventable disea
 Canine rabies has been effectively eliminated from high-income countries by mass dog vaccination \citep{rupprecht2008can}.
 Despite the effectiveness of vaccinating dogs, rabies continues to cause many human deaths and large economic losses in LMICs due to the limited implementation of rabies control strategies \citep{hampson2015estimating}. 
 The past two decades have seen an increase in rabies control efforts --- including dog vaccination campaigns and improvements in surveillance \citep{kwoba2019dog, mtema2016mobile, gibson2018one, mazeri2018barriers, wallace2015establishment}.
-\mr{Discuss COVID effects briefly?}
-\mli{What do you mean by COVID effects? Disease control efforts or the lack of control efforts due to covid?}
+\jd{How badly to COVID impact this progress?}
 More recently, the World Health Organization (WHO) and partners (OIE, FAO, GARC) joined forces to support LMICs in eliminating human deaths from dog-mediated rabies by 2030 \citep{minghui2018new, abela20162016}. Mass dog vaccination campaigns have begun in some LMICs and are being scaled up \citep{castillo2019socio, evans2019implementation}.
 An understanding of rabies epidemiology --- in particular, reliable estimates of the basic reproductive number (\rzero), a quantitative measure of disease spread that is often used to guide vaccination strategies --- could inform rabies control efforts.
 
@@ -41,19 +36,16 @@ With such a low \rzero one might expect rabies to fade out from behavioural cont
 % \rzero estimates for rabies using various methods (i.e., direct estimates from infection histories, epidemic tree reconstruction and have been consistently low, with narrow confidence intervals \citep{hampson2009transmission}.
 Here we revisit and explore why rabies, with low \rzero, nonetheless persists in many countries around the world. 
 Such persistence suggests that rabies's potential for spread, and therefore the difficulty of rabies control, may have been underestimated. 
-\mr{Maybe this is the intent, but I experience cognitive dissonance reading these two sentences... I think "apparent" is potentially confusing because even though $R_0\approx 1$ is what has been estimated, it is apparently not right?} 
-\mli{Agreed. Got rid of the word ``apparently''.}
+%% \mr{Maybe this is the intent, but I experience cognitive dissonance reading these two sentences... I think "apparent" is potentially confusing because even though $R_0\approx 1$ is what has been estimated, it is apparently not right?} \mli{Agreed. Got rid of the word ``apparently''.}
 In this paper, we will combine information derived from epidemic curves with a high-resolution contact tracing dataset that provides large number of observed generation intervals (which is rare for infectious disease studies) to estimate \rzero.
-This reassessment can reevaluate the estimation of $\rzero$ for rabies outbreaks and understanding of disease control more generally.
-\mr{I think the "more generally" part desserves a bit more preamble/evidence... maybe this is a bit late to get to the general overall, although this may depend where you're publishing and the hopes that this can spur rabies vaccination campaigns}
-\mli{Happy to get rid of it.}
-
+%% This reassessment can reevaluate the estimation of $\rzero$ for rabies outbreaks and understanding of disease control more generally.
+%% \mr{I think the "more generally" part desserves a bit more preamble/evidence... maybe this is a bit late to get to the general overall, although this may depend where you're publishing and the hopes that this can spur rabies vaccination campaigns} \mli{Happy to get rid of it.}
 %% need a \rzero P about euler and bad CI
 
 \section*{Materials and Methods}
 
-\rzero is often estimated by combining two other epidemiological quantities: the initial growth rate of an epidemic (\littler) and the generation interval (\G) distribution, where a \G is defined as the time between successive infections along a transmission chain. \mr{does statement of "often" demand a citation?}
-\mli{No.}
+\rzero is often estimated by combining two other epidemiological quantities: the initial growth rate of an epidemic (\littler) and the generation interval (\G) distribution, where a \G is defined as the time between successive infections along a transmission chain.
+\jd{Cite Park?}
 The growth rate \littler is often estimated by fitting a growth rate to time series data from the early stages of epidemics.
 \G is an individual-level quantity that measures the time between an individual getting infected to infecting another individual.
 The generation interval distribution is the natural way to link \littler and \rzero \citep{wallinga2006generation, champredon2015intrinsic}.
@@ -71,12 +63,9 @@ This formula is convenient to calculate point estimates of \rzero; however, prop
 Disease incidence typically increases approximately exponentially during the early stages of an epidemic. The initial growth rate \littler is often estimated by fitting exponential curves from near the beginning to near the peak of an epidemic.
 However, growth rates estimated from an exponential model can be biased downward, overconfident, and sensitive to the choice of fitting windows \citep{ma2014estimating}.
 Here we used the logistic curves provide more robust estimates of \littler \citep{ma2014estimating, chowell2017fitting}.
-\mr{This seems like such a big piece of the difference between KH and WZLi estimates; I'm surprised it only gets mentioned here in M\&M but not highlighted in abstract/methods. Especially since KH is an author, seems fine to be more firm in claiming logistic is more appropriate and likely to resolve some of the "paradox"\\ }
-\mli{Added a few words in the abstract.}
-\mr{do you need to set up the need to break longer TSs into windows more generally? Or is this so basic it doesn't require any verbiage?}
-\mli{The second sentence roughly describes it but we still need to write up our new window selection method.}
-We select our fitting window consistently for each outbreak as follows:
-\mli{Feed me with the new method of window selection.}
+%% \mr{This seems like such a big piece of the difference between KH and WZLi estimates; I'm surprised it only gets mentioned here in M\&M but not highlighted in abstract/methods. Especially since KH is an author, seems fine to be more firm in claiming logistic is more appropriate and likely to resolve some of the "paradox"\\ } \mli{Added a few words in the abstract.}
+
+We select fitting windows algorithmically for each outbreak as follows: 1) we broke each time series into “phases”, a new phase starts after a peak of height at least \code{minPeak} cases followed by a proportional decline of at least \code{declineRatio}; 2) In each phase, we identify a prospective fitting window starting after the last observation of 0 cases and extending one observation past the highest value in the phase (unless the highest value is itself the last observation); 3) we then fit our model to the cases in the fitting window if (and only if) it has a peak of at least \code{minPeak} cases, a length of at least \code{minLength} observations, and a ratio of at least \code{minClimb} between the highest and lowest observations. We tried a handful of parameter combinations before settling on a final set during an expert consultation. These explorations are detailed, and the final choices noted, in our code repository.
 
 \subsection*{Observed Generation intervals}
 
