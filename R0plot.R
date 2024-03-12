@@ -7,7 +7,7 @@ startGraphics()
 loadEnvironments()
 
 ## Doing vaccination correction here
-dat <- (egf_gi
+dat <- (egf_gi2
 	|> left_join(tsvRead(),by=c("loc"="varname"))
 	|> mutate(NULL
 	, est = est/(1-vac)
