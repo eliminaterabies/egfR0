@@ -4,8 +4,6 @@ library(shellpipes)
 
 loadEnvironments()
 
-nsamp <- 100
-
 rsamps <- function(x,n=100){
 	mm <-coef(x)[1]
 	vv <- diag(vcov(x))[1]

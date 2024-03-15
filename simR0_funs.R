@@ -40,9 +40,10 @@ sim_timeprob <- function(x, n, bootsample){
 }
 
 ## simulate R0 via bootstrapping r and emperical intervals
-simR0_data <- function(rsims,time,n,bootsample){
+simR0_data <- function(rsims,time){
   rsimsdays <- rsims/30
-  timemat <- sim_timeprob(time,n,bootsample)
+  timemat <- time
+  n <- length(rsimsdays)
   R0sims <- sapply(1:n,function(x){R0est_data(rsimsdays[x],timemat[,x])})
   return(R0sims)
 }
@@ -104,10 +105,13 @@ sim_clustertimeWeights <- function(time,num,bootsample){
   return(replicate(num, sample_clustergenWeights(time, bootsample)))
 }
 
-clustersimR0_data <- function(rsims,time,n,bootsample){
+## do time sampling outside of the function. This is simply to calculate R0
+
+clustersimR0_data <- function(rsims,time){
 #  rsims <- sim_growthrate(growth_obj,n)
   rsimsdays <- rsims/30
-  timemat <- sim_clustertime(time,n,bootsample)
+  n <- length(rsimsdays)
+  timemat <- time
   R0sims <- sapply(1:n,function(x){R0est_data(rsimsdays[x],timemat[[x]])})
   return(R0sims)
 }

@@ -4,7 +4,7 @@ library(shellpipes)
 
 loadEnvironments()
 
-egf <- egf_gi
+egf <- egf_gi2
 
 egf_locs <- egf %>% pull(loc) %>% unique()
 

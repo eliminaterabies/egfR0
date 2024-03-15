@@ -5,7 +5,7 @@ startGraphics()
 
 loadEnvironments()
 
-mexico <- (bind_rows(egf_gi,egf_si)
+mexico <- (bind_rows(egf_gi2,egf_si)
 	%>% filter(loc == "Mexico")
 	%>% transmute(method2 = paste0(method," \n + ",interval)
 		, lwr
