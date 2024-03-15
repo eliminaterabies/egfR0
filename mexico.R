@@ -7,6 +7,7 @@ loadEnvironments()
 
 mexico <- (bind_rows(egf_gi2,egf_si)
 	%>% filter(loc == "Mexico")
+	%>% mutate(interval = ifelse(interval == "Serial", "Naive GI", "Corrected GI"))
 	%>% transmute(method2 = paste0(method," \n + ",interval)
 		, lwr
 		, est
@@ -14,9 +15,11 @@ mexico <- (bind_rows(egf_gi2,egf_si)
 	)
 )
 
+print(mexico)
+
 hampsondf <- (rdsRead()
 	%>% filter(loc == "Mexico")
-	%>% transmute(method2 = "Construction"
+	%>% transmute(method2 = "Hampson et al 2009"
 		, lwr = lower
 		, est = med
 		, upr = upper
@@ -25,10 +28,10 @@ hampsondf <- (rdsRead()
 
 dat <- (bind_rows(mexico,hampsondf)
 	%>% mutate(method2 = factor(method2
-		, levels=c("Construction", "Exponential \n + Serial"
-			, "Exponential \n + Generation"
-			, "Logistic \n + Serial"
-			, "Logistic \n + Generation"
+		, levels=c("Hampson et al 2009", "Exponential \n + Naive GI"
+			, "Exponential \n + Corrected GI"
+			, "Logistic \n + Naive GI"
+			, "Logistic \n + Corrected GI"
 			)
 		)
 	)

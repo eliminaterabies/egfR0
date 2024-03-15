@@ -123,13 +123,13 @@ For simplicity, we omitted these four dogs and their generation intervals from o
 
 <<echo=FALSE, warning=FALSE, comment=FALSE>>=
 
-## load("slow/egf_R0.rda")
+load("slow/egf_R0.rda")
 
 @
 
 To propagate uncertainties for both \littler and \G, we used a hybrid approach.
-We first fitted logistic models, with negative binomial observation error, to incidence data to estimate \littler implemented in the R package ``epigrowthfit''. \mli{cite, waiting for MJ} 
-We then compute a sample of 300\mli{nsamp from slow}$\hat{\rzero}$ values using equation (\ref{eq:RE}); for each value of $\hat{\rzero}$, we first draw a value of $\hat{\littler}$ from a normal distribution from the estimates of the logistic fit and 100 \G from the empirical contact tracing data. \mli{fix me, use R to fill in the sample numbers.}
+We first fitted logistic models, with negative binomial observation error, to incidence data to estimate \littler implemented in the R package ``epigrowthfit'' \cite{epigrowthfit}.
+We then compute a sample of \Sexpr{nsamp} $\hat{\rzero}$ values using equation (\ref{eq:RE}); for each value of $\hat{\rzero}$, we first draw a value of $\hat{\littler}$ from a normal distribution from the estimates of the logistic fit and an independent sample of \G from the empirical contact tracing data. To sample \G from the empirical contact tracing data, we first take a weighted sample \Sexpr{nboot} biters which accounts for biter level variation, and for each biter, we sample a \G from its respective transmission event to account for individual variation.    
 We then matched samples of \G to the \littler samples to produce a range of estimates for \rzero.
 This hybrid sampling approach incorporates both sources of uncertainties from \littler and \G.
 when calculating \rzero estimates.

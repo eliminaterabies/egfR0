@@ -42,6 +42,7 @@ si <- (interval_df
 
 sisamp <- simtimesamp(si,num=nsamp,bootsample=nboot)
 
+
 gi <- (interval_df
 	%>% filter(Type == "Generation")
 	%>% pull(Days)

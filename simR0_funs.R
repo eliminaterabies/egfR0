@@ -58,8 +58,9 @@ sample_clustergen <- function(x,s){
               %>% group_by(Biter.ID)
               %>% mutate(ind = 1, repid = cumsum(ind))
               %>% select(Biter.ID, count, repid)
-              %>% left_join(.,x)
+              %>% left_join(.,distinct(x))
               %>% ungroup()
+				  %>% mutate(count = 1)
               %>% group_by(Biter.ID, count, repid)
               %>% nest()
               %>% mutate(samp = map2(data,count,sample_n2))
@@ -112,7 +113,7 @@ clustersimR0_data <- function(rsims,time){
   rsimsdays <- rsims/30
   n <- length(rsimsdays)
   timemat <- time
-  R0sims <- sapply(1:n,function(x){R0est_data(rsimsdays[x],timemat[[x]])})
+  R0sims <- sapply(1:n,function(x){R0est_data(rsimsdays[x],timemat[,x])})
   return(R0sims)
 }
 
