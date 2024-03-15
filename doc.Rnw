@@ -24,7 +24,8 @@ Canine rabies has been effectively eliminated from high-income countries by mass
 Despite the effectiveness of vaccinating dogs, rabies continues to cause many human deaths and large economic losses in LMICs due to the limited implementation of rabies control strategies \citep{hampson2015estimating}. 
 The past two decades have seen an increase in rabies control efforts --- including dog vaccination campaigns and improvements in surveillance \citep{kwoba2019dog, mtema2016mobile, gibson2018one, mazeri2018barriers, wallace2015establishment}.
 \jd{How badly to COVID impact this progress?}
-More recently, the World Health Organization (WHO) and partners (OIE, FAO, GARC) joined forces to support LMICs in eliminating human deaths from dog-mediated rabies by 2030 \citep{minghui2018new, abela20162016}. Mass dog vaccination campaigns have begun in some LMICs and are being scaled up \citep{castillo2019socio, evans2019implementation}.
+\mli{This would not be the place to put this I think.. maybe in the discussion?}
+The World Health Organization (WHO) and partners (OIE, FAO, GARC) joined forces to support LMICs in eliminating human deaths from dog-mediated rabies by 2030 \citep{minghui2018new, abela20162016}. Mass dog vaccination campaigns have begun in some LMICs and are being scaled up \citep{castillo2019socio, evans2019implementation}.
 An understanding of rabies epidemiology --- in particular, reliable estimates of the basic reproductive number (\rzero), a quantitative measure of disease spread that is often used to guide vaccination strategies --- could inform rabies control efforts.
 
 \rzero is defined as the expected number of secondary cases generated from each primary case in a fully susceptible population \citep{macdonald1952analysis}.
@@ -129,11 +130,10 @@ For simplicity, we omitted these four dogs and their generation intervals from o
 To propagate uncertainties for both \littler and \G, we used a hybrid approach.
 We first fitted logistic models, with negative binomial observation error, to incidence data to estimate \littler implemented in the R package ``epigrowthfit''. \mli{cite, waiting for MJ} 
 We then compute a sample of 300\mli{nsamp from slow}$\hat{\rzero}$ values using equation (\ref{eq:RE}); for each value of $\hat{\rzero}$, we first draw a value of $\hat{\littler}$ from a normal distribution from the estimates of the logistic fit and 100 \G from the empirical contact tracing data. \mli{fix me, use R to fill in the sample numbers.}
-We then matched bootstrap samples of \G to the \littler samples to produce a range of estimates for \rzero.
-This hybrid bootstrap approach incorporates both sources of uncertainties from \littler and \G (frequentist empirical bootstrap)
-\mr{this parenthetical seems strange - (why isnt there one for  little r as well?)}
+We then matched samples of \G to the \littler samples to produce a range of estimates for \rzero.
+This hybrid sampling approach incorporates both sources of uncertainties from \littler and \G.
 when calculating \rzero estimates.
-Finally, we take the 25, 50, 97.5\% percentiles of the distribution of \rzero estimates for each rabies outbreak\mr{I want 25th, 50th, 97.5th. Also, do you want to justify these three quantiles?}.
+Finally, we take the 2.5, 50, 97.5\% percentiles of the distribution of \rzero estimates for each rabies outbreak.
 
 \section*{Results}
 

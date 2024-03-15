@@ -37,13 +37,13 @@ gi <- (interval_df
 
 egf_fit_dfs <- bind_rows(rdsRead("exp"),rdsRead("logistic"))
 
-egf_gi <- (egf_fit_dfs
+#egf_gi <- (egf_fit_dfs
 #	%>% group_by(loc,phase,egf_fit)
-	%>% mutate(R0sims = map(rsamp,~simR0_data(.,time=gi,n=nsamp,bootsample=nboot)))
-	%>% group_by(loc,phase,method)
-	%>% reframe(R0tiles(R0sims))
-	%>% mutate(interval = "Generation")
-)
+#	%>% mutate(R0sims = map(rsamp,~simR0_data(.,time=gi,n=nsamp,bootsample=nboot)))
+#	%>% group_by(loc,phase,method)
+#	%>% reframe(R0tiles(R0sims))
+#	%>% mutate(interval = "Generation")
+#)
 
 egf_gi2 <- (egf_fit_dfs
 	%>% mutate(R0sims = map(rsamp,~clustersimR0_data(.,time=once,n=nsamp,bootsample=nboot)))
@@ -63,5 +63,5 @@ egf_si <- (bind_rows(rdsReadList())
 )
 
 
-saveVars(egf_gi,egf_gi2,egf_si,nboot,nsamp)
+saveVars(egf_gi2,egf_si,nboot,nsamp)
 
