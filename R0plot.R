@@ -13,12 +13,15 @@ dat <- (egf_gi2
 	, est = est/(1-vac)
 	, lwr = lwr/(1-vac)
 	, upr = upr/(1-vac)
-	, loc = forcats::fct_reorder(loc,est,.fun = mean, .na_rm=FALSE))
+	, loc_final = ifelse(loc == "Tokyo1", "Tokyo",loc)
+	, loc_final = ifelse(loc_final == "Tokyo2", "Tokyo",loc_final)
+	, loc_final = paste0(loc_final, "\n", year)
+	, loc_final = forcats::fct_reorder(loc_final,est,.fun = mean, .na_rm=FALSE))
 )
 
 print(dat)
 
-gg <- (ggplot(dat, aes(x=loc))
+gg <- (ggplot(dat, aes(x=loc_final))
 	+ geom_pointrange(aes(ymin=lwr, y = est, ymax=upr, color=phase,lty=method)
 		, position = position_dodge(width=-0.4)
 	)

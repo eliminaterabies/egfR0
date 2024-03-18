@@ -1,8 +1,8 @@
 varname	datname	Location	year	start	end	vac
-NYcounties	Nystatecounties	NYstate		1	6	0
+NYcounties	Nystatecounties	NYstate	1945	1	6	0
 NYcentral	centralNY	CentralNY, US	1944	5	11	0
 Israel	Israel	Israel	1948	1	9	0
-Tokyo1	JapanTokyo	Tokyo, JP	1948??	1	29	0
+Tokyo1	JapanTokyo	Tokyo, JP	1948	1	29	0
 Kanagawa	KanagawaJapan	Kanagawa, JP	1917	1	8	0
 Tokyo2	Tokyo	Tokyo, JP	1918	1	4	0
 Peru	Peru	Peru	1984	3	8	0

@@ -8,7 +8,7 @@ egf <- egf_gi2
 
 egf_locs <- egf %>% pull(loc) %>% unique()
 
-loc <- tsvRead() %>% pull(loc)
+loc <- tsvRead() %>% pull(varname)
 
 Cities = c("NYstate"
 , "CentralNY, US \n (1944)"
@@ -40,7 +40,14 @@ hampsondf <- data.frame(loc=loc
 	, samptype = "Construction"
 )
 
-hampsondf <- hampsondf %>% filter(loc %in% egf_locs)
+hampsondf <- (hampsondf 
+	%>% filter(loc %in% egf_locs)
+	|> left_join(tsvRead(),by=c("loc"="varname"))
+	%>% mutate(loc_final = ifelse(loc == "Tokyo1", "Tokyo",loc)
+   , loc_final = ifelse(loc_final == "Tokyo2", "Tokyo",loc_final)
+   , loc_final = paste0(loc_final, "\n", year)
+	)
+)
 
 print(hampsondf)
 

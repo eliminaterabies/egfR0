@@ -6,6 +6,12 @@ library(shellpipes)
 startGraphics()
 
 dat <- (bind_rows(rdsReadList())
+	|> left_join(tsvRead(),by=c("loc"="varname"))
+	%>% mutate(loc_final = ifelse(loc == "Tokyo1", "Tokyo",loc)
+		, loc_final = ifelse(loc_final == "Tokyo2", "Tokyo",loc_final)
+   	, loc_final = paste0(loc_final, "\n", year)
+	)
+
 #	rbind(readRDS("exp.egf_single.rds"),readRDS("logistic.egf_single.rds"))
 	## |> mutate(loc = factor(loc, levels=rev(levels(loc))))
 )
@@ -21,7 +27,7 @@ print(
 	    # This is reordering by the first est for each loc:
 	    # x = forcats::fct_reorder(loc, est)
 	    # This is reordering by the mean est:
-	    x = forcats::fct_reorder(loc, est, .fun = mean)
+	    x = forcats::fct_reorder(loc_final, est, .fun = mean)
 	    , y=est, color=phase)
 	+ geom_pointrange(aes(ymin=lwr,ymax=upr,lty=method)
 		, position = position_dodge(width=-0.4)

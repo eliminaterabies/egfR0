@@ -280,6 +280,7 @@ pipeRimplicit += egf_single
 
 pipeRimplicit += egf_plot
 ## exp.egf_plot.Rout: egf_plot.R
+## logistic.egf_plot.Rout: egf_plot.R
 %.egf_plot.Rout: egf_plot.R %.egf_single.rds
 	$(pipeR)
 
@@ -290,7 +291,7 @@ pipeRimplicit += egf_rplot
 %.rplot.Rout: rplot.R %.egf_single.rds
 	$(pipeR)
 
-rplot_combo.Rout: rplot_combo.R exp.egf_single.rds logistic.egf_single.rds
+rplot_combo.Rout: rplot_combo.R exp.egf_single.rds logistic.egf_single.rds series.tsv
 	$(pipeR)
 
 pipeRimplicit += egf_sample
@@ -316,7 +317,7 @@ slowtarget/egf_R0.Rout: egf_R0.R exp.egf_sample.rds logistic.egf_sample.rds simR
 R0plot.Rout: R0plot.R slow/egf_R0.rda series.tsv
 	$(pipeR)
 
-KH_R0.Rout: KH_R0.R varnames.tsv slow/egf_R0.rda
+KH_R0.Rout: KH_R0.R series.tsv slow/egf_R0.rda
 	$(pipeR)
 
 R0combo.Rout: R0combo.R KH_R0.rds R0plot.rds

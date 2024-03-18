@@ -42,6 +42,8 @@ print(dat)
 gg <- (ggplot(dat,aes(x=method2, y=est))
 	+ geom_pointrange(aes(ymin=lwr,ymax=upr))
 #	+ coord_flip()
+	+ ylab("R0")
+	+ xlab("Method")
 )
 
 print(gg)

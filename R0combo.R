@@ -16,6 +16,7 @@ print(gg
 		, alpha=0.2
 	)
 	+ coord_flip()
+	+ ylab("R0")
 )
 
 rdsSave(gg)
