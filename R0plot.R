@@ -21,11 +21,11 @@ dat <- (egf_gi2
 
 print(dat)
 
-gg <- (ggplot(dat, aes(x=loc_final))
-	+ geom_pointrange(aes(ymin=lwr, y = est, ymax=upr, color=phase,lty=method)
+gg <- (ggplot(filter(dat,method=="Logistic"), aes(x=loc_final))
+	+ geom_pointrange(aes(ymin=lwr, y = est, ymax=upr, color=phase)
 		, position = position_dodge(width=-0.4)
 	)
-	+ scale_linetype_manual(values=c("dotted","solid"))
+#	+ scale_linetype_manual(values=c("dotted","solid"))
 	+ scale_color_manual(values=c("black","red", "orange"))
 	+ labs(y = "R0", x = NULL)
 )

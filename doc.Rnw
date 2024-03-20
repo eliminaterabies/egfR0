@@ -142,7 +142,6 @@ Finally, we use the 2.5, 50,  and 97.5 percentiles of the distribution of \rzero
 Panel A is the distribution of observed incubation periods. Panel B is the distribution of incubation periods weighted by each dog's biting frequency (Panel C). The weighted distribution corresponds to the contribution of incubation periods to generation intervals (Panel D).
 Black dashed lines show the means of each time-interval distribution; blue dashed lines show the mean incubation period and generation interval (22.3 and 24.9 days, respectively) reported by \cite{hampson2009transmission}.
 }
-\bmb{Panel C y-axis label is inconsistent with the other panels.}
 \flabel{GISI}
 \end{figure}
 \end{center}
@@ -162,6 +161,8 @@ Different colors represent different phases from the times series data.
 \bmb{this could be prettier (non-default colours, shapes as well as colours to identify phases,
   maybe use solid lines for logistic since we want to emphasize it, rotate lines in legend to be
   horizontal ...) ?}
+\mli{Rotating the lines in legend seems hard. Have to use geom segment and it doesn't play well with position dodge. %https://stackoverflow.com/questions/58761704/dodged-dumbbell-plots-with-ggplot2
+}  
 \flabel{littler}
 \end{figure}
 \end{center}
@@ -176,10 +177,9 @@ Overall, \littler estimates from the logistical model are larger with wider conf
 \begin{figure}[h]
 \includegraphics[page=1,scale = 0.7]{R0combo.Rout.pdf}
 \caption{\textbf{Reproductive number estimates for global historical outbreaks of rabies}}
-Previous estimates of \rzero are shown in blue highlights; \rzero estimates and confidence interval (95\% quantiles from the estimated \rzero sample) from our hybrid approach using exponential (dotted lines) and logistic (solid lines). \rzero values are corrected for vaccination coverage.\mli{todo: add dates to location name.}
-\bmb{colours don't match previous figure.
-  This is a little busy. Since we illustrated the difference between exponential and logistic in the previous figure, could we include only the logistic fits (and the previous $\rzero$ estimates in this figure? What did the
-previous esimates do about phases?}
+Previous estimates of \rzero are shown in blue highlights; \rzero estimates and confidence interval (95\% quantiles from the estimated \rzero sample) from our hybrid approach using exponential (dotted lines) and logistic (solid lines). \rzero values are corrected for vaccination coverage.
+\bmb{What did the previous esimates do about phases?}
+\mli{The previous estimates did not have phases.}
 \flabel{Rzero}
 \end{figure}
 \end{center}
@@ -206,6 +206,7 @@ The hybrid approach provides larger values of \rzero and wider confidence interv
 %\mr{what ben said :-)}
 %\mli{I actually like it this way.}
 %\bmb{why?}
+%\mli{to show this is a different type of plot}
 }
 \flabel{mexico}
 \end{figure}

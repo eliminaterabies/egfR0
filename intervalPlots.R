@@ -79,6 +79,7 @@ ggbites <- (ggplot(bites, aes(x=count))
    + xlab("Bites")
 	+ xlim(c(0,20))
    + facet_wrap(~"Bites")
+	+ ylab("Counts")
 ) 
 
 print(plot_grid(gg_dogs, gg_adjbiter,ggbites, gg_gen,labels = c("A","B","C","D")))
