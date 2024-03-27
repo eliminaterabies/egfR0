@@ -41,7 +41,7 @@ In contrast to diseases with a large \rzero (e.g., rinderpest, with \rzero $\app
 % \rzero estimates for rabies using various methods (i.e., direct estimates from infection histories, epidemic tree reconstruction and have been consistently low, with narrow confidence intervals \citep{hampson2009transmission}.
 Here we revisit and explore why rabies, with low \rzero, nonetheless persists in many countries around the world. 
 Such persistence suggests that rabies's potential for spread, and therefore the difficulty of rabies control, may have been underestimated. 
-In this paper, we will combine information derived from epidemic curves with a high-resolution contact tracing dataset that provides large number of observed generation intervals (which is rare for infectious disease studies) to estimate \rzero.
+In this paper, we will combine information derived from epidemic curves with a high-resolution contact tracing data set that provides large number of observed generation intervals (which is rare for infectious disease studies) to estimate \rzero.
 %% This reassessment can reevaluate the estimation of $\rzero$ for rabies outbreaks and understanding of disease control more generally.
 %% \mr{I think the "more generally" part desserves a bit more preamble/evidence... maybe this is a bit late to get to the general overall, although this may depend where you're publishing and the hopes that this can spur rabies vaccination campaigns} \mli{Happy to get rid of it.}
 %% need a \rzero P about euler and bad CI
@@ -166,7 +166,7 @@ The weighted incubation period distribution more closely resembles the generatio
 \begin{figure}[h]
 \includegraphics[page=1,scale = 0.7]{rplot_combo.Rout.pdf}
 \caption{\textbf{Growth rate estimates for global historical outbreaks of rabies.} Estimates and 95\% confidence intervals of \littler in global historical outbreaks estimated from exponential (dotted) and logistic (solid) model fits.}
-Different colors represents different phases from the times series data. 
+Different colors represent different phases from the times series data. 
 \flabel{littler}
 \end{figure}
 \end{center}
@@ -204,7 +204,7 @@ The hybrid approach provides larger values of \rzero and wider confidence interv
 \begin{figure}[h]
 \includegraphics[page=1,scale = 0.7]{mexico.Rout.pdf}
 \caption{\textbf{Effects of \littler, corrected \G on the estimates of \rzero in Mexico outbreak.}
-Exponential \littler and naive \G is the analgous fitting to \cite{hampson2009transmission} using our algorithmic windowing selection. \rzero using logistic to estimate \littler is larger than exponential and corrected \G increase \rzero and uncertainty.
+Exponential \littler and naive \G is the analogous fitting to \cite{hampson2009transmission} using our algorithmic windowing selection. \rzero using logistic to estimate \littler is larger than exponential and corrected \G increase \rzero and uncertainty.
 %\bmb{more complete caption? Make this horizontal to match the other figs? Extend R0-axis to have a lower limit at \rzero=1?}
 %\mr{what ben said :-)}
 %\mli{I actually like it this way.}
@@ -239,11 +239,11 @@ Re-analysis of these data also allowed us to identify an overlooked fact about r
 
 Nevertheless, our estimates suggest that rabies \rzero may be larger, and more uncertain, than previously thought.
 This finding may explain some of the formerly unexplained variations in the success of rabies-control programs (e.g., low levels of coverage (30–50\%) have been successful in some settings while high coverage 75\% was not enough to control rabies in others \citep{eng1993urban}).
-While our primary goal was to understand why estimates of rabies \rzero were small with narrow confidence intervals, our analysis also revealed an interesting biological process through the lense of generation intervals from contact tracing data: the need to account for biting behaviour in the incubation period distribution, in order to match the generation interval distribution.
+While our primary goal was to understand why estimates of rabies \rzero were small with narrow confidence intervals, our analysis also revealed an interesting biological process through the lens of generation intervals from contact tracing data: the need to account for biting behaviour in the incubation period distribution, in order to match the generation interval distribution.
  
 \rzero is typically used as a first approximation for interventions such as vaccination to determine herd immunity thresholds. 
 However, both heterogeneity in contacts and the correlations between incubation periods and transmission that we observed here through the generation interval suggest that simple \rzero estimation methods may be inadequate and should be used with caution. 
-Rabies is a nice system to hightlight this effect because transmission events and latent periods are observable and directly recorded with contact tracing. The correlation effect we observed here may be important in other  disease systems in general, despit ethe fact that generation intervals are not always observable and uncertainties may be even greater.
+Rabies is a nice system to highlight this effect because transmission events and latent periods are observable and directly recorded with contact tracing. The correlation effect we observed here may be important in other  disease systems in general, despite the fact that generation intervals are not always observable and uncertainties may be even greater.
 
 %\mr{not sure which paper is destined to come out first, or if you're subitting them (i.e., this one an correlations paper) together somehow... I think there could be a more explicit linking between the two papers. I think the sentence Ben suggested you refine could be more positive: you advocate estimating R0 with uncertainty propagation (and also why logistic is more appropriate than exponential, and how general you think that should be. I don't love landing on the mechanistic fitting suggestion; think it would be good to end on strong sentences focused on take-home messages.) Consider moving most of last paragraph up to first in discussion. I think more can be said about how Rabies is a nice model system because latent period and transmission events are so easy to observe, and natural immunity is not thought to exist, but your findings can be applicable in disease systems where the uncertainties in generation interval may be even greater, or something like that.}
 %\mli{suggstion accepted}
