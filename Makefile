@@ -20,7 +20,7 @@ Ignore += .gitignore $(wildcard *.Rproj .Rproj.*)
 
 ## Make a local.mk (locally ☺) if you want to reset the Dropbox base directory
 Ignore += local.mk
-## Drop = ~/Dropbox
+Drop = ~/Dropbox
 -include local.mk
 
 ## Original data
