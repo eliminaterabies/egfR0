@@ -105,8 +105,7 @@ For a given population with $\nu$ vaccination proportion, the estimated $\rzero$
 \subsection*{Data and material}
 
 <<echo=FALSE,warning=FALSE,comment=FALSE>>=
-# source("check.R") ## Currently too much print statements in the code, going to load the .rda for now.
-load("check.rda")
+load("slow/check.rda")
 # load("intervals.rda")
 @
 

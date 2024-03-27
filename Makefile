@@ -20,7 +20,7 @@ Ignore += .gitignore $(wildcard *.Rproj .Rproj.*)
 
 ## Make a local.mk (locally ☺) if you want to reset the Dropbox base directory
 Ignore += local.mk
-Drop = ~/Dropbox
+## Drop = ~/Dropbox
 -include local.mk
 
 ## Original data
@@ -53,7 +53,7 @@ Sources += $(wildcard *.bib)
 ## draft.tex.pdf: draft.tex doc.Rnw
 ## Other dependencies should be in texknit/doc.tex.mk
 draft.pdf: texknit/doc.makedeps doc.Rnw
-texknit/doc.tex: check.rda
+texknit/doc.tex: slow/check.rda
 
 Sources += fake.tex fakedoc.Rnw
 ## fake.pdf: fake.tex fakedoc.Rnw
@@ -114,8 +114,6 @@ convert.Rout: convert.R
 bitten.Rout: bitten.R dogs.csv
 	$(pipeR)
 
-## check.Rout: check.R
-
 ## Link events to parallel events for the upstream biter
 ## Produces table links
 linked.Rout: linked.R bitten.rds
@@ -162,7 +160,11 @@ intervalPlots.Rout: intervalPlots.R intervals.rda
 ######################################################################
 
 ## Check Code for KH and reference code
-check.Rout: check.R dogs.csv
+slowtarget/check.Rout: check.R dogs.csv
+	$(pipeR)
+
+## This should be deleted soon 2024 Mar 27 (Wed)
+checkcheck.Rout: checkcheck.R check.rda
 	$(pipeR)
 
 ######################################################################
