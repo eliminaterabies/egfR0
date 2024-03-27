@@ -51,15 +51,15 @@ Sources += $(wildcard *.bib)
 
 ## This rule will try harder to make a pdf, and less hard to make sure all of the dependencies are in order. 
 ## draft.tex.pdf: draft.tex doc.Rnw
+## Other dependencies should be in texknit/doc.tex.mk
 draft.pdf: texknit/doc.makedeps doc.Rnw
+texknit/doc.tex: check.rda
 
 Sources += fake.tex fakedoc.Rnw
 ## fake.pdf: fake.tex fakedoc.Rnw
 
 ## supp.tex.pdf: supp.tex
 ## supp.pdf: supp.tex
-
-texknit/doc.tex: check.rda
 
 Ignore += *.loc
 
