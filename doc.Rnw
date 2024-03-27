@@ -46,9 +46,7 @@ We will combine information derived from epidemic curves with a high-resolution 
 The initial growth rate \littler is often estimated by fitting a model to time series data from the early stages of epidemics.
 \G is an individual-level quantity that measures the time between an individual getting infected to infecting another individual.
 The generation interval distribution is the natural way to link \littler and \rzero \citep{wallinga2006generation, champredon2015intrinsic}.
-During an outbreak in a  fully susceptible population,
-\bmb{Not sure we need the first clause here? $\littler$ implies that we are at the beginning of an outbreak?}
-\rzero can be calculated from \littler and the \G distribution
+\rzero can be estimated from \littler and the \G distribution
 by the Euler-Lotka equation \citep{wallinga2006generation}
 \begin{equation}
 \rzero = \frac{1}{\sum_{t=1}^{\infty} G(t)e^{-rt}},
@@ -76,10 +74,10 @@ Since clinical signs and infectiousness appear at nearly the same time in rabies
 
 However, constructing \G values by summing independently resampled values of incubation and infectious periods accounts neither for the possibility of multiple transmissions from the same individual, nor for correlations between time distributions and biting behaviour.
 \fref{intervals} illustrates the generation intervals of a single transmission event from a rabid animal (comprising a single incubation period plus a waiting time) and multiple transmission events from a rabid animal (comprising a single incubation period and three waiting times).
-\bmb{the commented-out statement here seems important?}
+%% \bmb{the commented-out statement here seems important?}
+%% JD: I feel like this is left over from some older, complicated discussion. We are simply observing these directly here, not reweighted.
 % To account for multiple transmission, the incubation periods needs to be reweighted by the number of transmissions.
-For diseases like rabies, where transmission links (and generation intervals) are observable, multiple transmissions and possible correlation structures are all implicitly accounted for within the observation processes through contact tracing.
-%\mr{I'm confused by the "implicitly accounted for"; why not simply explicitly observed?}
+In cases where transmission links are not directly observed, it would be necessary to consider the possibility that serial-interval observations would ned to be reweighted to account for  multiple transmissions. In our case, these effects can be accounted for directly by relying on generation intervals observed through contact tracing.
 
 \begin{center}
 \begin{figure}[ht!]
@@ -179,7 +177,7 @@ Overall, \littler estimates from the logistical model are larger with wider conf
 \begin{figure}[h]
 \includegraphics[page=1,scale = 0.7]{R0combo.Rout.pdf}
 \caption{\textbf{Reproductive number estimates for global historical outbreaks of rabies}}
-Previous estimates of \rzero are shown in blue highlights; \rzero estimates and confidence interval (95\% quantiles from the estimated \rzero sample) from our hybrid approach using exponential (dotted lines) and logistic (solid lines). \rzero are corrected for vaccination coverage.\mli{todo: add dates to location name.}
+Previous estimates of \rzero are shown in blue highlights; \rzero estimates and confidence interval (95\% quantiles from the estimated \rzero sample) from our hybrid approach using exponential (dotted lines) and logistic (solid lines). \rzero are corrected for vaccination coverage.
 \flabel{Rzero}
 \end{figure}
 \end{center}
