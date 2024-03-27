@@ -190,7 +190,7 @@ Sources += series.tsv varnames.tsv
 
 ## Read two data sets into a long frame
 ## Trim out Excel padding; add time offsets
-monthly.Rout: monthly.R datadir/R0rabiesdataMonthly.csv datadir/monthlyTSdogs.csv varnames.tsv
+slowtarget/monthly.Rout: monthly.R datadir/R0rabiesdataMonthly.csv datadir/monthlyTSdogs.csv varnames.tsv
 	$(pipeR)
 
 ######################################################################
@@ -214,7 +214,7 @@ pipeRimplicit += monthly_phase
 
 ## Split time series into phases
 ## softClimb.monthly_phase.Rout: monthly_phase.R
-%.monthly_phase.Rout: monthly_phase.R monthly.rds %.pars.rda 
+%.monthly_phase.Rout: monthly_phase.R slow/monthly.rds %.pars.rda 
 	$(pipeR)
 
 ## Identify windows inside the phases
