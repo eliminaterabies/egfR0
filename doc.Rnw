@@ -144,7 +144,7 @@ Finally, we use the 2.5, 50,  and 97.5 percentiles of the distribution of \rzero
 \caption{\textbf{Time intervals and biting empirical distributions from contact tracing data.}
 %\mr{replace caption with a description of the takehome point of the figure?}
 Panel A is the distribution of observed incubation periods. Panel B is the distribution of incubation periods weighted by each dog's biting frequency (Panel C). The weighted distribution corresponds to the contribution of incubation periods to generation intervals (Panel D).
-Black dashed lines show the means of each time-interval distribution; red dashed lines show the mean incubation period and generation interval (22.3 and 24.9 days, respectively) reported by \cite{hampson2009transmission}.
+Black vertical lines show the means of each time-interval distribution; red vertical lines show the mean incubation period and generation interval (22.3 and 24.9 days, respectively) reported by \cite{hampson2009transmission}.
 }
 \flabel{GISI}
 \end{figure}
