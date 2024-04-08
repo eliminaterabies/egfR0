@@ -69,14 +69,13 @@ We selected fitting windows algorithmically for each outbreak as follows: (1) we
 
 \subsection*{Observed Generation intervals}
 
-Transmission events are hard to observe directly for most diseases. %% \kh{ revised to get rid of influential - feels awkward to read as one of the current authors! }
-An earlier empirial rabies study constructed generation intervals by summing two quantities: a latent period (the time from infection to infectiousness), and a wait time (time from infectiousness to transmission) \citep{hampson2009transmission}.
+Transmission events are hard to observe directly for most diseases.
+An earlier, influential rabies paper constructed estimated generation intervals by summing two quantities: a latent period (the time from infection to infectiousness), and a wait time (time from infectiousness to transmission) \citep{hampson2009transmission}.
 Since clinical signs and infectiousness appear at nearly the same time in rabies, the incubation period (the time from infection to clinical signs) is routinely used as a proxy for the latent period.
 \citeauthor{hampson2009transmission} randomly and independently resampled latent (really, incubation) periods and infectious periods from empirically observed distributions \citep{hampson2009transmission}, and then sampled waiting times uniformly from the selected infection periods.
 
 However, constructing \G values by summing independently resampled values of incubation and infectious periods accounts neither for the possibility of multiple transmissions from the same individual, nor for correlations between time distributions and biting behaviour.
 \fref{intervals} illustrates the generation intervals of a single transmission event from a rabid animal (comprising a single incubation period plus a waiting time) and multiple transmission events from a rabid animal (comprising a single incubation period and three waiting times).
-%% \kh{Serial-interval terminology used below (only time in ms). But I think this is somewhat confusing. It might need more introduction?}
 In cases where transmission links are not directly observed, one should consider reweighting serial-interval observations to account for  multiple transmissions. In our case, we can account for these effects directly by relying on generation intervals observed through contact tracing.
 
 \begin{center}
@@ -85,7 +84,7 @@ In cases where transmission links are not directly observed, one should consider
 \caption{\textbf{Decomposing generation intervals.}
 Generation intervals start when a focal animal acquires infection (open red circle) and end after a period of viral replication (dashed line) when an animal shows clinical signs (blue star), becomes infectious (solid black circle) and infects another animal --- in rabies, the onset of clinical signs and of infectiousness are closely synchronized.
 Once the infectious period (grey block) starts, there is a wait time (solid black line) until a susceptible host (solid red circles) is bitten. The infectious period ends with the death of the focal host (black X).
-The generation interval is the interval between the focal animal getting infected, and when it infects a new case (red interval between open and solid circles). If a single biter transmits multiple times (right), the wait times generally vary, but the incubation period is the same for each transmission event.}
+The generation interval is the interval between the focal animal getting infected, and when it infects a new case (red interval between open and solid circles). (right) If a single biter transmits multiple times, the wait times generally vary, but the incubation period is the same for each transmission event.}
 \flabel{intervals}
 \end{figure}
 \end{center}
@@ -96,43 +95,34 @@ The generation interval is the interval between the focal animal getting infecte
 
 In a population where some animals are not susceptible, calculations based on estimates of \littler and the \G distribution (\ref{eq:EL}) estimate the \emph{realized} average number of cases per case, also known as the effective reproductive number \re.
 In the case of rabies, vaccination is the only known cause of immunity (case fatality in dogs is believed to be 100\%).
-For a given population with $\nu$ vaccination proportion, the estimated $\rzero$ with correction for vaccination is
+For a given population with $\nu$ vaccination proportion, the estimated $\rzero$ with vaccination correction is
 \begin{equation}
 \rzero = \frac{\re}{(1 - \nu)}.
 \label{eq:RE}
 \end{equation}
 
-\subsection*{Data}
+\subsection*{Data and material}
 
-<<echo=FALSE,warning=FALSE,comment=FALSE>>=
-load("slow/check.rda")
-# load("intervals.rda")
-@
 
-We used data from December 2002 -- November 2022, from an ongoing contact tracing study in Tanzania \citep{hampson2008rabies, hampson2009transmission}.
-The data set contains \Sexpr{dogsTransmissionNum} domestic dog recorded events (i.e., domestic dogs bitten by an animal), and \Sexpr{dogsSuspectedNum} suspected rabid dogs in the Serengeti District of northern Tanzania.
+We used data from December 2002 -- November 2022, from an ongoing contact tracing project in Tanzania \citep{hampson2008rabies, hampson2009transmission}.
+The data set contains 8636 domestic dog recorded events (i.e., domestic dogs bitten by an animal), and 3552 suspected rabid dogs in the Serengeti, Tanzania.
 Transmission events were documented through retrospective interviews with witnesses, applying diagnostic epidemiological and clinical criteria from the six-step method \citep{tepsumethanon2005six}.
 Each dog was given a unique identifier, and date of the bite and clinical signs were recorded if applicable and available.
-\Sexpr{nrow(dogsUnknownBiter)} of the dog transmissions were from unidentified domestic animals or wildlife.
-We restricted our analysis to domestic dog transmissions (i.e., dog to dog), and obtained \Sexpr{countVec["Generation Interval"]} directly observed generation intervals (i.e. both biter and secondary case have ``time bitten" records).
+2132 of the dog transmissions were from unidentified domestic animals or wildlife.
+We restricted our analysis to domestic dog transmissions (i.e., dog to dog), and obtained 293 directly observed generation intervals (i.e. both biter and secondary case have ``time bitten" records).
 There were four observed dogs with multiple exposures (i.e., bitten by different identified biters), generating extra generation intervals, but it is unclear which transmission event transmitted rabies to these dogs.
 For simplicity, we omitted these four dogs and their generation intervals from our analysis.
 
 \subsection*{Fitting and Propagating Parameter Uncertainties}
 
-<<echo=FALSE, warning=FALSE, comment=FALSE>>=
-
-load("slow/egf_R0.rda")
-
-@
 
 To propagate uncertainties for both \littler and \G, we used a hybrid approach.
 We first fit logistic models, with negative binomial observation error, to incidence data to estimate \littler implemented in the R package {\tt epigrowthfit} \cite{epigrowthfit}.
-We then compute a sample of \Sexpr{nsamp} $\hat{\rzero}$ values using equation (\ref{eq:RE}).
-For each value of $\hat{\rzero}$, we first draw a value of $\hat{\littler}$ from a Normal distribution matching the estimated sampling distribution of the logistic fit parameters and an independent sample of \G from the empirical contact tracing data. To sample \G from the empirical contact tracing data, we first take a weighted sample of \Sexpr{nboot} biters, which accounts for biter-level variation, and for each biter, we sample a \G from its respective transmission event, to account for individual variation.
+We then compute a sample of 1000 $\hat{\rzero}$ values using equation (\ref{eq:RE}).
+For each value of $\hat{\rzero}$, we first draw a value of $\hat{\littler}$ from a Normal distribution matching the estimated sampling distribution of the logistic fit parameters and an independent sample of \G from the empirical contact tracing data. To sample \G from the empirical contact tracing data, we first take a weighted sample of 100 biters, which accounts for biter-level variation, and for each biter, we sample a \G from its respective transmission event, to account for individual variation.
 We then matched samples of \G to the \littler samples to produce a range of estimates for \rzero.
 This hybrid sampling approach incorporates the uncertainties in both \littler and \G
-into the distribution of \rzero estimates.
+in the distribution \rzero estimates.
 Finally, we use the 2.5, 50,  and 97.5 percentiles of the distribution of \rzero estimates to get point estimates and confidence limits for $\rzero$ for each rabies outbreak.
 
 \section*{Results}
@@ -152,8 +142,8 @@ Black dashed lines show the means of each time-interval distribution; blue dashe
 \FloatBarrier
 
 \Fref{GISI} shows the empirical distributions of the observed incubation periods, rabid dog biting frequency, and generation intervals from contact tracing data.
-The mean observed incubation period is \Sexpr{signif(meanVec["Incubation Period: Dogs"],3)} days ($n = \Sexpr{countVec["Incubation Period: Dogs"]}$ dogs), the mean biting frequency is \Sexpr{signif(mean_biting_freq,3)} bites per rabid dog, and the weighted mean incubation period is \Sexpr{signif(meanVec["Weighted Incubation Period"],3)} days ($n = \Sexpr{countVec["Incubation Period: Biter"]}$ biting dogs).
-The mean observed generation interval is \Sexpr{signif(meanVec["Generation Interval"],3)} days ($n = \Sexpr{countVec["Incubation Period: Biter"]}$ primary infections resulting in \Sexpr{countVec["Generation Interval"]} secondary cases), which is substantially larger than the mean generation interval constructed from summing independently sampled incubation periods and wait times (24.9 days \citep{hampson2009transmission}).
+The mean observed incubation period is 27.5 days ($n = 1109$ dogs), the mean biting frequency is 1.65 bites per rabid dog, and the weighted mean incubation period is 36.6 days ($n = 143$ biting dogs).
+The mean observed generation interval is 37.9 days ($n = 143$ primary infections resulting in 293 secondary cases), which is substantially larger than the mean generation interval constructed from summing independently sampled incubation periods and wait times (24.9 days \citep{hampson2009transmission}).
 The weighted incubation period distribution is a better approximation of the generation interval distribution than the unweighted incubation period of all dogs.
 
 \begin{center}
