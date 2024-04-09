@@ -53,8 +53,27 @@ Sources += $(wildcard *.bib)
 ## draft.tex.pdf: draft.tex doc.Rnw
 ## Other dependencies should be in texknit/doc.tex.mk
 draft.pdf: texknit/doc.makedeps doc.Rnw
-texknit/doc.tex: slow/check.rda
+texknit/doc.tex: slow/check.rda delphi.pars.rda
 
+######################################################################
+
+## Horrible diff pipeline, consider updating
+## Need to make the dotdir doc you want manually
+diff.doc.tex: dotdir/texknit/doc.tex texknit/doc.tex
+	$(latexdiff)
+
+draft.diff.tex: draft.tex
+	$(latexdiff) $<
+	
+diff.pdf: diff.doc.tex draft.diff.tex
+	$(MVF) $< texknit/doc.tex
+	$(MAKE) draft.diff.pdf
+	$(MVF) draft.diff.pdf $@
+	$(RM) texknit/doc.tex
+
+######################################################################
+
+## Old diagnostic stuff, delete 2024 Apr 09 (Tue)
 Sources += fake.tex fakedoc.Rnw
 ## fake.pdf: fake.tex fakedoc.Rnw
 
