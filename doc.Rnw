@@ -12,9 +12,9 @@ Our \rzero estimates are larger than previous estimates, with wider confidence i
 %\kh{report some interpretation?} 
 These revised \rzero estimates suggest that a greater leve of vaccination effort will be required to eliminate rabies than previously thought, but that the level of coverage required remains feasible.
 Our novel hybrid approach for estimating \rzero and its uncertainty is applicable to other disease systems where researchers estimate \rzero by combining data on \littler and \G.
-%\mr{is it still a "hybrid" approach now that uncertainty is estimated via bootstraps rather than a Bayesian  MCMC sampler?} 
 %% \kh{You don't report in the abstract how weighting G by bites actually results in a larger estimate of G. Seems important and worth mentioning? or are you brushing over this to save it for the next paper?}
 %% \kh{The revised G seems v important for other epi calculations, but makes suprisingly little difference to R0, whereas the logistic vs exponential seems to make a big difference - Fig5 - report in abstract?}
+
 % \linenumbers %% switch for line number
 
 \section*{Introduction}
@@ -64,7 +64,6 @@ This formula is convenient to calculate point estimates of \rzero; however, rese
 Disease incidence typically increases approximately exponentially during the early stages of an epidemic. The initial growth rate \littler is often estimated by fitting exponential curves from near the beginning to near the peak of an epidemic.
 However, growth rates estimated from an exponential model can be biased downward, overconfident, and sensitive to the choice of fitting windows \citep{ma2014estimating}.
 Here we used logistic rather than exponential curves to more robustly estimate \littler \citep{ma2014estimating, chowell2017fitting}.
-%% \mr{This seems like such a big piece of the difference between KH and WZLi estimates; I'm surprised it only gets mentioned here in M\&M but not highlighted in abstract/methods. Especially since KH is an author, seems fine to be more firm in claiming logistic is more appropriate and likely to resolve some of the "paradox"\\ } \mli{Added a few words in the abstract.}
 
 %\mr{code-formatted variable names may be alienating, maybe describe in more conventional terms with either just words, or mathy variable names?}
 We selected fitting windows algorithmically for each outbreak as follows: (1) we break each time series into “phases”: a new phase starts after a peak with a height of at least \code{minPeak} cases, followed by a proportional decline in cases of at least \code{declineRatio}; (2) In each phase, we identify a prospective fitting window starting after the last observation of 0 cases and extending one observation past the highest value in the phase (unless the highest value is itself the last observation); (3) we then fit our model to the cases in the fitting window if (and only if) it has a peak of at least \code{minPeak} cases, a length of at least \code{minLength} observations, and a ratio of at least \code{minClimb} between the highest and lowest observations. We tried a handful of parameter combinations before settling on a final set during an expert consultation. These explorations are detailed, and the final choices noted, in our code repository.
@@ -72,8 +71,7 @@ We selected fitting windows algorithmically for each outbreak as follows: (1) we
 
 \subsection*{Observed Generation intervals}
 
-Transmission events are hard to observe directly for most diseases. %% \kh{ revised to get rid of influential - feels awkward to read as one of the current authors! }
-An earlier empirial rabies study constructed generation intervals by summing two quantities: a latent period (the time from infection to infectiousness), and a wait time (time from infectiousness to transmission) \citep{hampson2009transmission}.
+An earlier empirical rabies study constructed generation intervals by summing two quantities: a latent period (the time from infection to infectiousness), and a wait time (time from infectiousness to transmission) \citep{hampson2009transmission}.
 Since clinical signs and infectiousness appear at nearly the same time in rabies, the incubation period (the time from infection to clinical signs) is routinely used as a proxy for the latent period.
 \citeauthor{hampson2009transmission} randomly and independently resampled latent (really, incubation) periods and infectious periods from empirically observed distributions \citep{hampson2009transmission}, and then sampled waiting times uniformly from the selected infection periods.
 
@@ -229,7 +227,6 @@ Combining the two corrections (in \littler and \G) boosts the \rzero estimates e
 \section*{Discussion}
 
 Our study helps to explain why rabies persists despite estimates of \rzero from historical outbreaks being consistently low, by showing that revised higher estimates are compatible with historical outbreak data.
-%\kh{Seems a rather strong conclusion that the revised R0 estimates now resolves why rabies persists. I think there is A LOT of work already published to show there are other reasons e.g. spatial aspects, connectivity, gaps in coverage and most importantly a complete lack of sustained dog vaccination! I've toned down}
 Here, we reanalyzed historical rabies epidemics with improved model assumptions and uncertainty propagation, showing that historical estimates of \rzero were downward biased and overconfident.
 
 The basic reproductive number, \rzero, is commonly used to summarize the risk of infectious disease and to inform control measures. Here, we used a relatively simple approach to estimating \rzero by combining initial growth rate (\littler) estimates from incidence data and generation intervals from contact tracing data.
@@ -252,6 +249,3 @@ While our primary goal was to understand why estimates of rabies \rzero were sma
 However, both heterogeneity in contacts and the correlations between incubation periods and transmission that we observed here through the generation interval suggest that simple \rzero estimation methods should be used with caution. 
 Rabies is particularly useful for exploring this effect because transmission events and latent periods are directly observable via contact tracing. The correlation effect highlighted here is likely to apply in other disease systems, but hard to detect because generation intervals are so rarely directly observable.
 
-%\mr{not sure which paper is destined to come out first, or if you're subitting them (i.e., this one an correlations paper) together somehow... I think there could be a more explicit linking between the two papers. I think the sentence Ben suggested you refine could be more positive: you advocate estimating R0 with uncertainty propagation (and also why logistic is more appropriate than exponential, and how general you think that should be. I don't love landing on the mechanistic fitting suggestion; think it would be good to end on strong sentences focused on take-home messages.) Consider moving most of last paragraph up to first in discussion. I think more can be said about how Rabies is a nice model system because latent period and transmission events are so easy to observe, and natural immunity is not thought to exist, but your findings can be applicable in disease systems where the uncertainties in generation interval may be even greater, or something like that.}
-%\mli{suggstion accepted}
-%\kh{can you add something abut the importance of logistic model vs exponential - that seems to be the most critical factor for influencing the R0 estimate in Fig 5. So definitely something that could easily be used for other studies - rabies or otherwise}.
