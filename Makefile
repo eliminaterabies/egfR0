@@ -11,8 +11,9 @@ vim_session:
 ##################################################################
 
 Sources += README.md notes.md TODO.md ##
+Sources += .gitignore
 
-Ignore += .gitignore $(wildcard *.Rproj .Rproj.*)
+Ignore += $(wildcard *.Rproj .Rproj.*)
 
 ######################################################################
 
@@ -62,9 +63,11 @@ texknit/doc.tex: slow/check.rda delphi.pars.rda
 diff.doc.tex: dotdir/texknit/doc.tex texknit/doc.tex
 	$(latexdiff)
 
+Ignore += draft.diff.tex
 draft.diff.tex: draft.tex
 	$(latexdiff) $<
 	
+Ignore += diff.pdf
 diff.pdf: diff.doc.tex draft.diff.tex
 	$(MVF) $< texknit/doc.tex
 	$(MAKE) draft.diff.pdf
