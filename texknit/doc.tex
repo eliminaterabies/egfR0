@@ -8,20 +8,17 @@ Rabies spread by domestic dogs continues to cause tens of thousands of human dea
 Estimates of canine rabies's intrinsic reproductive number (\rzero), a metric of disease spread, from a wide range of times and locations are relatively low (values $<2$), with narrow confidence intervals. Given rabies's persistence, this consistently low and narrow range of estimates is surprising.
 We combined incidence data from historical outbreaks of canine rabies from around the world with in-depth contact-tracing data from Tanzania to investigate initial growth rates (\littler), generation-interval distributions (\G), and reproductive numbers (\rzero).
 We improved on earlier estimates by choosing outbreak windows algorithmically; fitting \littler using a more appropriate statistical method that accounts for decreases through time; and incorporating uncertainty from both \littler and \G in our confidence intervals on \rzero. 
-Our \rzero estimates are larger than previous estimates, with wider confidence intervals. 
-%\kh{report some interpretation?} 
-These revised \rzero estimates suggest that a greater leve of vaccination effort will be required to eliminate rabies than previously thought, but that the level of coverage required remains feasible.
+Our \rzero estimates are larger than previous estimates, with wider confidence intervals.
 Our novel hybrid approach for estimating \rzero and its uncertainty is applicable to other disease systems where researchers estimate \rzero by combining data on \littler and \G.
 %\mr{is it still a "hybrid" approach now that uncertainty is estimated via bootstraps rather than a Bayesian  MCMC sampler?} 
-%% \kh{You don't report in the abstract how weighting G by bites actually results in a larger estimate of G. Seems important and worth mentioning? or are you brushing over this to save it for the next paper?}
-%% \kh{The revised G seems v important for other epi calculations, but makes suprisingly little difference to R0, whereas the logistic vs exponential seems to make a big difference - Fig5 - report in abstract?}
+
 % \linenumbers %% switch for line number
 
 \section*{Introduction}
 
 Canine rabies, primarily spread by domestic dogs, is a vaccine-preventable disease that continues to cause tens of thousands of human deaths every year in low- and middle-income countries (LMICs)
 \citep{taylor2017difficulties, minghui2018new}.
-Canine rabies has been eliminated from high-income countries by mass dog vaccination \citep{rupprecht2008can}.
+Canine rabies has been effectively eliminated from high-income countries by mass dog vaccination \citep{rupprecht2008can}.
 Despite the effectiveness of dog vaccination, rabies continues to cause many human deaths and large economic losses in LMICs due to the limited implementation of rabies control strategies \citep{hampson2015estimating}. 
 The past two decades have seen an increase in rabies control efforts, including dog vaccination campaigns and improvements in surveillance \citep{kwoba2019dog, mtema2016mobile, gibson2018one, mazeri2018barriers, wallace2015establishment}.
 The World Health Organization (WHO) and partners (OIE, FAO, GARC) joined forces to support LMICs in eliminating human deaths from dog-mediated rabies by 2030 \citep{minghui2018new, abela20162016}. Mass dog vaccination campaigns have begun in some LMICs and are being scaled up \citep{castillo2019socio, evans2019implementation}.
@@ -32,9 +29,9 @@ An understanding of rabies epidemiology --- in particular, reliable estimates of
 
 The basic reproductive number \rzero is defined as the expected number of secondary cases generated from each primary case in a fully susceptible population \citep{macdonald1952analysis}.
 % KH edited below to split lengthy sentence
-Estimates of \rzero for rabies have been made using various methods including direct estimates from infection histories, epidemic tree reconstruction, and epidemic curve methods. These \rzero estimates based on historical outbreaks of rabies that span a variety of regions and time periods have generally been surprisingly low, typically between 1 and 2 with narrow confidence intervals \citep{hampson2009transmission, kurosawa2017rise, kitala2002comparison}. 
+Estimates of \rzero for rabies have been made using various methods including direct estimates from infection histories, epidemic tree reconstruction, and epidemic curve methods. These \rzero estimates based on historical outbreaks of rabies have generally been surprisingly low, typically between 1 and 2 with narrow confidence intervals for a variety of regions and time periods \citep{hampson2009transmission, kurosawa2017rise, kitala2002comparison}. 
 With such a low \rzero one might expect rabies to fade out due to a combination of behavioural control measures and stochastic fluctuations, even in the absence of vaccination.
-In contrast to diseases that have already been eridcated, but that have a large \rzero (e.g., rinderpest, with \rzero $\approx 4$ \citep{mariner2005model}), \rzero estimates for rabies suggest that control through vaccination should be relatively easy.
+In contrast to diseases with a large \rzero (e.g., rinderpest, with \rzero $\approx 4$ \citep{mariner2005model}), \rzero estimates for rabies suggest that control through vaccination should be relatively easy.
 
 % \rzero estimates for rabies using various methods (i.e., direct estimates from infection histories, epidemic tree reconstruction and have been consistently low, with narrow confidence intervals \citep{hampson2009transmission}.
 Here we revisit and explore why rabies, with its low \rzero, nonetheless persists in many countries around the world. 
@@ -79,7 +76,7 @@ Since clinical signs and infectiousness appear at nearly the same time in rabies
 
 However, constructing \G values by summing independently resampled values of incubation and infectious periods accounts neither for the possibility of multiple transmissions from the same individual, nor for correlations between time distributions and biting behaviour.
 \fref{intervals} illustrates the generation intervals of a single transmission event from a rabid animal (comprising a single incubation period plus a waiting time) and multiple transmission events from a rabid animal (comprising a single incubation period and three waiting times).
-%% \kh{Serial-interval terminology used below (only time in ms). But I think this is somewhat confusing. Can you add a clause explaining what the SI is and how it differs from G to help the reader?}
+%% \kh{Serial-interval terminology used below (only time in ms). But I think this is somewhat confusing. It might need more introduction?}
 In cases where transmission links are not directly observed, one should consider reweighting serial-interval observations to account for  multiple transmissions. In our case, we can account for these effects directly by relying on generation intervals observed through contact tracing.
 
 \begin{center}
@@ -97,7 +94,7 @@ The generation interval is the interval between the focal animal getting infecte
 
 \subsection*{Correcting for vaccination}
 
-In a population where some animals are not susceptible, calculations based on estimates of \littler and the \G distribution (\ref{eq:EL}) do not estimate \rzero, but instead estimate the \emph{realized} average number of cases per case, also known as the effective reproductive number \re.
+In a population where some animals are not susceptible, calculations based on estimates of \littler and the \G distribution (\ref{eq:EL}) estimate the \emph{realized} average number of cases per case, also known as the effective reproductive number \re.
 In the case of rabies, vaccination is the only known cause of immunity (case fatality in dogs is believed to be 100\%).
 For a given population with $\nu$ vaccination proportion, the estimated $\rzero$ with correction for vaccination is
 \begin{equation}
@@ -107,32 +104,25 @@ For a given population with $\nu$ vaccination proportion, the estimated $\rzero$
 
 \subsection*{Data}
 
-<<echo=FALSE,warning=FALSE,comment=FALSE>>=
-load("slow/check.rda")
-# load("intervals.rda")
-@
+
 
 We used data from December 2002 -- November 2022, from an ongoing contact tracing study in Tanzania \citep{hampson2008rabies, hampson2009transmission}.
-The data set contains \Sexpr{dogsTransmissionNum} domestic dog recorded events (i.e., domestic dogs bitten by an animal), and \Sexpr{dogsSuspectedNum} suspected rabid dogs in the Serengeti District of northern Tanzania.
+The data set contains 8636 domestic dog recorded events (i.e., domestic dogs bitten by an animal), and 3552 suspected rabid dogs in the Serengeti District of northern Tanzania.
 Transmission events were documented through retrospective interviews with witnesses, applying diagnostic epidemiological and clinical criteria from the six-step method \citep{tepsumethanon2005six}.
 Each dog was given a unique identifier, and date of the bite and clinical signs were recorded if applicable and available.
-\Sexpr{nrow(dogsUnknownBiter)} of the dog transmissions were from unidentified domestic animals or wildlife.
-We restricted our analysis to domestic dog transmissions (i.e., dog to dog), and obtained \Sexpr{countVec["Generation Interval"]} directly observed generation intervals (i.e. both biter and secondary case have ``time bitten" records).
+2132 of the dog transmissions were from unidentified domestic animals or wildlife.
+We restricted our analysis to domestic dog transmissions (i.e., dog to dog), and obtained 293 directly observed generation intervals (i.e. both biter and secondary case have ``time bitten" records).
 There were four observed dogs with multiple exposures (i.e., bitten by different identified biters), generating extra generation intervals, but it is unclear which transmission event transmitted rabies to these dogs.
 For simplicity, we omitted these four dogs and their generation intervals from our analysis.
 
 \subsection*{Fitting and Propagating Parameter Uncertainties}
 
-<<echo=FALSE, warning=FALSE, comment=FALSE>>=
 
-load("slow/egf_R0.rda")
-
-@
 
 To propagate uncertainties for both \littler and \G, we used a hybrid approach.
 We first fit logistic models, with negative binomial observation error, to incidence data to estimate \littler implemented in the R package {\tt epigrowthfit} \cite{epigrowthfit}.
-We then compute a sample of \Sexpr{nsamp} $\hat{\rzero}$ values using equation (\ref{eq:RE}).
-For each value of $\hat{\rzero}$, we first draw a value of $\hat{\littler}$ from a Normal distribution matching the estimated sampling distribution of the logistic fit parameters and an independent sample of \G from the empirical contact tracing data. To sample \G from the empirical contact tracing data, we first take a weighted sample of \Sexpr{nboot} biters, which accounts for biter-level variation, and for each biter, we sample a \G from its respective transmission event, to account for individual variation.
+We then compute a sample of 1000 $\hat{\rzero}$ values using equation (\ref{eq:RE}).
+For each value of $\hat{\rzero}$, we first draw a value of $\hat{\littler}$ from a Normal distribution matching the estimated sampling distribution of the logistic fit parameters and an independent sample of \G from the empirical contact tracing data. To sample \G from the empirical contact tracing data, we first take a weighted sample of 100 biters, which accounts for biter-level variation, and for each biter, we sample a \G from its respective transmission event, to account for individual variation.
 We then matched samples of \G to the \littler samples to produce a range of estimates for \rzero.
 This hybrid sampling approach incorporates the uncertainties in both \littler and \G
 into the distribution of \rzero estimates.
@@ -154,9 +144,9 @@ Black dashed lines show the means of each time-interval distribution; blue dashe
 
 \FloatBarrier
 
-\Fref{GISI} shows the empirical distributions of the observed incubation periods, rabid dog biting frequency, and generation intervals from the contact tracing data.
-The mean observed incubation period is \Sexpr{signif(meanVec["Incubation Period: Dogs"],3)} days ($n = \Sexpr{countVec["Incubation Period: Dogs"]}$ dogs), the mean biting frequency is \Sexpr{signif(mean_biting_freq,3)} bites per rabid dog, and the weighted mean incubation period is \Sexpr{signif(meanVec["Weighted Incubation Period"],3)} days ($n = \Sexpr{countVec["Incubation Period: Biter"]}$ biting dogs).
-The mean observed generation interval is \Sexpr{signif(meanVec["Generation Interval"],3)} days ($n = \Sexpr{countVec["Incubation Period: Biter"]}$ primary infections resulting in \Sexpr{countVec["Generation Interval"]} secondary cases), which is substantially larger than the mean generation interval constructed from summing independently sampled incubation periods and wait times (24.9 days \citep{hampson2009transmission}).
+\Fref{GISI} shows the empirical distributions of the observed incubation periods, rabid dog biting frequency, and generation intervals from contact tracing data.
+The mean observed incubation period is 27.5 days ($n = 1109$ dogs), the mean biting frequency is 1.65 bites per rabid dog, and the weighted mean incubation period is 36.6 days ($n = 143$ biting dogs).
+The mean observed generation interval is 37.9 days ($n = 143$ primary infections resulting in 293 secondary cases), which is substantially larger than the mean generation interval constructed from summing independently sampled incubation periods and wait times (24.9 days \citep{hampson2009transmission}).
 The weighted incubation period distribution is a better approximation of the generation interval distribution than the unweighted incubation period of all dogs.
 
 \begin{center}
@@ -177,7 +167,7 @@ Different colors represent different phases from the times series data.
 
 We estimated \littler from historical outbreak data (\fref{littler}). 
 For a direct comparison of the method used in \citep{hampson2009transmission}, we also estimated \littler from an exponential model. Both methods (exponential and logistic) were applied to all phases of the global historical outbreaks. 
-Overall, \littler estimates from the logistic model are larger with wider confidence intervals compared to \littler estimates from the exponential model (as used in \citep{hampson2009transmission}). 
+Overall, \littler estimates from the logistical model are larger with wider confidence intervals compared to \littler estimates from the exponential model (as used in \citep{hampson2009transmission}). 
 
 \begin{center}
 \begin{figure}[h]
@@ -223,30 +213,27 @@ The hybrid approach provides larger values of \rzero and wider confidence interv
 Lastly, we compare the effects of different estimation techniques of \littler and \G on estimates of \rzero (\fref{mexico}). 
 For illustrative purposes, we used the 1987 outbreak in Mexico where there was no vaccination. 
 Propagating uncertainty from both \littler and \G generally leads to wider confidence intervals compared to previous \rzero estimates in \citet{hampson2009transmission}.
-The \rzero estimate increases when we estimate \littler via the logistic model, or when we sample the full distribution of \G, rather than plugging in the naively constructed interval as in \cite{hampson2009transmission}.
+The \rzero estimate increases when we estimate \littler via the logistic model, or when we sample the full distribution of \G, rather than plugging in the naively constructed interval as in \cite{hampson2009transmission} .
 Combining the two corrections (in \littler and \G) boosts the \rzero estimates even more, with even wider confidence intervals.
 
 \section*{Discussion}
 
-Our study helps to explain why rabies persists despite estimates of \rzero from historical outbreaks being consistently low, by showing that revised higher estimates are compatible with historical outbreak data.
-%\kh{Seems a rather strong conclusion that the revised R0 estimates now resolves why rabies persists. I think there is A LOT of work already published to show there are other reasons e.g. spatial aspects, connectivity, gaps in coverage and most importantly a complete lack of sustained dog vaccination! I've toned down}
+Our study resolves the mystery of why rabies persists despite the fact that \rzero estimates in historical outbreaks have been consistently low, by showing that substantially higher basic reproduction numbers are compatible with historical outbreak data.
 Here, we reanalyzed historical rabies epidemics with improved model assumptions and uncertainty propagation, showing that historical estimates of \rzero were downward biased and overconfident.
 
 The basic reproductive number, \rzero, is commonly used to summarize the risk of infectious disease and to inform control measures. Here, we used a relatively simple approach to estimating \rzero by combining initial growth rate (\littler) estimates from incidence data and generation intervals from contact tracing data.
 By assuming rabies generation intervals are similar across time and space, this method allows us to combine generation intervals from the detailed Tanzania contact tracing data with growth rates estimated from incidence data from various regions across the globe. 
-We improved on earlier work by correcting for curbed epidemic growth when estimating \littler, and by developing an approach to propagate uncertainty from both \littler and \G, resulting in higher \rzero estimates with wider confidence intervals.
+We improved on earlier work by correcting for slowdown in epidemic growth when estimating \littler, and by developing an approach to propagate uncertainty from both \littler and \G, resulting in higher \rzero estimates with wider confidence intervals.
 
 Estimates of \rzero are strongly affected by estimates of the growth rate during the initial phase of the epidemic.
 The logistic model gives a better approximation of the initial phase of the epidemic resulting in a larger estimate of \littler compared to the exponential model \citep{ma2014estimating}.
 Our estimates of \littler account for observation error (measurements may not perfectly match reality), but not for process error (the fundamental stochasticity of the system itself). Thus we may still be underestimating the uncertainty in \littler, and hence in \rzero \citep{king2015avoidable}.
 %\mr{is the point here to contrast with the way you used a more complete distribution of G to account for process error on that side of the equation?}
-%\kh{arguably our method only detects the outbreaks that take off (requiring substantive epidemic growth, which often doesn't occur, so we might also be baising towards overestimating R0! think it would be fairer to also report this!)}
 
-Re-analysis of these data also allowed us to identify an overlooked fact about rabies generation intervals: observed generation intervals are longer, on average, than intervals constructed by naively adding incubation periods and waiting times, because of within-individual correlations in time distributions and biting behaviour. The unexpected importance of these correlations could have implications for other infectious disease analyses that depend on the generation interval, as such correlations can bias the estimation of generation intervals, as shown in this study. Further investigation of how these correlations affect the overall dynamics of rabies is warranted.
+Re-analysis of these data also allowed us to identify an overlooked fact about rabies generation intervals: observed generation intervals are longer, on average, than intervals constructed by naively adding incubation period and waiting time, because of within-individual correlations in time distributions and biting behaviour. The unexpected importance of these correlations could have implications for other infectious disease analyses that depend on the generation interval, as such correlations can bias the estimation of generation intervals, as shown in this study. Further investigation of how these correlations affect the overall dynamics of rabies is warranted.
 
 In any case, our estimates suggest that the \rzero of rabies is larger, and more uncertain, than previously estimated.
-This finding may explain some of the formerly unexplained variations in the success of rabies-control programs (e.g., low levels of coverage (30–50\%) have succeeded in some settings while high coverage 75\% was insufficient to control rabies in others \citep{eng1993urban}). Nonetheless, our revised \rzero estimates still suggest that coverage required to control rabies should be feasible even in settings where \rzero is relatively high and that this should not be abarrier to initiating large-scale dog vaccination required for elimination.
-
+This finding may explain some of the formerly unexplained variations in the success of rabies-control programs (e.g., low levels of coverage (30–50\%) have succeeded in some settings while high coverage 75\% was insufficient to control rabies in others \citep{eng1993urban}).
 While our primary goal was to understand why estimates of rabies \rzero were small with narrow confidence intervals, our analysis also revealed an interesting biological process through the lens of generation intervals from contact tracing data: the need to account for biting behaviour in the incubation period distribution, in order to match the generation interval distribution.
  
 \rzero is typically used as a first approximation for interventions such as vaccination to determine herd immunity thresholds. 
@@ -255,4 +242,3 @@ Rabies is particularly useful for exploring this effect because transmission eve
 
 %\mr{not sure which paper is destined to come out first, or if you're subitting them (i.e., this one an correlations paper) together somehow... I think there could be a more explicit linking between the two papers. I think the sentence Ben suggested you refine could be more positive: you advocate estimating R0 with uncertainty propagation (and also why logistic is more appropriate than exponential, and how general you think that should be. I don't love landing on the mechanistic fitting suggestion; think it would be good to end on strong sentences focused on take-home messages.) Consider moving most of last paragraph up to first in discussion. I think more can be said about how Rabies is a nice model system because latent period and transmission events are so easy to observe, and natural immunity is not thought to exist, but your findings can be applicable in disease systems where the uncertainties in generation interval may be even greater, or something like that.}
 %\mli{suggstion accepted}
-%\kh{can you add something abut the importance of logistic model vs exponential - that seems to be the most critical factor for influencing the R0 estimate in Fig 5. So definitely something that could easily be used for other studies - rabies or otherwise}.

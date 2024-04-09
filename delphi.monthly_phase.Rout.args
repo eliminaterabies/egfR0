@@ -1,0 +1,2 @@
+rpcall("delphi.monthly_phase.Rout delphi.pipestar monthly_phase.R slow/monthly.rds delphi.pars.rda")
+

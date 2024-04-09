@@ -1,0 +1,124 @@
+
+R version 4.3.0 (2023-04-21) -- "Already Tomorrow"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin20 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+> 
+> library(shellpipes)
+> 
+> ## Get both minPeak and long 
+> loadEnvironments()
+> 
+> findWin <- function(l, p, t, c, mp, ml, mc, w){
++ 	if(max(c) < mp){
++ 		if (w) print(paste("Max too small in", l[[1]], p[[1]]))
++ 		return(data.frame(offset=NULL, cases=NULL))
++ 	}
++ 	ind <- 1:(2+length(c))
++ 	c <- c(0, c, NaN)
++ 	t <- c(0, t, NaN)
++ 	
++ 	## from one past lastPreZero to one past the global peak
++ 	## FIXME: It would be nice to allow a flexible number of zero/NAs before breaking, but not super-straightforward
++ 	maxInd <- which.max(c)
++ 	lastPreZero <- max(which(c==0 & ind<maxInd))
++ 	if(maxInd+1<length(c)){maxInd <- maxInd+1}
++ 	range <- (1+lastPreZero):maxInd
++ 	if(length(range)<ml){
++ 		if (w) print(paste("Range too short in", l[[1]], p[[1]]))
++ 		return(data.frame(offset=NULL, cases=NULL))
++ 	}
++ 
++ 	rf <- data.frame(offset=t[range], cases=c[range])
++ 
++ 	## Check minimum climb criterion
++ 	smin <- pmax(1, min(rf$cases))
++ 	smax <- max(rf$cases)
++ 	if (smax<smin*mc){
++ 		if (w) print(paste("Climb too shallow in", l[[1]], p[[1]]))
++ 		return(data.frame(month=NULL, cases=NULL))
++ 	}
++ 
++ 	return(rf)
++ }
+> 
+> warn = TRUE
+> ## Pull out windows for egf
+> 
+> print(head(long))
+# A tibble: 6 × 4
+  loc      cases offset phase
+  <chr>    <dbl>  <int> <chr>
+1 HongKong     1      1 1    
+2 HongKong     1      2 1    
+3 HongKong     0      3 1    
+4 HongKong     1      4 1    
+5 HongKong     5      5 1    
+6 HongKong     1      6 1    
+> 
+> selected <- (long
++ 	%>% group_by(loc, phase)
++ 	%>% reframe(findWin(loc, phase, offset, cases, minPeak, minLength, minClimb, warn))
++ )
+[1] "Max too small in HongKong 1"
+[1] "Max too small in Israel 2"
+[1] "Max too small in Java 2"
+[1] "Max too small in Kanagawa 2"
+[1] "Max too small in Memphis 2"
+[1] "Max too small in Mexico 2"
+[1] "Max too small in NYcentral 2"
+[1] "Max too small in NYcounties 3"
+[1] "Max too small in Perak 1"
+[1] "Max too small in Peru 1"
+[1] "Max too small in Selangor 2"
+[1] "Max too small in SultanHamad 1"
+> 
+> print(head(selected))
+# A tibble: 6 × 4
+  loc    phase offset cases
+  <chr>  <chr>  <dbl> <dbl>
+1 Israel 1          1     8
+2 Israel 1          2     8
+3 Israel 1          3     7
+4 Israel 1          4    11
+5 Israel 1          5     9
+6 Israel 1          6    17
+> 
+> ## Make zero-information windows file (we've already selected everything)
+> windows <- (selected
++ 	|> select(loc, phase)
++ 	|> distinct()
++ 	|> mutate(start=-Inf, end=Inf)
++ )
+> 
+> summary(selected)
+     loc               phase               offset          cases      
+ Length:159         Length:159         Min.   : 1.00   Min.   : 1.00  
+ Class :character   Class :character   1st Qu.: 5.00   1st Qu.: 8.00  
+ Mode  :character   Mode  :character   Median :13.00   Median :17.00  
+                                       Mean   :19.26   Mean   :19.54  
+                                       3rd Qu.:23.00   3rd Qu.:26.00  
+                                       Max.   :85.00   Max.   :70.00  
+> 
+> ## Try to not need this
+> ll <- list(long = long, selected = selected)
+> rdsSave(ll)
+> 
+> ## Maybe save everything for future combinations?
+> saveVars(long, selected, windows)
+> 
