@@ -2,6 +2,7 @@ library(dplyr)
 library(ggplot2); theme_set(theme_bw())
 
 library(shellpipes)
+rpcall("R0plot.Rout .pipestar R0plot.R slow/egf_R0.rda series.tsv")
 startGraphics()
 
 loadEnvironments()
@@ -21,16 +22,16 @@ dat <- (egf_gi2
 
 print(dat)
 
-gg <- (ggplot(filter(dat,method=="Logistic"), aes(x=loc_final))
-	+ geom_pointrange(aes(ymin=lwr, y = est, ymax=upr, color=phase)
+gg <- (ggplot(filter(dat,method=="Logistic"), aes(y=loc_final))
+	+ geom_pointrange(aes(xmin=lwr, x = est, xmax=upr, color=phase)
 		, position = position_dodge(width=-0.4)
 	)
 #	+ scale_linetype_manual(values=c("dotted","solid"))
 	+ scale_color_manual(values=c("black","red", "orange"))
-	+ labs(y = "R0", x = NULL)
+	+ labs(x = "R0", y = NULL)
 )
 
-print(gg + coord_flip())
+print(gg)
 
 print(gg + coord_cartesian(ylim=c(0,3)) + coord_flip(ylim=c(0,3)))
 
