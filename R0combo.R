@@ -4,7 +4,7 @@ library(dplyr)
 library(grid)
 startGraphics()
 rpcall("R0combo.Rout .pipestar R0combo.R KH_R0.rds R0plot.rds")
-
+sessionInfo()
 gg <- rdsRead("plot")
 hampson <- rdsRead("KH")
 
