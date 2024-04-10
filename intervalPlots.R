@@ -7,8 +7,9 @@ library(purrr)
 library(tidyr)
 library(cowplot)
 library(ggforce)
-library(shellpipes)
 
+library(shellpipes)
+startGraphics()
 loadEnvironments()
 
 minDays <- 0
