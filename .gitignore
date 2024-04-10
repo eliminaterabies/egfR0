@@ -502,3 +502,8 @@ cpdir/
 *.newfile
 *.newdiff
 *.blame
+.Rhistory
+.DS_Store
+\.#*
+#*
+*~
