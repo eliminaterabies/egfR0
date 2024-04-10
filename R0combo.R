@@ -1,4 +1,4 @@
-library(ggplot2);theme_set(theme_bw())
+LIBRAry(ggplot2);theme_set(theme_bw())
 library(shellpipes)
 library(dplyr)
 library(grid)
