@@ -11,8 +11,9 @@ hampson <- rdsRead("KH")
 print(hampson)
 
 ## https://ggplot2.tidyverse.org/reference/guide_custom.html
-blue_line <- grid::segmentsGrob(x0 = unit(0, "cm"),
-                                x1 = unit(1, "cm"),
+## tweak x0/x1 to line up with title
+blue_line <- grid::segmentsGrob(x0 = unit(0.4, "cm"),
+                                x1 = unit(1.4, "cm"),
                                 y0 = unit(0, "cm"),
                                 y1 = unit(0, "cm"),
                                 ## could be tweaked more ?
