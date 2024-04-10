@@ -178,7 +178,7 @@ Overall, \littler estimates from the logistic model are larger with wider confid
 \begin{figure}[h]
 \includegraphics[page=1,scale = 0.7]{R0combo.Rout.pdf}
 \caption{\textbf{Reproductive number estimates for global historical outbreaks of rabies}}
-Previous estimates of \rzero are shown in blue highlights; \rzero estimates and confidence interval (95\% quantiles from the estimated \rzero sample) from our hybrid approach using exponential (dotted lines) and logistic (solid lines). \rzero values are corrected for vaccination coverage.
+Previous estimates of \rzero are shown in blue highlights; \rzero estimates and confidence interval (95\% quantiles from the estimated \rzero sample) from our hybrid approach using the logistic model. \rzero values are corrected for vaccination coverage.
 \flabel{Rzero}
 \end{figure}
 \end{center}
