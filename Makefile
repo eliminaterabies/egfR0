@@ -185,9 +185,7 @@ intervalPlots.Rout: intervalPlots.R intervals.rda
 slowtarget/check.Rout: check.R dogs.csv
 	$(pipeR)
 
-## This should be deleted soon 2024 Mar 27 (Wed)
-checkcheck.Rout: checkcheck.R check.rda
-	$(pipeR)
+## git rm checkcheck.R
 
 ######################################################################
 
