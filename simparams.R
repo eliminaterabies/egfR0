@@ -1,6 +1,6 @@
 library(shellpipes)
 
 nsamp <- 1000
-nboot <- 100
+nboot <- 200
 
 saveEnvironment()
