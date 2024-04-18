@@ -75,7 +75,7 @@ egf_si <- (bind_rows(rdsReadList())
 	%>% mutate(R0sims = map(rsamp,~simR0_data(.,time=sisamp)))
 	%>% group_by(loc,phase,method)
 	%>% reframe(R0tiles(R0sims))
-	%>% mutate(interval = "Serial Interval")
+	%>% mutate(interval = "Serial")
 )
 
 
