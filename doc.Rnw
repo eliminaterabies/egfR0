@@ -2,6 +2,7 @@
 <<echo=FALSE,warning=FALSE,comment=FALSE>>=
 load("slow/check.rda")
 load("delphi.pars.rda")
+load("slow/egf_R0.rda")
 # load("intervals.rda")
 @
 
@@ -122,8 +123,6 @@ For simplicity, we omitted these four dogs and their generation intervals from o
 \subsection*{Fitting and Propagating Parameter Uncertainties}
 
 <<echo=FALSE, warning=FALSE, comment=FALSE>>=
-
-load("slow/egf_R0.rda")
 
 @
 
