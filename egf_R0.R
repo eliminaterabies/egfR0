@@ -36,15 +36,14 @@ simtimesamp <- function(time,num,bootsample){
 }
 
 si <- (interval_merge
-	%>% filter(Type == "Serial")
+	%>% filter(Type == "Serial Interval")
 	%>% pull(Days)
 )
 
 sisamp <- simtimesamp(si,num=nsamp,bootsample=nboot)
 
-
 gi <- (interval_merge
-	%>% filter(Type == "Generation")
+	%>% filter(Type == "Generation Interval")
 	%>% pull(Days)
 )
 
@@ -76,7 +75,7 @@ egf_si <- (bind_rows(rdsReadList())
 	%>% mutate(R0sims = map(rsamp,~simR0_data(.,time=sisamp)))
 	%>% group_by(loc,phase,method)
 	%>% reframe(R0tiles(R0sims))
-	%>% mutate(interval = "Serial")
+	%>% mutate(interval = "Serial Interval")
 )
 
 

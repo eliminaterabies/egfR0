@@ -28,7 +28,7 @@ bites <- (biters_rep
 
 ## combine biter incubation and number of bites
 biters <- (biters_rep
-	%>% filter(ID>0)
+	%>% filter(!is.na(ID))
 	%>% distinct()
 	%>% left_join(bites)
 	%>% distinct()
@@ -40,8 +40,7 @@ biters_rep_incubation <- rep(biters[["dateinc"]], biters[["count"]])
 
 ## non-biter incubation
 non_biter_incubation <- (intervals
-	%>% filter(ID>0)
-	%>% filter(District == "Serengeti")
+	%>% filter(!is.na(ID))
 	%>% filter(!(ID %in% biters$ID))
 	%>% filter(between(dateInc, minDays, maxDays))
 	%>% select(ID, dateInc)

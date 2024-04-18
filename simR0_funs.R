@@ -53,17 +53,17 @@ sample_clustergen <- function(x,s){
               %>% select(Biter.ID,count)
               %>% distinct()
               %>% ungroup()
-              %>% sample_n(size=s,replace=TRUE,weight=NULL) #weight=count)
+              %>% sample_n3(size=s,replace=TRUE,weight=NULL) #weight=count)
               %>% arrange(Biter.ID)
               %>% group_by(Biter.ID)
               %>% mutate(ind = 1, repid = cumsum(ind))
               %>% select(Biter.ID, count, repid)
-              %>% left_join(.,distinct(x))
+              %>% left_join(.,distinct(x),by=c("Biter.ID","count"))
               %>% ungroup()
 				  %>% mutate(count = 1)
               %>% group_by(Biter.ID, count, repid)
               %>% nest()
-              %>% mutate(samp = map2(data,count,sample_n2))
+              %>% mutate(samp = map2(data,count,sample_n3))
   )
   # return(biterdf)
   return(unlist(biterdf["samp"]))
@@ -74,7 +74,7 @@ sample_clustergenWeights <- function(x,s){
 		%>% select(Biter.ID,count)
 		%>% distinct()
 		%>% ungroup()
-		%>% sample_n(size=s,replace=TRUE,weight=count)
+		%>% sample_n3(size=s,replace=TRUE,weight=count)
 		%>% arrange(Biter.ID)
 		%>% group_by(Biter.ID)
 		%>% mutate(ind = 1, repid = cumsum(ind))
@@ -83,19 +83,16 @@ sample_clustergenWeights <- function(x,s){
 		%>% ungroup()
 		%>% group_by(Biter.ID, count, repid)
 		%>% nest()
-		%>% mutate(samp = map2(data,count,sample_n2))
+		%>% mutate(samp = map2(data,count,sample_n3))
 		)
 # return(biterdf)
 	return(unlist(biterdf["samp"]))
 }
 
-sample_n2<-function (tbl, size, replace = TRUE, weight = NULL, .env = NULL) 
+sample_n3<-function (tbl, size, replace = TRUE, weight = NULL,.env=NULL, ...) 
 {
-  if (!is_null(.env)) {
-    inform("`.env` is deprecated and no longer has any effect")
-  }
   weight <- rlang:::eval_tidy(enquo(weight), tbl)
-  dplyr:::sample_n(tbl, size, FALSE, replace = replace, weight = weight)
+  dplyr:::sample_n(tbl, size, FALSE, replace = replace, weight = weight, .env=.env)
 }
 
 sim_clustertime <- function(time,num,bootsample){
