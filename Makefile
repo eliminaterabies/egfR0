@@ -202,11 +202,6 @@ conflicts.Rout: conflicts.R
 
 ######################################################################
 
-## Why did I put this back here from one of the resting files??
-## Ignore += dogs.csv
-
-######################################################################
-
 ## Old manual window-selection; new name-only list
 Sources += series.tsv varnames.tsv
 
@@ -216,6 +211,8 @@ slowtarget/monthly.Rout: monthly.R datadir/R0rabiesdataMonthly.csv datadir/month
 	$(pipeR)
 
 ######################################################################
+
+## New window selection by algorithm and parameters
 
 autopipeR=defined
 
