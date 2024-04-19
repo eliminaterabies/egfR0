@@ -11,8 +11,9 @@ vim_session:
 ##################################################################
 
 Sources += README.md notes.md TODO.md ##
+Sources += .gitignore
 
-Ignore += .gitignore $(wildcard *.Rproj .Rproj.*)
+Ignore += $(wildcard *.Rproj .Rproj.*)
 
 ######################################################################
 
@@ -46,17 +47,41 @@ Sources += doc.Rnw knitr.tex draft.tex
 Sources += $(wildcard *.bib)
 
 ## This is the main rule
-## draft.pdf.final: draft.tex doc.Rnw
+## draft.pdf.final: rabies.bib draft.tex doc.Rnw
 ## draft.pdf: draft.tex doc.Rnw
 
 ## This rule will try harder to make a pdf, and less hard to make sure all of the dependencies are in order. 
 ## draft.tex.pdf: draft.tex doc.Rnw
+## Other dependencies should be in texknit/doc.tex.mk
 draft.pdf: texknit/doc.makedeps doc.Rnw
+texknit/doc.tex: slow/check.rda delphi.pars.rda
+
+######################################################################
+
+## Horrible diff pipeline, consider updating
+## Need to make the dotdir doc you want manually
+diff.doc.tex: dotdir/texknit/doc.tex texknit/doc.tex
+	$(latexdiff)
+
+Ignore += draft.diff.tex
+draft.diff.tex: draft.tex
+	$(latexdiff) $<
+	
+Ignore += diff.pdf
+diff.pdf: diff.doc.tex draft.diff.tex
+	$(MVF) $< texknit/doc.tex
+	$(MAKE) draft.diff.pdf
+	$(MVF) draft.diff.pdf $@
+	$(RM) texknit/doc.tex
+
+######################################################################
+
+## Old diagnostic stuff, delete 2024 Apr 09 (Tue)
+Sources += fake.tex fakedoc.Rnw
+## fake.pdf: fake.tex fakedoc.Rnw
 
 ## supp.tex.pdf: supp.tex
 ## supp.pdf: supp.tex
-
-texknit/doc.tex: check.rda
 
 Ignore += *.loc
 
@@ -104,13 +129,12 @@ Sources += $(wildcard *.R)
 ## Make a table of events, and count how many times each animal was bitten
 ## makes table bitten
 
+## Conversion functions were used in the past by bitten, but may be unused now 2024 Mar 12 (Tue)
 convert.Rout: convert.R
 	$(pipeR)
 
-bitten.Rout: bitten.R dogs.csv convert.rda
+bitten.Rout: bitten.R dogs.csv
 	$(pipeR)
-
-## check.Rout: check.R
 
 ## Link events to parallel events for the upstream biter
 ## Produces table links
@@ -158,8 +182,10 @@ intervalPlots.Rout: intervalPlots.R intervals.rda
 ######################################################################
 
 ## Check Code for KH and reference code
-check.Rout: check.R dogs.csv
+slowtarget/check.Rout: check.R dogs.csv
 	$(pipeR)
+
+## git rm checkcheck.R
 
 ######################################################################
 
@@ -179,10 +205,12 @@ Sources += series.tsv varnames.tsv
 
 ## Read two data sets into a long frame
 ## Trim out Excel padding; add time offsets
-monthly.Rout: monthly.R datadir/R0rabiesdataMonthly.csv datadir/monthlyTSdogs.csv varnames.tsv
+slowtarget/monthly.Rout: monthly.R datadir/R0rabiesdataMonthly.csv datadir/monthlyTSdogs.csv varnames.tsv
 	$(pipeR)
 
 ######################################################################
+
+## New window selection by algorithm and parameters
 
 autopipeR=defined
 
@@ -203,7 +231,7 @@ pipeRimplicit += monthly_phase
 
 ## Split time series into phases
 ## softClimb.monthly_phase.Rout: monthly_phase.R
-%.monthly_phase.Rout: monthly_phase.R monthly.rds %.pars.rda 
+%.monthly_phase.Rout: monthly_phase.R slow/monthly.rds %.pars.rda 
 	$(pipeR)
 
 ## Identify windows inside the phases
@@ -271,6 +299,7 @@ pipeRimplicit += egf_single
 
 pipeRimplicit += egf_plot
 ## exp.egf_plot.Rout: egf_plot.R
+## logistic.egf_plot.Rout: egf_plot.R
 %.egf_plot.Rout: egf_plot.R %.egf_single.rds
 	$(pipeR)
 
@@ -281,14 +310,17 @@ pipeRimplicit += egf_rplot
 %.rplot.Rout: rplot.R %.egf_single.rds
 	$(pipeR)
 
-rplot_combo.Rout: rplot_combo.R exp.egf_single.rds logistic.egf_single.rds
+rplot_combo.Rout: rplot_combo.R exp.egf_single.rds logistic.egf_single.rds series.tsv
 	$(pipeR)
 
 pipeRimplicit += egf_sample
 
+simparams.Rout: simparams.R
+	$(pipeR)
+
 ## exp.egf_sample.Rout: egf_sample.R
 ## logistic.egf_sample.Rout:
-%.egf_sample.Rout: egf_sample.R %.egf_single.rds
+%.egf_sample.Rout: egf_sample.R %.egf_single.rds simparams.rda
 	$(pipeR)
 
 simR0_funs.Rout: simR0_funs.R
@@ -296,14 +328,14 @@ R0est_funs.Rout: R0est_funs.R
 
 Sources += $(wildcard slow/*.rda slow/*.rds)
 
-## slow/egf_R0.Rout: egf_R0.R R0est_funs.R
-slowtarget/egf_R0.Rout: egf_R0.R exp.egf_sample.rds logistic.egf_sample.rds simR0_funs.rda R0est_funs.rda intervals.rda once.rds
+## slow/egf_R0.Rout: egf_R0.R R0est_funs.R simparams.R
+slowtarget/egf_R0.Rout: egf_R0.R exp.egf_sample.rds logistic.egf_sample.rds simR0_funs.rda R0est_funs.rda intervals.rda once.rds simparams.rda
 	$(pipeR)
 
 R0plot.Rout: R0plot.R slow/egf_R0.rda series.tsv
 	$(pipeR)
 
-KH_R0.Rout: KH_R0.R varnames.tsv slow/egf_R0.rda
+KH_R0.Rout: KH_R0.R series.tsv slow/egf_R0.rda
 	$(pipeR)
 
 R0combo.Rout: R0combo.R KH_R0.rds R0plot.rds
@@ -354,7 +386,7 @@ Sources += Makefile
 Ignore += makestuff
 msrepo = https://github.com/dushoff
 
-Makefile: makestuff/04.stamp
+Makefile: makestuff/05.stamp
 makestuff/%.stamp:
 	- $(RM) makestuff/*.stamp
 	(cd makestuff && $(MAKE) pull) || git clone --depth 1 $(msrepo)/makestuff

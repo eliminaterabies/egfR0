@@ -40,9 +40,10 @@ sim_timeprob <- function(x, n, bootsample){
 }
 
 ## simulate R0 via bootstrapping r and emperical intervals
-simR0_data <- function(rsims,time,n,bootsample){
+simR0_data <- function(rsims,time){
   rsimsdays <- rsims/30
-  timemat <- sim_timeprob(time,n,bootsample)
+  timemat <- time
+  n <- length(rsimsdays)
   R0sims <- sapply(1:n,function(x){R0est_data(rsimsdays[x],timemat[,x])})
   return(R0sims)
 }
@@ -57,8 +58,9 @@ sample_clustergen <- function(x,s){
               %>% group_by(Biter.ID)
               %>% mutate(ind = 1, repid = cumsum(ind))
               %>% select(Biter.ID, count, repid)
-              %>% left_join(.,x)
+              %>% left_join(.,distinct(x))
               %>% ungroup()
+				  %>% mutate(count = 1)
               %>% group_by(Biter.ID, count, repid)
               %>% nest()
               %>% mutate(samp = map2(data,count,sample_n2))
@@ -104,11 +106,14 @@ sim_clustertimeWeights <- function(time,num,bootsample){
   return(replicate(num, sample_clustergenWeights(time, bootsample)))
 }
 
-clustersimR0_data <- function(rsims,time,n,bootsample){
+## do time sampling outside of the function. This is simply to calculate R0
+
+clustersimR0_data <- function(rsims,time){
 #  rsims <- sim_growthrate(growth_obj,n)
   rsimsdays <- rsims/30
-  timemat <- sim_clustertime(time,n,bootsample)
-  R0sims <- sapply(1:n,function(x){R0est_data(rsimsdays[x],timemat[[x]])})
+  n <- length(rsimsdays)
+  timemat <- time
+  R0sims <- sapply(1:n,function(x){R0est_data(rsimsdays[x],timemat[,x])})
   return(R0sims)
 }
 
