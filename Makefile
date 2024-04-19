@@ -188,19 +188,6 @@ intervalPlots.Rout: intervalPlots.R slow/intervals.rda
 slowtarget/check.Rout: check.R dogs.csv
 	$(pipeR)
 
-## git rm checkcheck.R
-
-######################################################################
-
-## Temporary section for managing conflicts
-## Goal is to
-#### suppress the non-warning text and to
-#### eliminate the warnings, but in a principled way
-###### i.e., we don't want to miss any warnings that are coming
-
-conflicts.Rout: conflicts.R
-	$(pipeR)
-
 ######################################################################
 
 ## Old manual window-selection; new name-only list
@@ -254,20 +241,9 @@ pipeRimplicit += mm_plot
 %.mm_plot.Rout: mm_plot.R %.mm_windows.rda %.pars.rda
 	$(pipeR)
 
-## This code is terrible; pull ugly stuff out of mm_plot and make it nice 2024 Jan 24 (Wed)
-## This is apparently the last, pre-Delphi comparison plot.
+## The last pre-Delphi comparison plot.
 compare.Rout: compare.R softClimb.mm_plot.rds lowPeaks.mm_plot.rds base.mm_plot.rds softDecline.mm_plot.rds
 	$(pipeR)
-
-## This is apparently a dead end and I want to kill it 2024 Feb 21 (Wed)
-comp.Rout: comp.R softClimb.mm_windows.rda lowPeaks.mm_windows.rda
-	$(pipeR)
-
-Sources += mm_plot.md
-
-######################################################################
-
-## Explore different windowing parameter choices
 
 ######################################################################
 

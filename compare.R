@@ -1,5 +1,6 @@
-library(tidyverse);theme_set(theme_bw())
 library(shellpipes); startGraphics(width=10)
+manageConflicts()
+library(tidyverse);theme_set(theme_bw()) 
 
 loadEnvironments()
 
