@@ -12,6 +12,9 @@ library(shellpipes)
 startGraphics()
 loadEnvironments()
 
+summary(bites)
+summary(interval_merge)
+
 minDays <- 0
 maxDays <- 100
 
@@ -20,21 +23,7 @@ hampson_intervals <- data.frame(Hampson_mean = c(22.3,24.9)
 )
 
 interval_merge <- left_join(interval_merge,hampson_intervals)
-
-gg_interval <- (ggplot(interval_df, aes(x=Days, fill=Type , color="black"))
-	+ geom_histogram()
-	+ geom_density(aes(y=..count..*5),alpha=0)
-	+ facet_wrap(~Type,nrow=2)
-	+ scale_fill_manual(values=c("red","blue"))
-	+ scale_color_manual(values="black")
-	+ geom_vline(aes(xintercept = Mean),size=2, color="black")
-	+ theme(legend.position="none")
-	+ xlim(c(minDays,maxDays))
-	+ ylab("Counts")
-)
-
 print(interval_merge %>% group_by(Type) %>% summarise(count = n()))
-
 
 gg <- (ggplot(interval_merge, aes(Days,fill=Type,color="black"))
 	+ geom_histogram()

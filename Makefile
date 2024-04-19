@@ -370,7 +370,6 @@ Ignore += *.mg.pdf
 %.pdf: %.dot
 	dot -Tpdf -o $@ $<
 
-
 ######################################################################
 
 ## for stuff that may need to be rebuilt

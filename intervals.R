@@ -22,7 +22,6 @@ tidyInts <- (rdsRead()
 	%>% filter(between(Days, minDays, maxDays)) ## experimenting removing outliers
 )
 
-
 print(dim(tidyInts))
 ## taking out wait time
 #wait_times <- tidyInts %>% filter(Type == "wait_time")
@@ -38,8 +37,6 @@ interval_df <- (tidyInts
 		)
 )
 
-
-
 interval_merge <- (interval_df
 	%>% bind_rows(.,incubations)
 	%>% ungroup()
@@ -50,13 +47,14 @@ interval_merge <- (interval_df
 			, "Weighted Incubation Period"
 			, "Incubation Period: Non-Biter"
 			, "Incubation Period: Biter"
-			)
 		)
-		)
+	))
 )
+
+bites <- (bites |> transmute(count=count))
 
 print(interval_merge %>% select(-Days) %>% distinct())
 
 print(interval_merge %>% group_by(Type) %>% summarise(count = n()))
 
-saveVars(interval_merge, interval_df, bites)
+saveVars(interval_merge, bites)

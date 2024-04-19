@@ -61,6 +61,5 @@ print(checks <- links
 	, n=100
 )
 
-
 saveVars(links, weird_links)
 
