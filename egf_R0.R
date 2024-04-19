@@ -35,7 +35,7 @@ simtimesamp <- function(time,num,bootsample){
   return(future_replicate(num, sample(time, size=bootsample, replace=TRUE))) 
 }
 
-si <- (interval_df
+si <- (interval_merge
 	%>% filter(Type == "Serial")
 	%>% pull(Days)
 )
@@ -43,7 +43,7 @@ si <- (interval_df
 sisamp <- simtimesamp(si,num=nsamp,bootsample=nboot)
 
 
-gi <- (interval_df
+gi <- (interval_merge
 	%>% filter(Type == "Generation")
 	%>% pull(Days)
 )
