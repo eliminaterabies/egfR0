@@ -329,7 +329,7 @@ R0est_funs.Rout: R0est_funs.R
 Sources += $(wildcard slow/*.rda slow/*.rds)
 
 ## slow/egf_R0.Rout: egf_R0.R R0est_funs.R simparams.R
-slowtarget/egf_R0.Rout: egf_R0.R exp.egf_sample.rds logistic.egf_sample.rds simR0_funs.rda R0est_funs.rda intervals.rda once.rds simparams.rda
+slowtarget/egf_R0.Rout: egf_R0.R exp.egf_sample.rds logistic.egf_sample.rds simR0_funs.rda R0est_funs.rda slow/intervals.rda once.rds simparams.rda
 	$(pipeR)
 
 R0plot.Rout: R0plot.R slow/egf_R0.rda series.tsv
