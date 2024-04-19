@@ -174,11 +174,6 @@ conflicts.Rout: conflicts.R
 
 ######################################################################
 
-## Why did I put this back here from one of the resting files??
-## Ignore += dogs.csv
-
-######################################################################
-
 ## Old manual window-selection; new name-only list
 Sources += series.tsv varnames.tsv
 
@@ -320,6 +315,29 @@ mexico.Rout: mexico.R slow/egf_R0.rda KH_R0.rds
 ## Epigrowthfit version
 version.Rout: version.R
 	$(pipeR)
+
+######################################################################
+
+## Graphing
+
+draft.pdf.mg.pdf: 
+
+Ignore += *.ndlog
+%.ndlog: Makefile
+	make -nd $* > $@
+
+Ignore += *.cleanlog
+%.cleanlog: %.ndlog
+	cat $< | grep -v makestuff | grep -v texknit > $@
+
+Ignore += *.mg.dot
+%.mg.dot: %.cleanlog
+	make2graph $< > $@
+
+Ignore += *.mg.dot
+%.pdf: %.dot
+	dot -Tpdf -o $@ $<
+
 
 ######################################################################
 
