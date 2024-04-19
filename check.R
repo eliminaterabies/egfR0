@@ -22,7 +22,6 @@ SuspectDogs <- (dogs
 	%>% select(ID, Suspect, Biter.ID, Symptoms.started, Date.bitten, bestInc)
 )
 
-
 dogsSuspectedNum <- (nrow(SuspectDogs
 	%>% select(ID)
 	%>% distinct() ## removing repeating ID (i.e, dogs with bitten more than once)
@@ -42,7 +41,6 @@ print(nrow(dogsUnknownBiter))
 print(dogsSuspectedNum - nrow(dogsUnknownBiter))
 ## cases that can be linked (i.e., this is the number of dogs that have a "known" biter)
 
-
 ## make sure we are getting the "correct" linkage
 ## We want biter and bitee to be bitten once
 
@@ -59,7 +57,7 @@ bitten <- (dogs
 )
 
 ## Note, probably not even bitten by dogs..
-timesBitten <- (bitten
+biteCount <- (bitten
    %>% filter(Suspect %in% c("Yes", "To Do", "Unknown"))
    %>% ungroup()
    %>% group_by(ID)
@@ -67,21 +65,21 @@ timesBitten <- (bitten
 )
 
 ## Number of multiple exposures
-print(timesBitten %>% filter(timesBitten>1), n=50)
+print(biteCount %>% filter(timesBitten>1), n=50)
 
-bitten <- (full_join(bitten, timesBitten)
+## FIXME: What is the filter for?
+bitten <- (full_join(bitten, biteCount)
    %>% filter(Suspect %in% c("Yes", "To Do", "Unknown"))
 )
 
 ## biter facts
-
+## We should simplify multiply counted dogs above this
 biters <- (bitten 
         %>% select(-Biter.ID)
 )
 
 print(dim(biters))
 print(dim(biters %>% filter(Suspect == "Yes")))
-
 
 biterCount <- (bitten
        %>% filter(Suspect %in% c("Yes", "To Do", "Unknown"))
@@ -96,7 +94,6 @@ print(biterCount)
 biterCount <- biterCount %>% filter(secondaryInf>0)
 print(sum(biterCount$secondaryInf))
 print(mean_biting_freq <- mean(biterCount$secondaryInf))
-
 
 ## Linking biters info to bitten dataset
 
@@ -131,8 +128,8 @@ intervals <- (intervals
 	%>% filter(!(ID %in% problematic_mexposures[["ID"]]))
 )
 
-
 ## only filtering dogs that are bitten once
+## Why are we filtering out dogs based on multiple 
 intervals <- (intervals
    %>% ungroup()
    %>% filter(
@@ -149,9 +146,7 @@ intervals <- (intervals
    %>% filter(!(ID %in% c(161, 628, 7966, 7967))) ## temp removing problematic    multiple exposures
 )
 
-
 ## Incubation periods
-
 
 maxDays <- 1000
 minDays <- 0
@@ -171,7 +166,6 @@ bites <- (biters_rep
 	%>% summarise(count = n())
 )
 
-
 ## combine biter incubation and number of bites
 biters <- (biters_rep
 	%>% filter(ID>0)
@@ -182,7 +176,6 @@ biters <- (biters_rep
 
 ## manually repeating multiple bites
 biters_rep_incubation <- rep(biters[["dateinc"]], biters[["count"]])
-
 
 ## non-biter incubation
 non_biter_incubation <- (intervals
@@ -205,7 +198,6 @@ biters_incubation <- (biters
 	%>% transmute(Type = "Biter"
 		, Days = dateinc)
 )
-
 
 print(summary(biters_incubation))
 
@@ -234,7 +226,6 @@ print(incubations)
 
 ## Calculating serial and generation interval moments 
 
-
 tidyInts <- (intervals
 	%>% select(dateSerial
 		, dateGen
@@ -243,11 +234,9 @@ tidyInts <- (intervals
 	%>% filter(between(Days, minDays, maxDays)) ## experimenting removing outliers
 )
 
-
 print(dim(tidyInts))
 ## taking out wait time
 #wait_times <- tidyInts %>% filter(Type == "wait_time")
-
 
 interval_df <- (tidyInts
 	%>% transmute(Type = ifelse(grepl("Serial",Type),"Serial","Generation")
@@ -257,8 +246,6 @@ interval_df <- (tidyInts
 	%>% mutate(Mean = mean(Days, na.rm=TRUE)
 		)
 )
-
-
 
 interval_merge <- (interval_df
 	%>% bind_rows(.,incubations)
