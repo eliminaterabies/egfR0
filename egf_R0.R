@@ -13,7 +13,7 @@ print(no_cores)
 minDays <- 0
 maxDays <- 100
 
-print(interval_df)
+print(interval_merge)
 
 ## from once.rda
 

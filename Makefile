@@ -49,6 +49,9 @@ Sources += $(wildcard *.bib)
 ## This is the main rule
 ## draft.pdf.final: rabies.bib draft.tex doc.Rnw
 ## draft.pdf: draft.tex doc.Rnw
+draft.pdf.final.pdf:
+	$(MAKE) draft.pdf.final
+	$(LN) draft.pdf $@
 
 ## This rule will try harder to make a pdf, and less hard to make sure all of the dependencies are in order. 
 ## draft.tex.pdf: draft.tex doc.Rnw
