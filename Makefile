@@ -173,10 +173,10 @@ Sources += $(wildcard *.Rscript)
 ## intervals.Rscript: intervals.pipeR.script
 
 ## intervals.pipeR.script:
-intervals.Rout: intervals.R incubation.rda once.rds 
+slowtarget/intervals.Rout: intervals.R incubation.rda once.rds 
 	$(pipeR)
 
-intervalPlots.Rout: intervalPlots.R intervals.rda 
+intervalPlots.Rout: intervalPlots.R slow/intervals.rda 
 	$(pipeR)
 
 ######################################################################
