@@ -1,14 +1,11 @@
 library(shellpipes)
 
 library(tidyverse)
-## manageConflicts()
+manageConflicts()
 
 ## Consider checking column types if there is a big upstream change
-animal <- csvRead(comment="#", show_col_types=FALSE)
-
-## We should probably drop this problem column upstream from here
-## problems()
-## animal[65]
+## There is a known problem in column 65, we're not using it.
+animal <- csvRead(comment="#", show_col_types=FALSE, col_select = -65)
 
 ## number of cases (Serengeti dog cases)
 print(dim(animal))
