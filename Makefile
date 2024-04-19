@@ -366,7 +366,7 @@ Ignore += *.mg.dot
 %.mg.dot: %.cleanlog
 	make2graph $< > $@
 
-Ignore += *.mg.dot
+Ignore += *.mg.pdf
 %.pdf: %.dot
 	dot -Tpdf -o $@ $<
 
