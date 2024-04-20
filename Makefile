@@ -349,8 +349,11 @@ Ignore += *.mg.pdf
 %.pdf: %.dot
 	dot -Tpdf -o $@ $<
 
-%.dd.cleanlog: %.dd.testsetup %.dd/%.cleanlog
-	$(CP) $(word 2, $^) $@
+	$(copy)
+
+%.dd.cleanlog: %.dd.testsetup $(wildcard %.dd/*.*)
+	cd $*.dd && $(MAKE) $*.cleanlog
+	$(CP) $*.dd/$*.cleanlog $@
 
 ######################################################################
 
