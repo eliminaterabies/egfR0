@@ -351,7 +351,8 @@ Ignore += *.mg.pdf
 %.pdf: %.dot
 	dot -Tpdf -o $@ $<
 
-%.dd.cleanlog: %.dd.testsetup $(wildcard %.dd/*.*) %.dd/doc.Rnw
+## Does not chain through wildcard; also, the graph has unexplained orphanism
+%.dd.cleanlog: %.dd.testsetup $(wildcard %.dd/*.*)
 	cd $*.dd && $(MAKE) $*.cleanlog
 	$(CP) $*.dd/$*.cleanlog $@
 
