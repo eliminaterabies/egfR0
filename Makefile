@@ -331,7 +331,7 @@ version.Rout: version.R
 
 ## Graphing
 
-draft.pdf.mg.pdf: 
+draft.pdf.dd.mg.pdf: 
 
 Ignore += *.ndlog
 %.ndlog: Makefile
@@ -348,6 +348,11 @@ Ignore += *.mg.dot
 Ignore += *.mg.pdf
 %.pdf: %.dot
 	dot -Tpdf -o $@ $<
+
+%.dd.cleanlog:
+	$(MAKE) $*.dd.testsetup
+	cd $*.dd && $(MAKE) $*.cleanlog
+	$(CP) $*.dd/$*.cleanlog $@
 
 ######################################################################
 
