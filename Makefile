@@ -351,7 +351,7 @@ Ignore += *.mg.pdf
 %.pdf: %.dot
 	dot -Tpdf -o $@ $<
 
-%.dd.cleanlog: %.dd.testsetup $(wildcard %.dd/*.*) Makefile
+%.dd.cleanlog: %.dd.testsetup $(wildcard %.dd/*.*) %.dd.mg.pdf
 	cd $*.dd && $(MAKE) $*.cleanlog
 	$(CP) $*.dd/$*.cleanlog $@
 
