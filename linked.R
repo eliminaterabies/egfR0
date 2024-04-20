@@ -36,12 +36,6 @@ links <- (bitten
 	%>% left_join(.,biterCount, by="ID")
 )
 
-print(weird_links <- links 
-	%>% select(Suspect.biter, Biter.ID, ID, Suspect, everything(.))
-	%>% filter(Suspect.biter %in% c("No", "Impossible"))
-	%>% mutate(R0_note = "weird links")
-)
-
 print(links %>% filter(timesBitten > 1))
 
 print(nrow(links))
@@ -50,12 +44,5 @@ print(nrow(links))
 print(nrow(links) - nrow(biterCount))
 summary(biterCount)
 
-print(links 
-	%>% select(Biter.ID, Suspect.biter, ID, Suspect)
-	%>% filter(Suspect.biter %in% c("No","Impossible"))
-	%>% filter(Suspect == "Yes")
-	, n=100
-)
-
-saveVars(links, weird_links)
+saveVars(links)
 

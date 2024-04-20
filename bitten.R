@@ -36,7 +36,7 @@ bitten <- (animal
 	|> mutate(
 		Suspect = factor(Suspect)
 		, ID = factor(ifelse(ID==0, NA, ID))
-		, Biter.ID = factor(ifelse(ID==0, NA, ID))
+		, Biter.ID = factor(ifelse(Biter.ID==0, NA, Biter.ID))
 	)
 )
 
