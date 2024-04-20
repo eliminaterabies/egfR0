@@ -332,7 +332,7 @@ version.Rout: version.R
 ## Graphing
 
 draft.pdf.dd.cleanlog: 
-draft.pdf.dd.mg.pdf: 
+draft.pdf.dd.mg.dot: 
 draft.pdf.dd.mg.pdf: 
 
 Ignore += *.ndlog
