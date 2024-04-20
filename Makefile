@@ -341,7 +341,7 @@ Ignore += *.ndlog
 
 Ignore += *.cleanlog
 %.cleanlog: %.ndlog
-	cat $< | grep -v makestuff | grep -v texknit > $@
+	cat $< | grep -v makestuff | grep -v "mk$" > $@
 
 Ignore += *.mg.dot
 %.mg.dot: %.cleanlog
