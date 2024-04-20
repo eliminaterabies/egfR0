@@ -329,7 +329,7 @@ version.Rout: version.R
 
 ######################################################################
 
-## Graphing
+## Graphing (weird stuff, and acting weird for now)
 
 draft.pdf.dd.cleanlog: 
 draft.pdf.dd.mg.dot: 
@@ -351,7 +351,7 @@ Ignore += *.mg.pdf
 %.pdf: %.dot
 	dot -Tpdf -o $@ $<
 
-%.dd.cleanlog: %.dd.testsetup $(wildcard %.dd/*.*)
+%.dd.cleanlog: %.dd.testsetup $(wildcard %.dd/*.*) Makefile
 	cd $*.dd && $(MAKE) $*.cleanlog
 	$(CP) $*.dd/$*.cleanlog $@
 
