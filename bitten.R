@@ -1,7 +1,7 @@
 library(shellpipes)
+manageConflicts()
 
 library(tidyverse)
-manageConflicts()
 
 ## Consider checking column types if there is a big upstream change
 ## There is a known problem in column 65, we're not using it.
@@ -10,6 +10,7 @@ animal <- csvRead(comment="#", show_col_types=FALSE, col_select = -65)
 ## number of cases (Serengeti dog cases)
 print(dim(animal))
 
+## Check out Suspect column
 print(summary(factor(animal[["Suspect"]])))
 
 ## number of cases with unknown biter
@@ -19,33 +20,38 @@ print(dim(animal %>% filter(Biter.ID == 0)))
 print(dim(animal %>% filter(Biter.ID != 0) %>% select(Biter.ID) %>% distinct()))
 
 ## Number of suspected cases 
-print(dim(animal %>% filter(Suspect %in% c("Yes","To Do", "Unknown")))
-)
+print(dim(
+	animal %>% filter(Suspect %in% c("Yes","To Do", "Unknown"))
+))
+
+## All animals should be Serengeti hear for now
+table(animal$District)
 
 bitten <- (animal
-	%>% select(ID, Biter.ID, Suspect
+	%>% select(ID, Biter.ID , Suspect
 		, Symptoms.started, Symptoms.started.accuracy
 		, Date.bitten, Date.bitten.uncertainty
-		, Incubation.period, Incubation.period.units
-		, Infectious.period, Infectious.period.units 
-		, Outcome, Action, everything()
+		, Outcome, Action
 	)
-	## Process units (function from Mike)
-	## Keep the unit in days as a measure of uncertainty
+	|> mutate(
+		Suspect = factor(Suspect)
+		, ID = factor(ifelse(ID==0, NA, ID))
+		, Biter.ID = factor(ifelse(ID==0, NA, ID))
+	)
 )
 
-## Note, probably not even bitten by dogs..
-timesBitten <- (bitten
-	%>% filter(Suspect %in% c("Yes", "To Do", "Unknown"))
-	%>% ungroup()
-	%>% group_by(ID)
-	%>% summarize(timesBitten=n())
+## Total bites recorded (not necessarily all from dogs)
+biteCount <- (bitten
+   ## %>% filter(Suspect %in% c("Yes", "To Do", "Unknown"))
+	## Purpose unknown 2024 Apr 20 (Sat)
+	## We should need bitees to be rabid
+   %>% group_by(ID)
+   %>% summarize(timesBitten=n())
+   %>% ungroup()
 )
 
 ## Number of multiple exposures
-print(timesBitten %>% filter(timesBitten>1), n=50)
+print(biteCount %>% filter(timesBitten>1), n=50)
 
-bitten <- (full_join(bitten, timesBitten)
-)
-
+bitten <- full_join(bitten, biteCount)
 rdsSave(bitten)

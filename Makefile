@@ -334,6 +334,7 @@ version.Rout: version.R
 draft.pdf.dd.cleanlog: 
 draft.pdf.dd.mg.dot: 
 draft.pdf.dd.mg.pdf: 
+draft.pdf.mg.pdf: 
 
 Ignore += *.ndlog
 %.ndlog: Makefile
@@ -341,7 +342,7 @@ Ignore += *.ndlog
 
 Ignore += *.cleanlog
 %.cleanlog: %.ndlog
-	cat $< | grep -v makestuff | grep -v "mk$" > $@
+	cat $< | grep -v makestuff | grep -v "\.mk" | grep -v slowtarget | grep -v makedeps | grep -v subdeps > $@
 
 Ignore += *.mg.dot
 %.mg.dot: %.cleanlog

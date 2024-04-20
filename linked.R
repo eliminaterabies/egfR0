@@ -6,18 +6,16 @@ library(shellpipes)
 ## bitten 
 
 bitten <- rdsRead()
+summary(bitten)
 
 biters <- (bitten 
 	%>% select(-Biter.ID)
+	%>% filter(Suspect %in% c("Yes","To Do", "Unknown"))
 )
-
 print(dim(biters))
-print(dim(biters %>% filter(Suspect == "Yes")))
-
 
 biterCount <- (bitten
-#	%>% filter(Suspect %in% c("Yes", "To Do", "Unknown"))
-	%>% filter(!is.na(Biter.ID) & (Biter.ID > 0))
+	%>% filter(!is.na(Biter.ID))
 	%>% group_by(Biter.ID)
 	%>% summarize(secondaryInf=n())
 	%>% arrange(desc(secondaryInf))
@@ -30,14 +28,13 @@ print(biterCount)
 print(nrow(biterCount))
 
 links <- (bitten
-	%>% filter(Suspect %in% c("Yes","To Do", "Unknown"))
 	%>% left_join(., biters
-	, by=c("Biter.ID"="ID", "District"="District")
-	, suffix=c("", ".biter")
+		, by=c("Biter.ID"="ID")
+		, suffix=c("", ".biter")
+		, relationship = "many-to-many"
 	)
-	%>% left_join(.,biterCount)
+	%>% left_join(.,biterCount, by="ID")
 )
-
 
 print(weird_links <- links 
 	%>% select(Suspect.biter, Biter.ID, ID, Suspect, everything(.))
@@ -51,11 +48,10 @@ print(nrow(links))
 
 ## Not sure why we need this calculation
 print(nrow(links) - nrow(biterCount))
+summary(biterCount)
 
-
-print(checks <- links 
+print(links 
 	%>% select(Biter.ID, Suspect.biter, ID, Suspect)
-	%>% filter(Biter.ID > 0)	
 	%>% filter(Suspect.biter %in% c("No","Impossible"))
 	%>% filter(Suspect == "Yes")
 	, n=100

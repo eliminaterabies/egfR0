@@ -1,8 +1,7 @@
-
 library(dplyr)
 library(shellpipes)
 
-commandEnvironments()
+loadEnvironments()
 
 print(intervals)
 
@@ -24,7 +23,6 @@ intervals <- (intervals
 	%>% filter(Suspect.biter %in% c("Yes","To Do", "Unknown"))
 	%>% filter(!(ID %in% c(161, 628, 7966, 7967))) ## temp removing problematic multiple exposures
 )
-
 
 print(summary(intervals %>% select(dateGen)))
 print(table(intervals %>% select(dateGen) %>% filter(!is.na(dateGen))))
