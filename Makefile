@@ -332,8 +332,9 @@ version.Rout: version.R
 
 ######################################################################
 
-allslow: $(wildcard slow/*)
-slowfinal: $(allslow:slow/%=slowtarget/%.final) ;
+allslow = $(wildcard slow/*)
+slowfinal = $(allslow:slow/%=slowtarget/%.final) ;
+slowfinal: $(slowfinal)
 
 ## Graphing (weird stuff, and acting weird for now)
 
