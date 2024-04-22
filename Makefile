@@ -143,7 +143,7 @@ bitten.Rout: bitten.R dogs.csv
 
 ## Link events to parallel events for the upstream biter
 ## Produces table links
-linked.Rout: linked.R bitten.rds
+linked.Rout: linked.R bitten.rda
 	$(pipeR)
 
 ## Calculate various intervals

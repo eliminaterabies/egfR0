@@ -3,10 +3,9 @@
 library(dplyr)
 library(shellpipes)
 
-## bitten 
+loadEnvironments()
 
-bitten <- rdsRead()
-summary(bitten)
+## bitten 
 
 biters <- (bitten 
 	%>% select(-Biter.ID)
