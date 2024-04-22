@@ -50,7 +50,7 @@ Sources += $(wildcard *.bib)
 ## draft.pdf.final: rabies.bib draft.tex doc.Rnw
 ## draft.pdf: draft.tex doc.Rnw
 Ignore += draft.pdf.final.pdf
-draft.pdf.final.pdf:
+draft.pdf.final.pdf: $(Sources)
 	$(RM) $@
 	$(MAKE) draft.pdf.final
 	$(LN) draft.pdf $@
