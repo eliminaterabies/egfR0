@@ -338,12 +338,8 @@ slowfinal: $(slowfinal)
 
 ## Graphing (weird stuff, and acting weird for now)
 
-draft.pdf.dd.cleanlog: 
-draft.pdf.dd.mg.dot: 
-draft.pdf.dd.mg.pdf: 
-draft.pdf.mg.pdf: 
-slowfinal.mg.pdf:
-slowfinal.dd.mg.pdf:
+## draft.pdf.fast.mg.pdf: 
+## slowfinal.mg.pdf:
 
 Ignore += *.ndlog
 %.ndlog: Makefile
@@ -351,7 +347,10 @@ Ignore += *.ndlog
 
 Ignore += *.cleanlog
 %.cleanlog: %.ndlog
-	cat $< | grep -v makestuff | grep -v "\.mk" | grep -v slowtarget | grep -v makedeps | grep -v subdeps > $@
+	cat $< | grep -v makestuff | grep -v "\.mk" | grep -v makedeps | grep -v subdeps > $@
+
+%.fast.cleanlog: %.cleanlog
+	cat $< | grep -v slowtarget > $@
 
 Ignore += *.mg.dot
 %.mg.dot: %.cleanlog
@@ -381,7 +380,7 @@ Sources += Makefile
 Ignore += makestuff
 msrepo = https://github.com/dushoff
 
-Makefile: makestuff/05.stamp
+Makefile: makestuff/06.stamp
 makestuff/%.stamp:
 	- $(RM) makestuff/*.stamp
 	(cd makestuff && $(MAKE) pull) || git clone --depth 1 $(msrepo)/makestuff
