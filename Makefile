@@ -332,12 +332,16 @@ version.Rout: version.R
 
 ######################################################################
 
+allslow: $(wildcard slow/*)
+slowfinal: $(allslow:%=%.final)
+
 ## Graphing (weird stuff, and acting weird for now)
 
 draft.pdf.dd.cleanlog: 
 draft.pdf.dd.mg.dot: 
 draft.pdf.dd.mg.pdf: 
 draft.pdf.mg.pdf: 
+slowfinal.dd.mg.pdf: 
 
 Ignore += *.ndlog
 %.ndlog: Makefile
