@@ -345,6 +345,7 @@ draft.pdf.mg.pdf:
 slowfinal.mg.pdf:
 slowfinal.dd.mg.pdf:
 
+
 Ignore += *.ndlog
 %.ndlog: Makefile
 	make -nd $* > $@
