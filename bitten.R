@@ -10,6 +10,10 @@ animal <- csvRead(comment="#", show_col_types=FALSE, col_select = -65)
 ## number of cases (Serengeti dog cases)
 print(dim(animal))
 
+## Number of transmission events
+
+dogsTransmissionNum <- nrow(animal)
+
 ## Check out Suspect column
 print(summary(factor(animal[["Suspect"]])))
 
@@ -20,9 +24,20 @@ print(dim(animal %>% filter(Biter.ID == 0)))
 print(dim(animal %>% filter(Biter.ID != 0) %>% select(Biter.ID) %>% distinct()))
 
 ## Number of suspected cases 
-print(dim(
-	animal %>% filter(Suspect %in% c("Yes","To Do", "Unknown"))
-))
+print(SuspectDogs <- (animal 
+	%>% filter(Suspect %in% c("Yes","To Do", "Unknown"))
+	)
+)
+
+dogsSuspectedNum <- nrow(SuspectDogs %>% select(ID) %>% distinct())
+
+## Dogs with unknown biters
+
+dogsUnknownBiter <- (SuspectDogs
+	%>% filter(Biter.ID == 0)
+)
+
+unknownBiters <- nrow(dogsUnknownBiter)
 
 ## All animals should be Serengeti hear for now
 table(animal$District)
@@ -54,4 +69,5 @@ biteCount <- (bitten
 print(biteCount %>% filter(timesBitten>1), n=50)
 
 bitten <- full_join(bitten, biteCount)
+saveVars(dogsTransmissionNum, dogsSuspectedNum, unknownBiters)
 rdsSave(bitten)

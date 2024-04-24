@@ -59,7 +59,7 @@ draft.pdf.final.pdf: $(Sources)
 ## draft.tex.pdf: draft.tex doc.Rnw
 ## Other dependencies should be in texknit/doc.tex.mk
 draft.pdf: texknit/doc.makedeps doc.Rnw
-texknit/doc.tex: slow/check.rda delphi.pars.rda
+texknit/doc.tex: delphi.pars.rda slow/msvals.rda
 
 ######################################################################
 
@@ -141,6 +141,10 @@ convert.Rout: convert.R
 bitten.Rout: bitten.R dogs.csv
 	$(pipeR)
 
+## slow can have bitten.rda, but not bitten.rds!!
+slowtarget/bitten.rda: bitten.rda
+	$(copy)
+
 ## Link events to parallel events for the upstream biter
 ## Produces table links
 linked.Rout: linked.R bitten.rds
@@ -188,6 +192,9 @@ intervalPlots.Rout: intervalPlots.R slow/intervals.rda
 
 ## Check Code for KH and reference code
 slowtarget/check.Rout: check.R dogs.csv
+	$(pipeR)
+
+slowtarget/msvals.Rout: msvals.R slow/bitten.rda slow/egf_R0.rda slow/intervals.rda linked.rda simparams.rda
 	$(pipeR)
 
 ######################################################################
@@ -338,12 +345,8 @@ slowfinal: $(slowfinal)
 
 ## Graphing (weird stuff, and acting weird for now)
 
-draft.pdf.dd.cleanlog: 
-draft.pdf.dd.mg.dot: 
-draft.pdf.dd.mg.pdf: 
-draft.pdf.mg.pdf: 
-slowfinal.mg.pdf:
-slowfinal.dd.mg.pdf:
+## draft.pdf.fast.mg.pdf: 
+## slowfinal.mg.pdf:
 
 
 Ignore += *.ndlog
@@ -352,7 +355,10 @@ Ignore += *.ndlog
 
 Ignore += *.cleanlog
 %.cleanlog: %.ndlog
-	cat $< | grep -v makestuff | grep -v "\.mk" | grep -v slowtarget | grep -v makedeps | grep -v subdeps > $@
+	cat $< | grep -v makestuff | grep -v "\.mk" | grep -v makedeps | grep -v subdeps > $@
+
+%.fast.cleanlog: %.cleanlog
+	cat $< | grep -v slowtarget > $@
 
 Ignore += *.mg.dot
 %.mg.dot: %.cleanlog
@@ -382,7 +388,7 @@ Sources += Makefile
 Ignore += makestuff
 msrepo = https://github.com/dushoff
 
-Makefile: makestuff/05.stamp
+Makefile: makestuff/06.stamp
 makestuff/%.stamp:
 	- $(RM) makestuff/*.stamp
 	(cd makestuff && $(MAKE) pull) || git clone --depth 1 $(msrepo)/makestuff

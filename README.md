@@ -1,5 +1,9 @@
 # egfR0
 
+## Current plan
+
+We are using the slow/ slowtarget/ pair _both_ for faster compilation, _and_ for sharing non-sensitive files that people can use to replicate the downstream part of our work. It would be fun to make a separate share/ directory.
+
 ## to get up and running...
 
 ### re: make
@@ -8,8 +12,6 @@ remotes::install_github("dushoff/shellpipes")
 https://dushoff.github.io/shellpipes/
 
 To pull and push (on git) idiomatically, simply run in terminal `make sync`.
-
-
 
 ### other R packages
 I think I installed epiGrowthFit manually/outside the make file, but don't
