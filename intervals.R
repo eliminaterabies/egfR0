@@ -51,6 +51,17 @@ interval_merge <- (interval_df
 	))
 )
 
+print(timesummary <- interval_merge 
+	%>% group_by(Type) 
+	%>% summarise(count = n()) 
+	%>% left_join(.,interval_merge)
+	%>% select(Type, count, Mean)
+	%>% distinct()
+)
+
+meanVec <- setNames(timesummary[["Mean"]],timesummary[["Type"]])
+countVec <- setNames(timesummary[["count"]],timesummary[["Type"]])
+
 bites <- (bites |> transmute(count=count))
 
 print(interval_merge %>% select(-Days) %>% distinct())
@@ -66,4 +77,4 @@ GIcount <- (interval_counts
 
 print(GIcount)
 
-saveVars(interval_merge, bites, GIcount)
+saveVars(interval_merge, bites, GIcount, meanVec, countVec)

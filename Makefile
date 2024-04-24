@@ -59,9 +59,7 @@ draft.pdf.final.pdf: $(Sources)
 ## draft.tex.pdf: draft.tex doc.Rnw
 ## Other dependencies should be in texknit/doc.tex.mk
 draft.pdf: texknit/doc.makedeps doc.Rnw
-texknit/doc.tex: msvalues
-
-msvalues: delphi.pars.rda slow/bitten.rda slow/egf_R0.rda slow/intervals.rda
+texknit/doc.tex: delphi.pars.rda slow/msvals.rda
 
 ######################################################################
 
@@ -195,6 +193,8 @@ intervalPlots.Rout: intervalPlots.R slow/intervals.rda
 ## Check Code for KH and reference code
 slowtarget/check.Rout: check.R dogs.csv
 	$(pipeR)
+
+slowtarget/msvals.Rout: msvals.R slow/bitten.rda slow/egf_R0.rda slow/intervals.rda linked.rda
 
 ######################################################################
 

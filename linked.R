@@ -42,6 +42,7 @@ print(nrow(links))
 ## Not sure why we need this calculation
 print(nrow(links) - nrow(biterCount))
 summary(biterCount)
+print(mean_biting_freq <- mean(biterCount$secondaryInf))
 
-saveVars(links)
+saveVars(links, mean_biting_freq)
 

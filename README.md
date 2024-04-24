@@ -2,9 +2,7 @@
 
 ## Current plan
 
-We are using the slow/ slowtarget/ pair _both_ for faster compilation, _and_ for sharing non-sensitive files that people can use to replicate the downstream part of our work.
-
-Note that bitten.rds contains dog-specific information, and should not be share (unlike bitten.rda, which has only summary inforamton)
+We are using the slow/ slowtarget/ pair _both_ for faster compilation, _and_ for sharing non-sensitive files that people can use to replicate the downstream part of our work. It would be fun to make a separate share/ directory.
 
 ## to get up and running...
 

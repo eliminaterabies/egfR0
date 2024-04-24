@@ -1,8 +1,6 @@
 <<echo=FALSE,warning=FALSE,comment=FALSE>>=
 load("delphi.pars.rda")
-load("slow/bitten.rda")
-load("slow/egf_R0.rda")
-load("slow/intervals.rda")
+load("slow/msvals.rda")
 @
 
 \section*{Abstract}
