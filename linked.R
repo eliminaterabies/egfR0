@@ -3,7 +3,7 @@
 library(dplyr)
 library(shellpipes)
 
-loadEnvironments()
+bitten <- rdsRead()
 
 ## bitten 
 

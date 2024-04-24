@@ -66,5 +66,4 @@ GIcount <- (interval_counts
 
 print(GIcount)
 
-
 saveVars(interval_merge, bites, GIcount)

@@ -59,7 +59,9 @@ draft.pdf.final.pdf: $(Sources)
 ## draft.tex.pdf: draft.tex doc.Rnw
 ## Other dependencies should be in texknit/doc.tex.mk
 draft.pdf: texknit/doc.makedeps doc.Rnw
-texknit/doc.tex: slow/check.rda delphi.pars.rda
+texknit/doc.tex: msvalues
+
+msvalues: delphi.pars.rda slow/bitten.rda slow/egf_R0.rda slow/intervals.rda
 
 ######################################################################
 
@@ -141,9 +143,13 @@ convert.Rout: convert.R
 bitten.Rout: bitten.R dogs.csv
 	$(pipeR)
 
+## slow can have bitten.rda, but not bitten.rds!!
+slowtarget/bitten.rda: bitten.rda
+	$(copy)
+
 ## Link events to parallel events for the upstream biter
 ## Produces table links
-linked.Rout: linked.R bitten.rda
+linked.Rout: linked.R bitten.rds
 	$(pipeR)
 
 ## Calculate various intervals

@@ -37,7 +37,7 @@ dogsUnknownBiter <- (SuspectDogs
 	%>% filter(Biter.ID == 0)
 )
 
-
+unknownBiters <- nrow(dogsUnknownBiter)
 
 ## All animals should be Serengeti hear for now
 table(animal$District)
@@ -69,4 +69,5 @@ biteCount <- (bitten
 print(biteCount %>% filter(timesBitten>1), n=50)
 
 bitten <- full_join(bitten, biteCount)
-saveVars(bitten, dogsTransmissionNum, dogsSuspectedNum,dogsUnknownBiter)
+saveVars(dogsTransmissionNum, dogsSuspectedNum, unknownBiters)
+rdsSave(bitten)
