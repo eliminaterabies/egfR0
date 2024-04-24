@@ -194,7 +194,8 @@ intervalPlots.Rout: intervalPlots.R slow/intervals.rda
 slowtarget/check.Rout: check.R dogs.csv
 	$(pipeR)
 
-slowtarget/msvals.Rout: msvals.R slow/bitten.rda slow/egf_R0.rda slow/intervals.rda linked.rda
+slowtarget/msvals.Rout: msvals.R slow/bitten.rda slow/egf_R0.rda slow/intervals.rda linked.rda simparams.rda
+	$(pipeR)
 
 ######################################################################
 
