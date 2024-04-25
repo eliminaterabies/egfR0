@@ -141,10 +141,6 @@ convert.Rout: convert.R
 bitten.Rout: bitten.R dogs.csv
 	$(pipeR)
 
-## slow can have bitten.rda, but not bitten.rds!!
-slowtarget/bitten.rda: bitten.rda
-	$(copy)
-
 ## Link events to parallel events for the upstream biter
 ## Produces table links
 linked.Rout: linked.R bitten.rds
