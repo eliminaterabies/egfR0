@@ -31,10 +31,10 @@ egffun <- function(x){
 }     
 
 r_ests <- function(x){
-	cf <- confint(x[[1]],probs=c(0.025,0.975))
-	df <- data.frame(lwr=exp(cf[["lower"]][[1]])
- 		, est = exp(cf[["estimate"]][[1]])
-		, upr = exp(cf[["upper"]][[1]])
+	cf <- confint(x[[1]], level = 0.95, A = NULL, class = TRUE)
+	df <- data.frame(lwr = exp(cf[["ci"]][, 1L][[1]])
+		, est = exp(cf[["value"]][[1]])
+		, upr = exp(cf[["ci"]][, 2L][[1]])
 	)
 	return(df)
 }
