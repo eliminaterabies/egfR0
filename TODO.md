@@ -1,9 +1,5 @@
 
-2024 Apr 19 (Fri)
+2024 Apr 26 (Fri)
 =================
 
-We are having problems.
-
-check.Rout is reporting many-to-many warnings when merging biters. Likely cause is repeated IDs in biter df, which seems bad.
-
-egfR0.Rout is not currently running at all (this was suppressed under slow machinery). This is also correlated with an m-to-m issue.
+We have no Hampson estimate for NYcounties, nor for Tokyo 1948. Do we know why? Can we just drop them? WZ to do some research then check in with Katie.
