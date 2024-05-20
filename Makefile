@@ -246,6 +246,10 @@ pipeRimplicit += mm_plot
 %.mm_plot.Rout: mm_plot.R %.mm_windows.rda %.pars.rda
 	$(pipeR)
 
+## delphi.supp_mm_plot.Rout: supp_mm_plot.R
+%.supp_mm_plot.Rout: supp_mm_plot.R %.mm_windows.rda %.pars.rda
+	$(pipeR)
+
 ## The last pre-Delphi comparison plot.
 compare.Rout: compare.R softClimb.mm_plot.rds lowPeaks.mm_plot.rds base.mm_plot.rds softDecline.mm_plot.rds
 	$(pipeR)
