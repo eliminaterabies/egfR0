@@ -8,8 +8,10 @@ current: target
 vim_session:
 	bash -cl "vmt TODO.md README.md notes.md"
 
-Makefile:
-	@echo Why are you here && false
+## Makefile: fake
+
+fake:
+	echo Why are you here && false
 
 ##################################################################
 
