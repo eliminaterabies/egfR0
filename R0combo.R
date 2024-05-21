@@ -29,6 +29,12 @@ print(gg
 		, linewidth = 3
 		, alpha=0.2
 	)
+	+ geom_point(data=hampson
+		, aes(x=med)
+		, shape = "|"
+		, size = 2.3
+		, color = "blue"
+	)
       + xlab(expression(R[0]))
       + guides(custom = guide_custom(blue_line,
                title = "Hampson"))
