@@ -8,6 +8,9 @@ current: target
 vim_session:
 	bash -cl "vmt TODO.md README.md notes.md"
 
+Makefile:
+	@echo Why are you here && false
+
 ##################################################################
 
 Sources += README.md notes.md TODO.md ##
@@ -250,6 +253,8 @@ pipeRimplicit += mm_plot
 ## delphi.supp_mm_plot.Rout: supp_mm_plot.R
 %.supp_mm_plot.Rout: supp_mm_plot.R %.mm_windows.rda %.pars.rda
 	$(pipeR)
+
+supp_mm_plot.Rout: supp_mm_plot.R %.mm_windows.rda %.pars.rda
 
 ## The last pre-Delphi comparison plot.
 compare.Rout: compare.R softClimb.mm_plot.rds lowPeaks.mm_plot.rds base.mm_plot.rds softDecline.mm_plot.rds
