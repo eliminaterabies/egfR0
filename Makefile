@@ -57,6 +57,7 @@ draft.pdf.final.pdf: $(Sources)
 
 ## This rule will try harder to make a pdf, and less hard to make sure all of the dependencies are in order. 
 ## draft.tex.pdf: draft.tex doc.Rnw
+
 ## Other dependencies should be in texknit/doc.tex.mk
 draft.pdf: texknit/doc.makedeps doc.Rnw
 texknit/doc.tex: delphi.pars.rda slow/msvals.rda
@@ -343,7 +344,6 @@ slowfinal: $(slowfinal)
 
 ## draft.pdf.fast.mg.pdf: 
 ## slowfinal.mg.pdf:
-
 
 Ignore += *.ndlog
 %.ndlog: Makefile
