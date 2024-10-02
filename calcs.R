@@ -7,7 +7,7 @@ library(shellpipes)
 
 commandEnvironments()
 
-intervals <- (links
+intervals <- (rdsRead()
 	%>% rowwise()
 	%>% mutate(
 		dateInc=as.numeric(Symptoms.started - Date.bitten) 

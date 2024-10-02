@@ -44,5 +44,7 @@ print(nrow(links) - nrow(biterCount))
 summary(biterCount)
 print(mean_biting_freq <- mean(biterCount$secondaryInf))
 
-saveVars(links, mean_biting_freq)
+## Secret data in .rds; public in .rda
+rdsSave(links)
+saveVars(mean_biting_freq)
 

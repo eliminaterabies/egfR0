@@ -31,10 +31,6 @@ interval_df <- (tidyInts
 	%>% transmute(Type = ifelse(grepl("Serial",Type),"Serial","Generation")
       	, Days
 		)
-	%>% group_by(Type)
-	%>% mutate(Mean = mean(Days, na.rm=TRUE)
-		, SD = mean(Days, na.rm=TRUE)
-		)
 )
 
 interval_merge <- (interval_df
@@ -53,14 +49,13 @@ interval_merge <- (interval_df
 
 print(timesummary <- interval_merge 
 	%>% group_by(Type) 
-	%>% summarise(count = n()) 
-	%>% left_join(.,interval_merge)
-	%>% select(Type, count, Mean)
-	%>% distinct()
+	%>% summarise(count = n() , Mean = mean(Days, na.rm=TRUE)) 
 )
 
 meanVec <- setNames(timesummary[["Mean"]],timesummary[["Type"]])
 countVec <- setNames(timesummary[["count"]],timesummary[["Type"]])
+
+print(meanVec)
 
 bites <- (bites |> transmute(count=count))
 
@@ -77,4 +72,4 @@ GIcount <- (interval_counts
 
 print(GIcount)
 
-saveVars(interval_merge, bites, GIcount, meanVec, countVec)
+saveVars(interval_merge, bites, GIcount, meanVec, countVec, timesummary)

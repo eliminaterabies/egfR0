@@ -16,6 +16,7 @@ maxDays <- 100
 print(interval_merge)
 
 ## from once.rda
+## This is FRYed, see biteDist.R
 
 once <- (rdsRead("once")
 	%>% select(Biter.ID,dateGen)

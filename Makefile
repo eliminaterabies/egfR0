@@ -1,5 +1,6 @@
-## This is egfR0, a fresh new repo. Jan 2024
+## This is egfR0, made Jan 2024
 ## The old rabies_R0 and historical_R0 repos are now somewhat deprecated
+## Much of this repo has been superseded by the newer R0paper repo
 
 ### Hooks
 current: target
@@ -161,7 +162,7 @@ linked.Rout: linked.R bitten.rds
 
 ## NOTE: Identify and eliminate outliers
 ## work on the scale and/or y=x line so we can see matching clearly
-calcs.Rout: calcs.R linked.rda
+calcs.Rout: calcs.R linked.rds
 	$(pipeR)
 
 ## Filter intervals to drop animals bitten more than once
@@ -169,6 +170,9 @@ calcs.Rout: calcs.R linked.rda
 ## Keep the same table name for flexibility downstream
 
 once.Rout: once.R calcs.rda
+	$(pipeR)
+
+biteDist.Rout: biteDist.R once.rds
 	$(pipeR)
 
 incubation.Rout: incubation.R once.rds
@@ -187,6 +191,7 @@ Sources += $(wildcard *.Rscript)
 slowtarget/intervals.Rout: intervals.R incubation.rda once.rds 
 	$(pipeR)
 
+## intervalPlots.Rout.final: intervalPlots.R
 intervalPlots.Rout: intervalPlots.R slow/intervals.rda 
 	$(pipeR)
 
@@ -354,7 +359,9 @@ slowfinal: $(slowfinal)
 ## Graphing (weird stuff, and acting weird for now)
 
 ## draft.pdf.fast.mg.pdf: 
-## slowfinal.mg.pdf:
+## intervals.check.mg.pdf:
+
+intervals.check: slowtarget/intervals.Rout ;
 
 Ignore += *.ndlog
 %.ndlog: Makefile

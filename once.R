@@ -5,7 +5,7 @@ loadEnvironments()
 
 print(intervals)
 
-## only filtering dogs that are bitten once
+## only keep dogs that are bitten once
 # print(head(intervals))
 
 intervals <- (intervals
@@ -23,6 +23,8 @@ intervals <- (intervals
 	%>% filter(Suspect.biter %in% c("Yes","To Do", "Unknown"))
 	%>% filter(!(ID %in% c(161, 628, 7966, 7967))) ## temp removing problematic multiple exposures
 )
+
+print(summary(intervals))
 
 print(summary(intervals %>% select(dateGen)))
 print(table(intervals %>% select(dateGen) %>% filter(!is.na(dateGen))))

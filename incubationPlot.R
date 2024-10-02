@@ -22,7 +22,6 @@ gg_hist <- (ggplot(incubations, aes(x=Days, group=Type))
 	+ geom_histogram(aes(y=..count..))
 	+ geom_density(aes(y=..count..*5))
 )
-			
 
 gg_dens <- (ggplot(incubations, aes(x=Days, colour=Type))
 	+ geom_density(aes(y=..count..)

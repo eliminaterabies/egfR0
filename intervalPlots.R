@@ -12,9 +12,6 @@ library(shellpipes)
 startGraphics()
 loadEnvironments()
 
-summary(bites)
-summary(interval_merge)
-
 minDays <- 0
 maxDays <- 100
 
@@ -22,7 +19,11 @@ hampson_intervals <- data.frame(Hampson_mean = c(22.3,24.9)
 	, Type = c("Incubation Period: Dogs","Generation Interval")
 )
 
-interval_merge <- left_join(interval_merge,hampson_intervals)
+interval_merge <- (interval_merge
+	|> left_join(hampson_intervals)
+	|> left_join(timesummary)
+)
+
 print(interval_merge %>% group_by(Type) %>% summarise(count = n()))
 
 gg <- (ggplot(interval_merge, aes(Days,fill=Type,color="black"))
